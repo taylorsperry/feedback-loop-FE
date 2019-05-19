@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Feedback Loop
+          Welcome to the Feedback Loop
         </p>
       </header>
     </div>
