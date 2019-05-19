@@ -2,20 +2,27 @@ import React, { Component } from 'react';
 import './App.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Route, Switch, withRouter } from 'react-router-dom'
+import Dashboard from '../Dashboard/Dashboard'
+import Login from '../Login/Login'
+import PageNotFound from '../../components/PageNotFound/PageNotFound'
 
 export class App extends Component {
-  constructor() {
-    super();
-  }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <p>
-            Welcome to the Feedback Loop
-          </p>
-        </header>
+        <div>
+          <Switch>
+            <Route exact path='/'
+              render={() => <Login />}
+            />
+            <Route exact path='/dashboard'
+              render={() => <Dashboard />}
+            />
+            <Route component={PageNotFound} />
+          </Switch>
+        </div>
       </div>
     );
   }
@@ -31,4 +38,4 @@ export const mapStateToProps = (state) => ({
   error: state.error
 })
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
