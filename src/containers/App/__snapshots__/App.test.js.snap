@@ -17,6 +17,11 @@ exports[`App should match the snapshot 1`] = `
         render={[Function]}
       />
       <Route
+        exact={true}
+        path="/new-survey"
+        render={[Function]}
+      />
+      <Route
         component={[Function]}
       />
     </Switch>
