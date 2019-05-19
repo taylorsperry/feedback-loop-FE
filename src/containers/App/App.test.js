@@ -1,11 +1,24 @@
 import React from 'react';
-import App from './App';
-import { shallow } from 'enzyme'
+import { App, mapStateToProps } from './App';
+import { shallow } from 'enzyme';
 
 describe('App', () => {
+  let wrapper;
+  let mockBool;
+  let mockError;
+
+  beforeEach(() => {
+    mockBool = false
+    mockError = "Something went wrong"
+    wrapper = shallow(
+      <App
+         isLoading={mockBool}
+         error={mockError}
+      />
+    )
+  })
+
   it('should match the snapshot', () => {
-    let wrapper
-    wrapper = shallow(<App />)
     expect(wrapper).toMatchSnapshot()
   });
 })
