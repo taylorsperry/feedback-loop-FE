@@ -8,7 +8,7 @@ exports[`App should match the snapshot 1`] = `
     className="App-header"
   >
     <p>
-      Feedback Loop
+      Welcome to the Feedback Loop
     </p>
   </header>
 </div>
