@@ -4,12 +4,27 @@ exports[`App should match the snapshot 1`] = `
 <div
   className="App"
 >
-  <header
-    className="App-header"
-  >
-    <p>
-      Welcome to the Feedback Loop
-    </p>
-  </header>
+  <div>
+    <Switch>
+      <Route
+        exact={true}
+        path="/"
+        render={[Function]}
+      />
+      <Route
+        exact={true}
+        path="/dashboard"
+        render={[Function]}
+      />
+      <Route
+        exact={true}
+        path="/new-survey"
+        render={[Function]}
+      />
+      <Route
+        component={[Function]}
+      />
+    </Switch>
+  </div>
 </div>
 `;

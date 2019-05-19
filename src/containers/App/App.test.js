@@ -18,7 +18,7 @@ describe('App', () => {
     )
   })
 
-  it.skip('should match the snapshot', () => {
+  it('should match the snapshot', () => {
     expect(wrapper).toMatchSnapshot()
   });
 })

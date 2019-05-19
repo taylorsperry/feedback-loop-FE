@@ -6,6 +6,7 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import Dashboard from '../Dashboard/Dashboard'
 import Login from '../Login/Login'
 import PageNotFound from '../../components/PageNotFound/PageNotFound'
+import { NewSurvey } from '../NewSurvey/NewSurvey';
 
 export class App extends Component {
 
@@ -19,6 +20,9 @@ export class App extends Component {
             />
             <Route exact path='/dashboard'
               render={() => <Dashboard />}
+            />
+            <Route exact path='/new-survey'
+              render={() => <NewSurvey />}
             />
             <Route component={PageNotFound} />
           </Switch>
