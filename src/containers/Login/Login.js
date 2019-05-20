@@ -6,7 +6,7 @@ export class Login extends Component {
     return(
       <div>
         <header className="feedback-loop-title-text">
-          Welcome to the Feedback Loop
+          Feedback Loop
         </header>
         <div className="button-backsplash">
           <NavLink to='/dashboard'>
