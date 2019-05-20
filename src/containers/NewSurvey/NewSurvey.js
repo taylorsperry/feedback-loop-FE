@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import Header from '../../components/Header/Header'
+import Header from '../../components/Header/Header';
+import Question from '../../components/Question/Question'
+import shortid from 'shortid'
 
 
 export class NewSurvey extends Component {
@@ -9,7 +11,9 @@ export class NewSurvey extends Component {
     super();
     this.state = {
       surveyName: '',
-      surveyExpiration: new Date()
+      surveyExpiration: new Date(),
+      newQuestion: false,
+      questions: [],
     }
   }
 
@@ -30,8 +34,18 @@ export class NewSurvey extends Component {
       surveyExpiration: date
     })
   }
+
+  addQuestion = () => {
+    // this.setState({
+    //   newQuestion: !this.state.newQuestion
+    // })
+    this.setState({
+      questions: [...this.state.questions, <Question key={shortid()} />]
+    })
+  }
  
   render() {
+
     return(
       <div>
         <Header />
@@ -57,8 +71,10 @@ export class NewSurvey extends Component {
           <label className="begin-create-survey-label">
             Expiration Date:
           </label>
-          <button className="begin-new-survey-button">ok</button>
         </form>
+        {this.state.questions}
+        <button className="begin-new-survey-button">ok</button>
+        <button className="begin-new-survey-button" onClick={this.addQuestion}>Add a Question</button>
       </div>
     )
   }
