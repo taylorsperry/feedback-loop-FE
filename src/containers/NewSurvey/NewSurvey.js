@@ -71,10 +71,10 @@ export class NewSurvey extends Component {
           <label className="begin-create-survey-label">
             Expiration Date:
           </label>
-          <button className="begin-new-survey-button">ok</button>
-          {this.state.questions}
-          <button className="begin-new-survey-button" onClick={this.addQuestion}>Add a Question</button>
         </form>
+        {this.state.questions}
+        <button className="begin-new-survey-button">ok</button>
+        <button className="begin-new-survey-button" onClick={this.addQuestion}>Add a Question</button>
       </div>
     )
   }
