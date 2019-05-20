@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Header from '../../components/Header/Header'
 
 export class NewSurvey extends Component {
   constructor() {
@@ -20,8 +21,9 @@ export class NewSurvey extends Component {
   render() {
     return(
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
+        <Header />
+        <form onSubmit={this.handleSubmit} className='new-survey-landing-form'>
+          <label className="begin-create-survey-label">
             Survey Name:
             <input 
               type="text"
@@ -30,6 +32,10 @@ export class NewSurvey extends Component {
               onChange={this.handleChange}
             />
           </label>
+          <label className="begin-create-survey-label">
+            Expiration Date:
+          </label>
+          <button className="begin-new-survey-button">ok</button>
         </form>
       </div>
     )

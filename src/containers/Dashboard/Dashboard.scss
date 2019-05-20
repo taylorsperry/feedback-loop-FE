@@ -1,0 +1,16 @@
+.create-new-survey-button {
+  background-color: $main-blue;
+  border-radius: 50px;
+  border: none;
+  color: $accent-teal;
+  font-family: $main-font;
+  font-weight: bold;
+  font-size: 16px;
+  height: 50px;
+  margin: 20px;
+  width: 800px;
+  &:hover {
+    cursor: pointer;
+    background-color: $main-blue-hover;
+  }
+}
