@@ -1,0 +1,27 @@
+.new-survey-landing-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.begin-new-survey-button {
+  background-color: $main-blue;
+  border-radius: 50px;
+  border: none;
+  color: $accent-teal;
+  font-family: $main-font;
+  font-weight: bold;
+  font-size: 16px;
+  align-self: flex-end;
+  height: 50px;
+  margin: 40px;
+  width: 150px;
+  &:hover {
+    cursor: pointer;
+    background-color: $main-blue-hover;
+  }
+}
+
+.begin-create-survey-label {
+  font-weight: bold;
+  font-family: $main-font;
+}
