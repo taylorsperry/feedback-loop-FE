@@ -5,12 +5,14 @@ export class Login extends Component {
   render() {
     return(
       <div>
-        <header className="App-header">
+        <header className="feedback-loop-title-text">
           Welcome to the Feedback Loop
         </header>
-        <div>
-          <NavLink to='/dashboard' className='login-button'>
-            <button className='login-button'>Login</button>
+        <div className="button-backsplash">
+          <NavLink to='/dashboard'>
+            <button className='login-button'>
+            Login
+            </button>
           </NavLink>
         </div>
       </div>
