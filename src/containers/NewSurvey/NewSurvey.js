@@ -6,6 +6,7 @@ import Header from '../../components/Header/Header';
 import Question from '../../components/Question/Question'
 import shortid from 'shortid'
 import { setSurvey } from '../../actions'
+import { withRouter } from 'react-router-dom'
 
 export class NewSurvey extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ export class NewSurvey extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.setSurvey(this.state)
+    this.props.history.push('/recipients')
   }
 
   handleChange = (e) => {
@@ -96,10 +98,9 @@ export class NewSurvey extends Component {
           <label className="begin-create-survey-label">
             Expiration Date:
           </label>
-        <button className="begin-new-survey-button" type="submit">ok</button>
         </form>
         {questionCards}
-        <button className="begin-new-survey-button">ok</button>
+        <button className="begin-new-survey-button" onClick={this.handleSubmit}>Choose Recipients</button>
         <button className="begin-new-survey-button" onClick={this.addQuestion}>Add a Question</button>
       </div>
     )
@@ -110,4 +111,4 @@ export const mapDispatchToProps = (dispatch) => ({
   setSurvey: (survey) => dispatch(setSurvey(survey))
 })
 
-export default connect(null, mapDispatchToProps)(NewSurvey)
+export default withRouter(connect(null, mapDispatchToProps)(NewSurvey))

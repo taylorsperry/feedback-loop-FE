@@ -7,9 +7,21 @@ import Dashboard from '../Dashboard/Dashboard'
 import Login from '../Login/Login'
 import PageNotFound from '../../components/PageNotFound/PageNotFound'
 import NewSurvey from '../NewSurvey/NewSurvey';
+import RecipientForm from '../RecipientForm/RecipientForm'
 
 
 export class App extends Component {
+
+  async componentDidMount() {
+    const url = 'https://turing-feedback-api.herokuapp.com/api/v1/cohorts'
+    try {
+      const response = await fetch(url)
+      const cohorts = await response.json()
+      console.log(cohorts)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   render() {
     return (
@@ -24,6 +36,9 @@ export class App extends Component {
             />
             <Route exact path='/new-survey'
               render={() => <NewSurvey />}
+            />
+            <Route exact path='/recipients'
+              render={() => <RecipientForm />}
             />
             <Route component={PageNotFound} />
           </Switch>
