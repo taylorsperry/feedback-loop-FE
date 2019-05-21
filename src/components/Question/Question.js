@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Option from '../Option/Option'
 import shortid from 'shortid'
 
 export class Question extends Component {
@@ -7,56 +6,78 @@ export class Question extends Component {
     super();
     this.state = {
       questionTitle: '',
-      questionText: '',
-      // option_1: {pointValue: 1, questionText: ''},
-      // option_2: {pointValue: 1, questionText: ''},
-      // option_3: {pointValue: 1, questionText: ''},
-      // option_4: {pointValue: 1, questionText: ''},
-      // option_5: {pointValue: 1, questionText: ''}
-
-      // options: [
-      //   {pointValue: 1, questionText: ''},
-      //   {pointValue: 2, questionText: ''},
-      //   {pointValue: 3, questionText: ''},
-      //   {pointValue: 4, questionText: ''},
-      //   {pointValue: 5, questionText: ''}
-      // ]
+      option_1: {pointValue: 1, questionText: ''},
+      option_2: {pointValue: 2, questionText: ''},
+      option_3: {pointValue: 3, questionText: ''},
+      option_4: {pointValue: 4, questionText: ''},
+      option_5: {pointValue: 5, questionText: ''}
     }
   }
 
   handleChange = (e) => {
     console.log(e.target)
     const { name, value } = e.target
-    // this.state.options.forEach(option => {
-      // console.log(option)
-      this.setState({  questionText : value })
-    // })
+      this.setState({  [name] : {pointValue: this.state[name].pointValue, questionText: value} })
   }
 
-
-  
-
-
   render() {
-    const options = this.state.options.map((option, index) => {
-      return <div key={shortid()}>
-                <input
-                  type="radio"
-                  name="radio" />
-                <input
-                  type="text"
-                  name={index}
-                  value={this.state.questionText}
-                  //this might be wrong
-                  onChange={this.handleChange} />
-              </div>
-              //make 5 separate inputs in the return
-              //each will have its own radio and text input
-              //value on each one will correlate with what is in the state
-    })
     return (
       <form>
-        {options}
+        <div key={shortid()}>
+          <input
+            type="radio"
+            name="radio" />
+          <input
+            type="text"
+            placeholder="option description"
+            name="option_1"
+            value={this.state.option_1.questionText}
+            onChange={this.handleChange} />
+        </div>
+        <div key={shortid()}>
+          <input
+            type="radio"
+            name="radio" />
+          <input
+            type="text"
+            placeholder="option description"
+            name="option_2"
+            value={this.state.option_2.questionText}
+            onChange={this.handleChange} />
+        </div>
+        <div key={shortid()}>
+          <input
+            type="radio"
+            name="radio" />
+          <input
+            type="text"
+            placeholder="option description"
+            name="option_3"
+            value={this.state.option_3.questionText}
+            onChange={this.handleChange} />
+        </div>
+        <div key={shortid()}>
+          <input
+            type="radio"
+            name="radio" />
+          <input
+            type="text"
+            placeholder="option description"
+            name="option_4"
+            value={this.state.option_4.questionText}
+            onChange={this.handleChange} />
+        </div>
+        <div key={shortid()}>
+          <input
+            type="radio"
+            name="radio" />
+          <input
+            type="text"
+            placeholder="option description"
+            name="option_5"
+            value={this.state.option_5.questionText}
+            onChange={this.handleChange} />
+        </div>
       </form>
     )
   }

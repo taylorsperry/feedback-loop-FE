@@ -36,9 +36,6 @@ export class NewSurvey extends Component {
   }
 
   addQuestion = () => {
-    // this.setState({
-    //   newQuestion: !this.state.newQuestion
-    // })
     this.setState({
       questions: [...this.state.questions, <Question key={shortid()} />]
     })
