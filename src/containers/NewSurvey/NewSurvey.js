@@ -5,7 +5,6 @@ import Header from '../../components/Header/Header';
 import Question from '../../components/Question/Question'
 import shortid from 'shortid'
 
-
 export class NewSurvey extends Component {
   constructor() {
     super();
@@ -35,13 +34,33 @@ export class NewSurvey extends Component {
     })
   }
 
-  addQuestion = () => {
+  updateQuestions = (question) => {
+    const newQuestions = [...this.state.questions, question]
     this.setState({
-      questions: [...this.state.questions, <Question key={shortid()} />]
+      questions: newQuestions
     })
+  }
+
+  addQuestion = () => {
+    // this.setState({
+    //   questions: [...this.state.questions, <Question key={shortid()} updateQuestions={this.updateQuestions} />]
+    // })
+    this.setState({
+      newQuestion: !this.state.newQuestion
+    })
+    // return <Question key={shortid()} updateQuestions={this.updateQuestions} />
+  }
+
+  displayNewQuestion = () => {
+    this.setState({ newQuestion: false })
+    return <Question key={shortid()} updateQuestions={this.updateQuestions} />
   }
  
   render() {
+    let questionElement;
+    if (this.state.newQuestion) {
+      questionElement = this.displayNewQuestion()
+    }
 
     return(
       <div>
@@ -70,6 +89,7 @@ export class NewSurvey extends Component {
           </label>
         </form>
         {this.state.questions}
+        {questionElement}
         <button className="begin-new-survey-button">ok</button>
         <button className="begin-new-survey-button" onClick={this.addQuestion}>Add a Question</button>
       </div>

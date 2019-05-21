@@ -15,15 +15,30 @@ export class Question extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target)
     const { name, value } = e.target
       this.setState({  [name] : {pointValue: this.state[name].pointValue, questionText: value} })
   }
 
+  handleTitleChange = (e) => {
+    this.setState({
+      questionTitle: e.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    
+  }
+
   render() {
     return (
-      <form>
-        <div key={shortid()}>
+      <form onSubmit={this.handleSubmit}>
+          <input 
+            type="text"
+            name="questionTitle"
+            value={this.state.questionTitle}
+            onChange={this.handleTitleChange}
+          />
           <input
             type="radio"
             name="radio" />
@@ -33,8 +48,6 @@ export class Question extends Component {
             name="option_1"
             value={this.state.option_1.questionText}
             onChange={this.handleChange} />
-        </div>
-        <div key={shortid()}>
           <input
             type="radio"
             name="radio" />
@@ -44,8 +57,6 @@ export class Question extends Component {
             name="option_2"
             value={this.state.option_2.questionText}
             onChange={this.handleChange} />
-        </div>
-        <div key={shortid()}>
           <input
             type="radio"
             name="radio" />
@@ -55,8 +66,6 @@ export class Question extends Component {
             name="option_3"
             value={this.state.option_3.questionText}
             onChange={this.handleChange} />
-        </div>
-        <div key={shortid()}>
           <input
             type="radio"
             name="radio" />
@@ -66,8 +75,6 @@ export class Question extends Component {
             name="option_4"
             value={this.state.option_4.questionText}
             onChange={this.handleChange} />
-        </div>
-        <div key={shortid()}>
           <input
             type="radio"
             name="radio" />
@@ -77,7 +84,6 @@ export class Question extends Component {
             name="option_5"
             value={this.state.option_5.questionText}
             onChange={this.handleChange} />
-        </div>
       </form>
     )
   }
