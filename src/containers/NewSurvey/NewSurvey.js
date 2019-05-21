@@ -11,7 +11,6 @@ export class NewSurvey extends Component {
     this.state = {
       surveyName: '',
       surveyExpiration: new Date(),
-      newQuestion: false,
       questions: [],
     }
   }
@@ -34,32 +33,39 @@ export class NewSurvey extends Component {
     })
   }
 
-  updateQuestions = (question) => {
-    const newQuestions = [...this.state.questions, question]
-    this.setState({
-      questions: newQuestions
-    })
+  updateQuestions = (newQuestion) => {
+    console.log(newQuestion)
+    if(this.state.questions.length) {
+      const updatedQuestions = this.state.questions.map(question => {
+        if (question.id === newQuestion.id) {
+          question = newQuestion
+        }
+        return question
+      })
+      this.setState({
+        questions: updatedQuestions
+      })
+    }
   }
 
   addQuestion = () => {
-    // this.setState({
-    //   questions: [...this.state.questions, <Question key={shortid()} updateQuestions={this.updateQuestions} />]
-    // })
     this.setState({
-      newQuestion: !this.state.newQuestion
+      questions: [...this.state.questions, { id: shortid() }]
     })
-    // return <Question key={shortid()} updateQuestions={this.updateQuestions} />
   }
 
-  displayNewQuestion = () => {
-    this.setState({ newQuestion: false })
-    return <Question key={shortid()} updateQuestions={this.updateQuestions} />
-  }
- 
+  displayQuestion = (question) => (
+    <Question 
+      key={question.id} 
+      {...question}
+      updateQuestions={this.updateQuestions} />
+  )
+  
   render() {
-    let questionElement;
-    if (this.state.newQuestion) {
-      questionElement = this.displayNewQuestion()
+
+    let questionCards
+    if (this.state.questions.length) {
+      questionCards = this.state.questions.map(question => this.displayQuestion(question))
     }
 
     return(
@@ -88,8 +94,7 @@ export class NewSurvey extends Component {
             Expiration Date:
           </label>
         </form>
-        {this.state.questions}
-        {questionElement}
+        {questionCards}
         <button className="begin-new-survey-button">ok</button>
         <button className="begin-new-survey-button" onClick={this.addQuestion}>Add a Question</button>
       </div>

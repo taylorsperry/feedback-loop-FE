@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import shortid from 'shortid'
 
 export class Question extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      id: this.props.id,
       questionTitle: '',
       option_1: {pointValue: 1, questionText: ''},
       option_2: {pointValue: 2, questionText: ''},
@@ -27,12 +28,12 @@ export class Question extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    
+    this.props.updateQuestions(this.state)
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onBlur={this.handleSubmit}>
           <input 
             type="text"
             name="questionTitle"
