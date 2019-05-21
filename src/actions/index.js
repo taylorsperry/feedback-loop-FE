@@ -12,3 +12,8 @@ export const setSurvey = (survey) => ({
   type: 'SET_SURVEY',
   survey
 })
+
+export const setCohorts = (cohorts) => ({
+  type: 'SET_COHORTS',
+  cohorts
+})
