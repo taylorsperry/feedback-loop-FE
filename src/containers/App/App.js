@@ -6,7 +6,8 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import Dashboard from '../Dashboard/Dashboard'
 import Login from '../Login/Login'
 import PageNotFound from '../../components/PageNotFound/PageNotFound'
-import { NewSurvey } from '../NewSurvey/NewSurvey';
+import NewSurvey from '../NewSurvey/NewSurvey';
+
 
 export class App extends Component {
 
