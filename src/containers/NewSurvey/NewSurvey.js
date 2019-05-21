@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Header from '../../components/Header/Header';
 import Question from '../../components/Question/Question'
 import shortid from 'shortid'
+import { setSurvey } from '../../actions'
 
 
 export class NewSurvey extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       surveyName: '',
       surveyExpiration: new Date(),
@@ -19,6 +21,7 @@ export class NewSurvey extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    this.props.setSurvey(this.state)
   }
 
   handleChange = (e) => {
@@ -36,14 +39,11 @@ export class NewSurvey extends Component {
   }
 
   addQuestion = () => {
-    // this.setState({
-    //   newQuestion: !this.state.newQuestion
-    // })
     this.setState({
       questions: [...this.state.questions, <Question key={shortid()} />]
     })
   }
- 
+
   render() {
 
     return(
@@ -71,11 +71,17 @@ export class NewSurvey extends Component {
           <label className="begin-create-survey-label">
             Expiration Date:
           </label>
+        <button className="begin-new-survey-button" type="submit">ok</button>
         </form>
         {this.state.questions}
-        <button className="begin-new-survey-button">ok</button>
         <button className="begin-new-survey-button" onClick={this.addQuestion}>Add a Question</button>
       </div>
     )
   }
 }
+
+export const mapDispatchToProps = (dispatch) => ({
+  setSurvey: (survey) => dispatch(setSurvey(survey))
+})
+
+export default connect(null, mapDispatchToProps)(NewSurvey)
