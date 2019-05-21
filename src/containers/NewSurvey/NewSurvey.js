@@ -7,14 +7,12 @@ import Question from '../../components/Question/Question'
 import shortid from 'shortid'
 import { setSurvey } from '../../actions'
 
-
 export class NewSurvey extends Component {
   constructor(props) {
     super(props);
     this.state = {
       surveyName: '',
       surveyExpiration: new Date(),
-      newQuestion: false,
       questions: [],
     }
   }
@@ -38,13 +36,40 @@ export class NewSurvey extends Component {
     })
   }
 
+  updateQuestions = (newQuestion) => {
+    console.log(newQuestion)
+    if(this.state.questions.length) {
+      const updatedQuestions = this.state.questions.map(question => {
+        if (question.id === newQuestion.id) {
+          question = newQuestion
+        }
+        return question
+      })
+      this.setState({
+        questions: updatedQuestions
+      })
+    }
+  }
+
   addQuestion = () => {
     this.setState({
-      questions: [...this.state.questions, <Question key={shortid()} />]
+      questions: [...this.state.questions, { id: shortid() }]
     })
   }
 
+  displayQuestion = (question) => (
+    <Question 
+      key={question.id} 
+      {...question}
+      updateQuestions={this.updateQuestions} />
+  )
+  
   render() {
+
+    let questionCards
+    if (this.state.questions.length) {
+      questionCards = this.state.questions.map(question => this.displayQuestion(question))
+    }
 
     return(
       <div>
@@ -73,7 +98,8 @@ export class NewSurvey extends Component {
           </label>
         <button className="begin-new-survey-button" type="submit">ok</button>
         </form>
-        {this.state.questions}
+        {questionCards}
+        <button className="begin-new-survey-button">ok</button>
         <button className="begin-new-survey-button" onClick={this.addQuestion}>Add a Question</button>
       </div>
     )
