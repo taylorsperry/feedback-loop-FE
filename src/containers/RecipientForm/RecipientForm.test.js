@@ -42,4 +42,31 @@ describe('RecipientForm', () => {
       cohort_id: 19
     })
   })
+  
+  describe('mapStateToProps', () => {
+    it('should return the expected props as state', () => {
+      mockState = {
+        cohorts: [
+          { id: 1 ,
+          name: "1811" },
+          { id: 2,
+          name: "1901" }
+          ],
+        fakeState: "fakeState"
+      }
+      const expected = {
+        cohorts: [
+          { id: 1 ,
+          name: "1811" },
+          { id: 2,
+          name: "1901" }
+          ]
+      }
+
+      const mappedProps = mapStateToProps(mockState)
+
+      expect(mappedProps).toEqual(expected)
+    })
+  })
+  
 })
