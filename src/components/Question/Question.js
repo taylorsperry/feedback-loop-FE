@@ -53,6 +53,7 @@ export class Question extends Component {
               type="text"
               placeholder="Option description"
               name="option_1"
+              id='op1'
               className='option'
               value={this.state.option_1.questionText}
               onChange={this.handleChange} />
