@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login should match the snapshot 1`] = `
+<div
+  className="login-container"
+>
+  <NavLink
+    to="/dashboard"
+  >
+    <button
+      className="login-button"
+    >
+      Login
+    </button>
+  </NavLink>
+</div>
+`;
