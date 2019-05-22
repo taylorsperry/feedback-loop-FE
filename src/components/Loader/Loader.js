@@ -1,5 +1,5 @@
 import React from 'react'
-import turingLogo from '../../assets/turingLogo.png'
+import turingLogo from '../../assets/turingLogo'
 
 export default function Loader() {
   return(
