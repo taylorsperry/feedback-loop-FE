@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-import Header from '../../components/Header/Header';
+import "react-datepicker/dist/react-datepicker.css"
 import Question from '../../components/Question/Question'
 import shortid from 'shortid'
 import { setSurvey } from '../../actions'
@@ -74,17 +73,18 @@ export class NewSurvey extends Component {
     }
 
     return(
-      <div>
-        <Header />
+      <div className='new-survey-container'>
         <form onSubmit={this.handleSubmit} className='new-survey-landing-form'>
+          <input 
+            type="text"
+            name="surveyName"
+            className="survey-name"
+            placeholder="Untitled Survey"
+            value={this.state.surveyName}
+            onChange={this.handleChange}
+          />
           <label className="begin-create-survey-label">
-            Survey Name:
-            <input 
-              type="text"
-              name="surveyName"
-              value={this.state.surveyName}
-              onChange={this.handleChange}
-            />
+            <p className="exp">Expiration Date:</p>
             <DatePicker 
               selected={this.state.surveyExpiration}
               onChange={this.handleDate}
@@ -93,15 +93,17 @@ export class NewSurvey extends Component {
               timeIntervals={30}
               dateFormat="MMMM d, yyyy h:mm aa"
               timeCaption="Time"
-            />
-          </label>
-          <label className="begin-create-survey-label">
-            Expiration Date:
+              popperClassName="popper"
+              />
           </label>
         </form>
-        {questionCards}
-        <button className="begin-new-survey-button" onClick={this.handleSubmit}>Choose Recipients</button>
-        <button className="begin-new-survey-button" onClick={this.addQuestion}>Add a Question</button>
+        <div className='question-cards'>
+          {questionCards}
+        </div>
+        <div className='controls'>
+          <button className="begin-new-survey-button" onClick={this.addQuestion}>Add a Question</button>
+          <button className="begin-new-survey-button" onClick={this.handleSubmit}>Choose Recipients</button>
+        </div>
       </div>
     )
   }

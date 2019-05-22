@@ -5,6 +5,11 @@ exports[`App should match the snapshot 1`] = `
   className="App"
 >
   <div>
+    <Header />
+  </div>
+  <div
+    className="route-container"
+  >
     <Switch>
       <Route
         exact={true}

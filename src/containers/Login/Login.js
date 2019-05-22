@@ -4,17 +4,12 @@ import { NavLink } from 'react-router-dom'
 export class Login extends Component {
   render() {
     return(
-      <div>
-        <header className="feedback-loop-title-text">
-          Feedback Loop
-        </header>
-        <div className="button-backsplash">
-          <NavLink to='/dashboard'>
-            <button className='login-button'>
-            Login
-            </button>
-          </NavLink>
-        </div>
+      <div className='login-container'>
+        <NavLink to='/dashboard'>
+          <button className='login-button'>
+          Login
+          </button>
+        </NavLink>
       </div>
     )
   }

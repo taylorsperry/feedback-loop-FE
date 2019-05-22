@@ -1,3 +1,10 @@
+.login-container {
+  background: $white;
+  width: 40%;
+  margin: auto;
+  padding: 25px;
+}
+
 .login-button {
   background-color: $main-blue;
   border-radius: 50px;
@@ -7,25 +14,9 @@
   font-weight: bold;
   font-size: 16px;
   height: 50px;
-  margin: 150px 20px;
-  width: 200px;
+  width: 80%;
   &:hover {
     cursor: pointer;
     background-color: $main-blue-hover;
   }
-}
-
-.feedback-loop-title-text {
-  font-size: 60px;
-  color: $main-grey;
-  font-weight: bolder;
-  margin: 40px 200px;
-}
-
-.button-backsplash {
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3) ), url('./assets/laptops.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 400px;
 }

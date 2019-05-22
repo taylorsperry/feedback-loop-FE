@@ -5,3 +5,12 @@
 .App-header {
   color: black;
 }
+
+.route-container {
+    background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3) ), url('./assets/laptops.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 600px;
+    padding-top: 50px;
+}

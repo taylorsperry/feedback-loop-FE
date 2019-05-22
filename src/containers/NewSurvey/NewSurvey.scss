@@ -1,27 +1,71 @@
+.new-survey-container {
+  background: $white;
+  height: 500px;
+  width: 80%;
+  margin: auto;
+  padding: 25px;
+  display: grid;
+  grid-template-rows: 100px 1fr 50px;
+}
+
 .new-survey-landing-form {
   display: flex;
   flex-direction: column;
+  padding: 5px;
+}
+
+.survey-name {
+  font-size: 34px;
+  height: 51px;
+  width: 100%;
+  border: none;
+  padding: 5px;
+  color: $main-grey;
+  line-height: 135%;
+    &:focus {
+      outline: none;
+    }
+}
+
+.begin-create-survey-label {
+  font-weight: bold;
+  font-family: $main-font;
+  margin-right: 5px;
+  color: $main-grey;
+  text-align: left;
+  padding: 5px;
+  display: flex;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .begin-new-survey-button {
   background-color: $main-blue;
-  border-radius: 50px;
+  border-radius: 10px;
   border: none;
   color: $accent-teal;
   font-family: $main-font;
   font-weight: bold;
   font-size: 16px;
-  align-self: flex-end;
   height: 50px;
-  margin: 40px;
-  width: 150px;
+  width: auto;
+  padding: 0px 20px;
+  margin-left: 20px;
   &:hover {
     cursor: pointer;
     background-color: $main-blue-hover;
   }
 }
 
-.begin-create-survey-label {
-  font-weight: bold;
-  font-family: $main-font;
+
+.exp {
+  margin: 0px;
+  padding-right: 5px;
+}
+
+.popper {
+  width: 500px;
 }
