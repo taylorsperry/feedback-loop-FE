@@ -31,14 +31,12 @@ export class NewSurvey extends Component {
   }
 
   handleDate = (date) => {
-    console.log(date)
     this.setState({
       surveyExpiration: date
     })
   }
 
   updateQuestions = (newQuestion) => {
-    console.log(newQuestion)
     if(this.state.questions.length) {
       const updatedQuestions = this.state.questions.map(question => {
         if (question.id === newQuestion.id) {
