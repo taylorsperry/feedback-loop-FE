@@ -5,6 +5,7 @@ import { RecipientForm, mapStateToProps } from './RecipientForm'
 describe('RecipientForm', () => {
   let mockState
   let wrapper
+  let mockEvent
 
   beforeEach(() => {
     mockState = {
@@ -32,7 +33,13 @@ describe('RecipientForm', () => {
     })
   })
 
-  it('should', () => {
-    
+  it('should set state with the cohort id', () => {
+    mockEvent = { target: { value: "19"} }
+
+    wrapper.instance().handleChange(mockEvent)
+
+    expect(wrapper.instance().state).toEqual({
+      cohort_id: 19
+    })
   })
 })
