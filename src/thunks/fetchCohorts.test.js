@@ -31,4 +31,18 @@ describe('fetchCohorts', () => {
     expect(mockDispatch).toHaveBeenCalledWith(isLoading(false))
   })
 
+  it('should dispatch hasError with a message if the response is not ok', async () => {
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      ok: false,
+      statusText: "Something went wrong"
+    }))
+
+    const thunk = await fetchCohorts(mockUrl)
+    await thunk(mockDispatch)
+
+    expect(mockDispatch).toHaveBeenCalledWith(isLoading(true))
+    expect(mockDispatch).toHaveBeenCalledWith(hasError("Something went wrong"))
+    expect(mockDispatch).toHaveBeenCalledWith(isLoading(false))
+  })
+
 })
