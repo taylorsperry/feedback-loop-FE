@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Loader from '../../components/Loader/Loader'
 
 export class RecipientForm extends Component {
   constructor() {
@@ -24,7 +23,6 @@ export class RecipientForm extends Component {
     })
     return(
       <div>
-        {this.state.loading ? <Loader /> : 
         <div>
           <h2>Select Recipients</h2>
           <h3>Program</h3>
@@ -39,7 +37,6 @@ export class RecipientForm extends Component {
           </select>
           <button disabled={!this.state.cohort_id}>Send</button>
         </div>
-        }
       </div>
     )
   }
