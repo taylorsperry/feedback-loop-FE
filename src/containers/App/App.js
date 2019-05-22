@@ -43,7 +43,8 @@ export class App extends Component {
 
 App.propTypes = {
   isLoading: PropTypes.bool,
-  error: PropTypes.string
+  error: PropTypes.string,
+  fetchCohorts: PropTypes.func
 }
 
 export const mapStateToProps = (state) => ({
