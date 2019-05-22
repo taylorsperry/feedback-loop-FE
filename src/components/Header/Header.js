@@ -2,9 +2,8 @@ import React from 'react';
 
 export default function Header() {
   return(
-    <div>
-      <h2>Feedback Loop</h2>
-      <h4>Welcome to your dashboard</h4>
+    <div className='header-container'>
+      <h2 className='feedback-loop-title-text'>Feedback Loop</h2>
     </div>
   )
 }

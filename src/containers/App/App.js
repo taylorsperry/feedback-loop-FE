@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom'
+import Header from '../../components/Header/Header'
 import Dashboard from '../Dashboard/Dashboard'
 import Login from '../Login/Login'
 import PageNotFound from '../../components/PageNotFound/PageNotFound'
@@ -20,6 +20,9 @@ export class App extends Component {
     return (
       <div className="App">
         <div>
+          <Header />
+        </div>
+        <div className="route-container">
           <Switch>
             <Route exact path='/'
               render={() => <Login />}

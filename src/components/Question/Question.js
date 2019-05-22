@@ -33,58 +33,79 @@ export class Question extends Component {
 
   render() {
     return (
-      <form onBlur={this.handleSubmit}>
+      <form onBlur={this.handleSubmit} className='question-form'>
+        <div> 
           <input 
             type="text"
             name="questionTitle"
+            className="question-input"
+            placeholder="Untitled Question"
             value={this.state.questionTitle}
             onChange={this.handleTitleChange}
           />
+        </div> 
+        <div className='option-container'>
+          <div className='option'>
+            <input
+              type="radio"
+              name="radio" />
+            <input
+              type="text"
+              placeholder="Option description"
+              name="option_1"
+              className='option'
+              value={this.state.option_1.questionText}
+              onChange={this.handleChange} />
+          </div>
+          <div className='option'>
+            <input
+              type="radio"
+              name="radio" />
+            <input
+              type="text"
+              placeholder="Option description"
+              name="option_2"
+              className='option'
+              value={this.state.option_2.questionText}
+              onChange={this.handleChange} />
+          </div>
+          <div className='option'>
+            <input
+              type="radio"
+              name="radio" />
+            <input
+              type="text"
+              placeholder="Option description"
+              name="option_3"
+              className='option'
+              value={this.state.option_3.questionText}
+              onChange={this.handleChange} />
+          </div>
+          <div className='option'>
+            <input
+              type="radio"
+              name="radio" />
+            <input
+              type="text"
+              placeholder="Option description"
+              name="option_4"
+              className='option'
+              value={this.state.option_4.questionText}
+              onChange={this.handleChange} />
+          </div>
+          <div className='option'>
           <input
             type="radio"
             name="radio" />
           <input
             type="text"
-            placeholder="option description"
-            name="option_1"
-            value={this.state.option_1.questionText}
-            onChange={this.handleChange} />
-          <input
-            type="radio"
-            name="radio" />
-          <input
-            type="text"
-            placeholder="option description"
-            name="option_2"
-            value={this.state.option_2.questionText}
-            onChange={this.handleChange} />
-          <input
-            type="radio"
-            name="radio" />
-          <input
-            type="text"
-            placeholder="option description"
-            name="option_3"
-            value={this.state.option_3.questionText}
-            onChange={this.handleChange} />
-          <input
-            type="radio"
-            name="radio" />
-          <input
-            type="text"
-            placeholder="option description"
-            name="option_4"
-            value={this.state.option_4.questionText}
-            onChange={this.handleChange} />
-          <input
-            type="radio"
-            name="radio" />
-          <input
-            type="text"
-            placeholder="option description"
+            placeholder="Option description"
             name="option_5"
+            className='option'
             value={this.state.option_5.questionText}
             onChange={this.handleChange} />
+          </div>
+        </div>
       </form>
     )
   }

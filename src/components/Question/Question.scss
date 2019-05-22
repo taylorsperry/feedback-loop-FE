@@ -1,0 +1,35 @@
+.question-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 30px 10px;
+  background: $white;
+  border: solid #f4f4f4 .5px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.20);
+  margin-bottom: 5px;
+}
+
+.question-input {
+  width: 100%;
+  border: none;
+  border-bottom: solid $main-grey 1px;
+  font-size: 20px;
+  color: $accent-charcoal;
+}
+
+.option-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  width: 95%;
+  font-size: 13px;
+  height: 50px;
+  padding-left: 5px;
+  border: none;
+  color: $accent-charcoal;
+    &:focus {
+      outline: none;
+    }
+}
