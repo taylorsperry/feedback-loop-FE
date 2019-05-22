@@ -2,48 +2,50 @@
 
 exports[`RecipientForm should match the snapshot 1`] = `
 <div>
-  <h2>
-    Select Recipients
-  </h2>
-  <h3>
-    Program
-  </h3>
-  <select>
-    <option>
-      BE
-    </option>
-    <option>
-      FE
-    </option>
-  </select>
-  <h3>
-    Cohort
-  </h3>
-  <select
-    onChange={[Function]}
-  >
-    <option
-      value="0"
+  <div>
+    <h2>
+      Select Recipients
+    </h2>
+    <h3>
+      Program
+    </h3>
+    <select>
+      <option>
+        BE
+      </option>
+      <option>
+        FE
+      </option>
+    </select>
+    <h3>
+      Cohort
+    </h3>
+    <select
+      onChange={[Function]}
     >
-      select a cohort
-    </option>
-    <option
-      key="1"
-      value={1}
+      <option
+        value="0"
+      >
+        select a cohort
+      </option>
+      <option
+        key="1"
+        value={1}
+      >
+        1811
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        1901
+      </option>
+    </select>
+    <button
+      disabled={true}
     >
-      1811
-    </option>
-    <option
-      key="2"
-      value={2}
-    >
-      1901
-    </option>
-  </select>
-  <button
-    disabled={true}
-  >
-    Send
-  </button>
+      Send
+    </button>
+  </div>
 </div>
 `;
