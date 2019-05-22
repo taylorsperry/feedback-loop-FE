@@ -1,6 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { RecipientForm, mapStateToProps } from './RecipientForm'
+import turingLogo from '../../assets/turingLogo.png'
+import Loader from '../../components/Loader/Loader'
 
 describe('RecipientForm', () => {
   let mockState
