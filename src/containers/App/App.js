@@ -8,19 +8,12 @@ import Login from '../Login/Login'
 import PageNotFound from '../../components/PageNotFound/PageNotFound'
 import NewSurvey from '../NewSurvey/NewSurvey';
 import RecipientForm from '../RecipientForm/RecipientForm'
-
+import { fetchCohorts } from '../../thunks/fetchCohorts'
 
 export class App extends Component {
 
-  async componentDidMount() {
-    const url = 'https://turing-feedback-api.herokuapp.com/api/v1/cohorts'
-    try {
-      const response = await fetch(url)
-      const cohorts = await response.json()
-      console.log(cohorts)
-    } catch (error) {
-      console.log(error)
-    }
+  componentDidMount() {
+    this.props.fetchCohorts()
   }
 
   render() {
@@ -58,4 +51,8 @@ export const mapStateToProps = (state) => ({
   error: state.error
 })
 
-export default withRouter(connect(mapStateToProps)(App));
+export const mapDispatchToProps = (dispatch) => ({
+  fetchCohorts: () => dispatch(fetchCohorts())
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

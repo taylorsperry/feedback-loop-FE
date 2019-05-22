@@ -5,7 +5,7 @@ export const hasError = (message) => ({
 
 export const isLoading = (boolean) => ({
   type: 'IS_LOADING',
-  boolean
+  isLoading: boolean
 })
 
 export const setSurvey = (survey) => ({
