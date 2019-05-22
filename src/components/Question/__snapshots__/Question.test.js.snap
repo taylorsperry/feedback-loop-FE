@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question should match the snapshot 1`] = `
+<form
+  className="question-form"
+  onBlur={[Function]}
+>
+  <div>
+    <input
+      className="question-input"
+      name="questionTitle"
+      onChange={[Function]}
+      placeholder="Untitled Question"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="option-container"
+  >
+    <div
+      className="option"
+    >
+      <input
+        name="radio"
+        type="radio"
+      />
+      <input
+        className="option"
+        id="op1"
+        name="option_1"
+        onChange={[Function]}
+        placeholder="Option description"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="option"
+    >
+      <input
+        name="radio"
+        type="radio"
+      />
+      <input
+        className="option"
+        name="option_2"
+        onChange={[Function]}
+        placeholder="Option description"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="option"
+    >
+      <input
+        name="radio"
+        type="radio"
+      />
+      <input
+        className="option"
+        name="option_3"
+        onChange={[Function]}
+        placeholder="Option description"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="option"
+    >
+      <input
+        name="radio"
+        type="radio"
+      />
+      <input
+        className="option"
+        name="option_4"
+        onChange={[Function]}
+        placeholder="Option description"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="option"
+    >
+      <input
+        name="radio"
+        type="radio"
+      />
+      <input
+        className="option"
+        name="option_5"
+        onChange={[Function]}
+        placeholder="Option description"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</form>
+`;

@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewSurvey should match the snapshot 1`] = `
+<div
+  className="new-survey-container"
+>
+  <form
+    className="new-survey-landing-form"
+    onSubmit={[Function]}
+  >
+    <input
+      className="survey-name"
+      name="surveyName"
+      onChange={[Function]}
+      placeholder="Untitled Survey"
+      type="text"
+      value=""
+    />
+    <label
+      className="begin-create-survey-label"
+    >
+      <p
+        className="exp"
+      >
+        Expiration Date:
+      </p>
+      <DatePicker
+        allowSameDay={false}
+        dateFormat="MMMM d, yyyy h:mm aa"
+        dateFormatCalendar="LLLL yyyy"
+        disabled={false}
+        disabledKeyboardNavigation={false}
+        dropdownMode="scroll"
+        inlineFocusSelectedMonth={false}
+        monthsShown={1}
+        nextMonthButtonLabel="Next month"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClickOutside={[Function]}
+        onFocus={[Function]}
+        onInputClick={[Function]}
+        onInputError={[Function]}
+        onKeyDown={[Function]}
+        onMonthChange={[Function]}
+        onSelect={[Function]}
+        onYearChange={[Function]}
+        popperClassName="popper"
+        preventOpenOnFocus={false}
+        previousMonthButtonLabel="Previous Month"
+        readOnly={false}
+        renderDayContents={[Function]}
+        selected={2019-05-22T20:05:13.533Z}
+        shouldCloseOnSelect={true}
+        showMonthYearPicker={false}
+        showTimeInput={false}
+        showTimeSelect={true}
+        strictParsing={false}
+        timeCaption="Time"
+        timeFormat="HH:mm"
+        timeInputLabel="Time"
+        timeIntervals={30}
+        withPortal={false}
+      />
+    </label>
+  </form>
+  <div
+    className="question-cards"
+  />
+  <div
+    className="controls"
+  >
+    <button
+      className="begin-new-survey-button"
+      onClick={[Function]}
+    >
+      Add a Question
+    </button>
+    <button
+      className="begin-new-survey-button"
+      onClick={[Function]}
+    >
+      Choose Recipients
+    </button>
+  </div>
+</div>
+`;
