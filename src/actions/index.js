@@ -5,10 +5,15 @@ export const hasError = (message) => ({
 
 export const isLoading = (boolean) => ({
   type: 'IS_LOADING',
-  boolean
+  isLoading: boolean
 })
 
 export const setSurvey = (survey) => ({
   type: 'SET_SURVEY',
   survey
+})
+
+export const setCohorts = (cohorts) => ({
+  type: 'SET_COHORTS',
+  cohorts
 })

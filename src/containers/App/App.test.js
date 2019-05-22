@@ -14,6 +14,7 @@ describe('App', () => {
       <App
          isLoading={mockBool}
          error={mockError}
+         fetchCohorts={jest.fn()}
       />
     )
   })
