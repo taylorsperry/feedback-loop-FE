@@ -21,7 +21,10 @@ describe('Login', () => {
   })
 
   it('should set state with a user when handleLogin is called', () => {
-    
+    const spy = jest.spyOn(wrapper.instance().props, 'setUser')
+    wrapper.instance().handleLogin()
+    expect(spy).toHaveBeenCalled()
+
   })
 
   describe('mapDispatchToProps', () => {
