@@ -25,7 +25,7 @@ export class RecipientForm extends Component {
     const options = {
         method: 'POST',
         body: JSON.stringify({
-          api_key: 'dummy-key',
+          api_key: 'api_key from redux store',
           surveyName: survey.surveyName,
           surveyExpiration: survey.surveyExpiration,
           questions: survey.questions,
