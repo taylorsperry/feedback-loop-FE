@@ -35,6 +35,7 @@ export class RecipientForm extends Component {
           'Content-Type': 'application/json'
         }
     }
+    console.log(options)
     this.props.handlePost(url, options)
   }
 
