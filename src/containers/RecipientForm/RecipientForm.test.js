@@ -44,7 +44,7 @@ describe('RecipientForm', () => {
   })
   
   describe('mapStateToProps', () => {
-    it('should return the expected props as state', () => {
+    it('should return the expected state as props', () => {
       mockState = {
         cohorts: [
           { id: 1 ,
