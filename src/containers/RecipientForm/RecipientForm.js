@@ -2,20 +2,34 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
+import { setCurrentCohort } from '../../actions'
 
 export class RecipientForm extends Component {
   constructor() {
     super()
     this.state = {
-      cohort_id: 0
+      cohort_id: 0,
+      program: 'b'
     }
   }
 
-  handleChange = (e) => {
-    const cohortId = parseInt(e.target.value)
+  handleProgram = (e) => {
     this.setState({
-      cohort_id: cohortId
+      program: e.target.value
     })
+  }
+
+  handleCohort = (e) => {
+    this.setState({
+      cohort_id: e.target.value
+    })
+  }
+
+  handleAssignGroups = async () => {
+    const url = `https://turing-feedback-api.herokuapp.com/api/v1/users?cohort=${this.state.cohort_id}&&program=${this.state.program}`
+    const response = await fetch(url)
+    const cohort = await response.json()
+    await this.props.setCurrentCohort(cohort)
   }
 
   postSurvey = () => {
@@ -35,28 +49,28 @@ export class RecipientForm extends Component {
           'Content-Type': 'application/json'
         }
     }
-    console.log(options)
     this.props.handlePost(url, options)
   }
 
   render() {
     const cohortList = this.props.cohorts.map(cohort => {
-      return <option key={cohort.id} value={cohort.id} >{cohort.name}</option>
+      return <option key={cohort.id} value={cohort.name} name="cohort_id" >{cohort.name}</option>
     })
     return(
       <div>
         <div>
           <h2>Select Recipients</h2>
           <h3>Program</h3>
-          <select>
-            <option>BE</option>
-            <option>FE</option>
+          <select onChange={this.handleProgram}>
+            <option value="b" >BE</option>
+            <option value="f" >FE</option>
           </select>
           <h3>Cohort</h3>
-          <select onChange={this.handleChange} >
+          <select onChange={this.handleCohort} >
             <option value="0">select a cohort</option>
             {cohortList}
           </select>
+          <button onClick={this.handleAssignGroups}>Assign Groups</button>
           <button disabled={!this.state.cohort_id} onClick={this.postSurvey}>Send</button>
         </div>
       </div>
@@ -71,11 +85,13 @@ RecipientForm.propTypes = {
 
 export const mapStateToProps = (state) => ({
   survey: state.survey,
-  cohorts: state.cohorts
+  cohorts: state.cohorts,
+  currentCohort: state.currentCohort
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  handlePost: (url, options) => dispatch(handlePost(url, options)) 
+  handlePost: (url, options) => dispatch(handlePost(url, options)),
+  setCurrentCohort: (cohort) => dispatch(setCurrentCohort(cohort))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipientForm)
