@@ -24,17 +24,13 @@ export class App extends Component {
         </div>
         <div className="route-container">
           <Switch>
-            <Route exact path='/'
-              render={() => <Login />}
+            <Route exact path='/' component={Login}
             />
-            <Route exact path='/dashboard'
-              render={() => <Dashboard />}
+            <Route exact path='/dashboard' component={Dashboard}
             />
-            <Route exact path='/new-survey'
-              render={() => <NewSurvey />}
+            <Route exact path='/new-survey' component={NewSurvey}
             />
-            <Route exact path='/recipients'
-              render={() => <RecipientForm />}
+            <Route exact path='/recipients' component={RecipientForm}
             />
             <Route component={PageNotFound} />
           </Switch>
