@@ -23,18 +23,20 @@ export class RecipientForm extends Component {
     })
     return(
       <div>
-        <h2>Select Recipients</h2>
-        <h3>Program</h3>
-        <select>
-          <option>BE</option>
-          <option>FE</option>
-        </select>
-        <h3>Cohort</h3>
-        <select onChange={this.handleChange} >
-          <option value="0">select a cohort</option>
-          {cohortList}
-        </select>
-        <button disabled={!this.state.cohort_id}>Send</button>
+        <div>
+          <h2>Select Recipients</h2>
+          <h3>Program</h3>
+          <select>
+            <option>BE</option>
+            <option>FE</option>
+          </select>
+          <h3>Cohort</h3>
+          <select onChange={this.handleChange} >
+            <option value="0">select a cohort</option>
+            {cohortList}
+          </select>
+          <button disabled={!this.state.cohort_id}>Send</button>
+        </div>
       </div>
     )
   }

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader should match the snapshot 1`] = `
+<div>
+  <img
+    alt="loading icon, the page is loading"
+    className="loading-icon"
+    src="turinglogo.png"
+  />
+  <p
+    className="loading-text"
+  >
+    Loading...
+  </p>
+</div>
+`;
