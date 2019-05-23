@@ -17,3 +17,8 @@ export const setCohorts = (cohorts) => ({
   type: 'SET_COHORTS',
   cohorts
 })
+
+export const setUser = (user) => ({
+  type: 'SET_USER',
+  user
+})
