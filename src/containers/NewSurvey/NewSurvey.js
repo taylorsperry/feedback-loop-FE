@@ -37,6 +37,7 @@ export class NewSurvey extends Component {
   }
 
   updateQuestions = (newQuestion) => {
+    console.log(newQuestion)
     if(this.state.questions.length) {
       const updatedQuestions = this.state.questions.map(question => {
         if (question.id === newQuestion.id) {

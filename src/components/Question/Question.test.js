@@ -21,20 +21,19 @@ describe('Question', () => {
     const defaultState = {
       id: 'abc',
       questionTitle: '',
-      option_1: {pointValue: 1, questionText: ''},
-      option_2: {pointValue: 2, questionText: ''},
-      option_3: {pointValue: 3, questionText: ''},
-      option_4: {pointValue: 4, questionText: ''},
-      option_5: {pointValue: 5, questionText: ''}
+      option_1: {pointValue: 1, description: ''},
+      option_2: {pointValue: 2, description: ''},
+      option_3: {pointValue: 3, description: ''},
+      option_4: {pointValue: 4, description: ''}
     }
 
     expect(wrapper.state()).toEqual(defaultState)
   })
 
-  it('should update questionText in state on change', () => {
+  it('should update description in state on change', () => {
     const mockEvent = { target: { name: 'option_1', value: 'First Option'}}
     wrapper.find('#op1').simulate('change', mockEvent)
-    expect(wrapper.state('option_1')).toEqual({ "pointValue": 1, "questionText": 'First Option'})
+    expect(wrapper.state('option_1')).toEqual({ "pointValue": 1, "description": 'First Option'})
   })
 
   it('should update questionTitle in state on change', () => {
@@ -48,11 +47,10 @@ describe('Question', () => {
     const updatedState = {
       id: 'abc',
       questionTitle: 'New Q',
-      option_1: {pointValue: 1, questionText: 'a'},
-      option_2: {pointValue: 2, questionText: 'b'},
-      option_3: {pointValue: 3, questionText: 'c'},
-      option_4: {pointValue: 4, questionText: 'd'},
-      option_5: {pointValue: 5, questionText: 'e'}
+      option_1: {pointValue: 1, description: 'a'},
+      option_2: {pointValue: 2, description: 'b'},
+      option_3: {pointValue: 3, description: 'c'},
+      option_4: {pointValue: 4, description: 'd'}
     }
     
     wrapper.setState(updatedState)
