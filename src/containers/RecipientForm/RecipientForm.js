@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { handlePost } from '../../thunks/handlePost'
 
 export class RecipientForm extends Component {
   constructor() {
@@ -15,6 +16,26 @@ export class RecipientForm extends Component {
     this.setState({
       cohort_id: cohortId
     })
+  }
+
+  postSurvey = () => {
+    const { cohort_id } = this.state
+    const { survey } = this.props
+    const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
+    const options = {
+        method: 'POST',
+        body: JSON.stringify({
+          api_key: 'dummy-key',
+          surveyName: survey.surveyName,
+          surveyExpiration: survey.surveyExpiration,
+          questions: survey.questions,
+          groups: [{name: cohort_id}]
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    }
+    this.props.handlePost(url, options)
   }
 
   render() {
@@ -35,7 +56,7 @@ export class RecipientForm extends Component {
             <option value="0">select a cohort</option>
             {cohortList}
           </select>
-          <button disabled={!this.state.cohort_id}>Send</button>
+          <button disabled={!this.state.cohort_id} onClick={this.postSurvey}>Send</button>
         </div>
       </div>
     )
@@ -43,11 +64,17 @@ export class RecipientForm extends Component {
 }
 
 RecipientForm.propTypes = {
-  cohorts: PropTypes.array
+  cohorts: PropTypes.array,
+  survey: PropTypes.object
 }
 
 export const mapStateToProps = (state) => ({
+  survey: state.survey,
   cohorts: state.cohorts
 })
 
-export default connect(mapStateToProps)(RecipientForm)
+export const mapDispatchToProps = (dispatch) => ({
+  handlePost: (url, options) => dispatch(handlePost(url, options)) 
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipientForm)
