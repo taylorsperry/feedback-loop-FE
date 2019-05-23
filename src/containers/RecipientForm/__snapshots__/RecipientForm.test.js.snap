@@ -43,6 +43,7 @@ exports[`RecipientForm should match the snapshot 1`] = `
     </select>
     <button
       disabled={true}
+      onClick={[Function]}
     >
       Send
     </button>
