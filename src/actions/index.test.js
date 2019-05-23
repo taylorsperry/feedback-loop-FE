@@ -44,4 +44,21 @@ describe('actions', () => {
     const result = actions.setCohorts(cohorts)
     expect(result).toEqual(expectedAction)
   })
+
+  it('should have a type of SET_USER', () => {
+    const user = {
+      cohort: '1811',
+      id: 3,
+      name: 'Jessica Hansen',
+      program: 'F',
+      status: 'active'
+    }
+    const expectedAction = {
+      type: 'SET_USER',
+      user
+    }
+
+    const result = actions.setUser(user)
+    expect(result).toEqual(expectedAction)
+  })
 })
