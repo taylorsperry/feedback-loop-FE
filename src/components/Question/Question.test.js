@@ -44,17 +44,31 @@ describe('Question', () => {
 
   it('should call updateQuestions when handleSubmit is invoked', () => {
     const preventDefault = { preventDefault: jest.fn()}
-    const updatedState = {
-      id: 'abc',
-      questionTitle: 'New Q',
+    const mockState = {
+      id: 'abd',
+      questionTitle: 'New Question',
       option_1: {pointValue: 1, description: 'a'},
       option_2: {pointValue: 2, description: 'b'},
       option_3: {pointValue: 3, description: 'c'},
       option_4: {pointValue: 4, description: 'd'}
     }
+
+    const optionsArr = [
+      { option_1: {pointValue: 1, description: 'a'} },
+      { option_2: {pointValue: 2, description: 'b'} },
+      { option_3: {pointValue: 3, description: 'c'} },
+      { option_4: {pointValue: 4, description: 'd'} }
+    ]
+
+    wrapper.setState(mockState)
     
-    wrapper.setState(updatedState)
+    const newQuestion = {
+      id: 'abd',
+      questionTitle: 'New Question',
+      options: optionsArr,
+    }
+    
     wrapper.instance().handleSubmit(preventDefault)
-    expect(mockFn).toHaveBeenCalledWith(updatedState)
+    expect(mockFn).toHaveBeenCalledWith(newQuestion)
   })
 })
