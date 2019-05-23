@@ -7,17 +7,16 @@ export class Question extends Component {
     this.state = {
       id: this.props.id,
       questionTitle: '',
-      option_1: {pointValue: 1, questionText: ''},
-      option_2: {pointValue: 2, questionText: ''},
-      option_3: {pointValue: 3, questionText: ''},
-      option_4: {pointValue: 4, questionText: ''},
-      option_5: {pointValue: 5, questionText: ''}
+      option_1: {pointValue: 1, description: ''},
+      option_2: {pointValue: 2, description: ''},
+      option_3: {pointValue: 3, description: ''},
+      option_4: {pointValue: 4, description: ''}
     }
   }
 
   handleChange = (e) => {
     const { name, value } = e.target
-      this.setState({  [name] : {pointValue: this.state[name].pointValue, questionText: value} })
+      this.setState({  [name] : {pointValue: this.state[name].pointValue, description: value} })
   }
 
   handleTitleChange = (e) => {
@@ -28,7 +27,18 @@ export class Question extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.updateQuestions(this.state)
+    let optionsArr = []
+    Object.keys(this.state).forEach(el => {
+      if(el.includes('option')) {
+        optionsArr.push({ [el] : {pointValue: this.state[el].pointValue, description: this.state[el].description}})
+      }
+    })
+    let newQuestion = {
+      id: this.state.id,
+      questionTitle: this.state.questionTitle,
+      options: optionsArr
+    }
+    this.props.updateQuestions(newQuestion)
   }
 
   render() {
@@ -55,7 +65,7 @@ export class Question extends Component {
               name="option_1"
               id='op1'
               className='option'
-              value={this.state.option_1.questionText}
+              value={this.state.option_1.description}
               onChange={this.handleChange} />
           </div>
           <div className='option'>
@@ -67,7 +77,7 @@ export class Question extends Component {
               placeholder="Option description"
               name="option_2"
               className='option'
-              value={this.state.option_2.questionText}
+              value={this.state.option_2.description}
               onChange={this.handleChange} />
           </div>
           <div className='option'>
@@ -79,7 +89,7 @@ export class Question extends Component {
               placeholder="Option description"
               name="option_3"
               className='option'
-              value={this.state.option_3.questionText}
+              value={this.state.option_3.description}
               onChange={this.handleChange} />
           </div>
           <div className='option'>
@@ -91,20 +101,8 @@ export class Question extends Component {
               placeholder="Option description"
               name="option_4"
               className='option'
-              value={this.state.option_4.questionText}
+              value={this.state.option_4.description}
               onChange={this.handleChange} />
-          </div>
-          <div className='option'>
-          <input
-            type="radio"
-            name="radio" />
-          <input
-            type="text"
-            placeholder="Option description"
-            name="option_5"
-            className='option'
-            value={this.state.option_5.questionText}
-            onChange={this.handleChange} />
           </div>
         </div>
       </form>
