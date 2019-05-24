@@ -26,7 +26,8 @@ export class RecipientForm extends Component {
   }
 
   handleAssignGroups = async () => {
-    const url = `https://turing-feedback-api.herokuapp.com/api/v1/users?cohort=${this.state.cohort_id}&&program=${this.state.program}`
+    const { cohort_id, program } = this.state
+    const url = `https://turing-feedback-api.herokuapp.com/api/v1/users?cohort=${cohort_id}&&program=${program}`
     const response = await fetch(url)
     const cohort = await response.json()
     await this.props.setCurrentCohort(cohort)
@@ -53,6 +54,9 @@ export class RecipientForm extends Component {
   }
 
   render() {
+    const studentsToDisplay = this.props.currentCohort.map(student => {
+      return <div key={student.id} className="student-nametag">{student.name}</div>
+    })
     const cohortList = this.props.cohorts.map(cohort => {
       return <option key={cohort.id} value={cohort.name} name="cohort_id" >{cohort.name}</option>
     })
@@ -73,6 +77,7 @@ export class RecipientForm extends Component {
           <button onClick={this.handleAssignGroups}>Assign Groups</button>
           <button disabled={!this.state.cohort_id} onClick={this.postSurvey}>Send</button>
         </div>
+        {studentsToDisplay}
       </div>
     )
   }
