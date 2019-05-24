@@ -1,0 +1,59 @@
+.students-display {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.recipients-form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-nametag {
+  background-color: $main-blue;
+  border-radius: 4px;
+  height: 75px;
+  margin: 1rem;
+  width: 100px;
+  &:hover {
+    color: #FFF;
+    cursor: pointer;
+    background-color: $accent-teal;
+  }
+}
+
+.student-name {
+  padding: 4px;
+}
+
+.recipients-form-title,
+.student-selector,
+.student-name,
+.drop-down {
+  font-family: $main-font
+}
+
+.drop-down {
+  height: 40px;
+  margin: auto;
+  width: 200px;
+  &:focus {
+    outline: 2px solid $main-blue;
+  }
+}
+
+.recipients-button {
+  background-color: $main-blue;
+  border-radius: 50px;
+  border: none;
+  color: $accent-teal;
+  font-family: $main-font;
+  font-weight: bold;
+  font-size: 16px;
+  height: 50px;
+  margin: 20px auto;
+  width: 200px;
+  &:hover {
+    cursor: pointer;
+    background-color: $main-blue-hover;
+  }
+}

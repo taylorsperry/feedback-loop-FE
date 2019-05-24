@@ -55,29 +55,29 @@ export class RecipientForm extends Component {
 
   render() {
     const studentsToDisplay = this.props.currentCohort.map(student => {
-      return <div key={student.id} className="student-nametag">{student.name}</div>
+      return <div key={student.id} className="student-nametag"><p className="student-name">{student.name}</p></div>
     })
     const cohortList = this.props.cohorts.map(cohort => {
       return <option key={cohort.id} value={cohort.name} name="cohort_id" >{cohort.name}</option>
     })
     return(
       <div>
-        <div>
-          <h2>Select Recipients</h2>
-          <h3>Program</h3>
-          <select onChange={this.handleProgram}>
+        <div className="recipients-form-wrapper">
+          <h2 className="recipients-form-title">Select Recipients</h2>
+          <h3 className="student-selector">Program</h3>
+          <select className="drop-down" onChange={this.handleProgram}>
             <option value="b" >BE</option>
             <option value="f" >FE</option>
           </select>
-          <h3>Cohort</h3>
-          <select onChange={this.handleCohort} >
+          <h3 className="student-selector">Cohort</h3>
+          <select className="drop-down" onChange={this.handleCohort} >
             <option value="0">select a cohort</option>
             {cohortList}
           </select>
-          <button onClick={this.handleAssignGroups}>Assign Groups</button>
-          <button disabled={!this.state.cohort_id} onClick={this.postSurvey}>Send</button>
+          <button className="recipients-button" onClick={this.handleAssignGroups}>Assign Groups</button>
+          <button className="recipients-button" disabled={!this.state.cohort_id} onClick={this.postSurvey}>Send</button>
         </div>
-        {studentsToDisplay}
+        <div className="students-display">{studentsToDisplay}</div>
       </div>
     )
   }
