@@ -51,11 +51,24 @@ export class Login extends Component {
       }
     }
     this.props.handlePost(url, options)
-    // console.log(data)
   }
 
-  registerUser = (user) => {
-    console.log('registerUser', user)
+  registerUser = async (user) => {
+    const url = "https://turing-feedback-api.herokuapp.com/api/v1/users/register"
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        full_name: user.full_name,
+        role: user.role,
+        email: user.email,
+        password: user.password_1
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    const data = await this.props.handlePost(url, options)
+    console.log(data)
   }
 
   render() {

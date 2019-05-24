@@ -20,7 +20,8 @@ export class LoginForm extends Component {
     })
   }
 
-  checkUser = () => {
+  checkUser = (e) => {
+    e.preventDefault()
     this.props.handleLogin(this.state)
   }
 
@@ -45,10 +46,10 @@ export class LoginForm extends Component {
             className="login-input"
           />
         </div>
-        <button className='login-button' onClick={this.props.createAccount}>Create New Account</button>
         <button className='login-button' onClick={this.checkUser}>
           Login
         </button>
+        <button className='login-button' onClick={this.props.createAccount}>Create New Account</button>
       </form>
     )
   }

@@ -19,7 +19,8 @@ export class RegisterForm extends Component {
     })
   }
 
-  checkPassword = () => {
+  checkPassword = (e) => {
+    e.preventDefault()
     const { full_name, role, email, password_1, password_2 } = this.state
     if(password_1 === password_2) {
       const newUser = {
