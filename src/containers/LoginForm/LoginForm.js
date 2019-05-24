@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-// import { NavLink } from 'react-router-dom'
-// import { connect } from 'react-redux'
-// import { setUser } from '../../actions'
-// import RegisterForm from '../RegisterForm/RegisterForm'
 
 export class LoginForm extends Component {
   constructor() {

@@ -10,7 +10,6 @@ export const handlePost = (url, options) => {
       }
       const data = await response.json()
       dispatch(isLoading(false))
-      console.log(data)
       return data
     } catch (error) {
       dispatch(hasError(error.message))
