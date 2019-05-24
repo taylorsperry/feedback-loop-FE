@@ -20,11 +20,29 @@
 }
 
 .email,
-.password {
+.password,
+.full-name {
   display: flex;
   flex-direction: column;
   text-align: left;
   margin-bottom: 20px;
+}
+
+.role-input {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding-left: 10px
+}
+
+.role-choice {
+  display: flex;
+  margin-left: 20px;
+}
+
+.role-input-p {
+  margin: 0px;
+  font-size: 16px;
 }
 
 .login-button {

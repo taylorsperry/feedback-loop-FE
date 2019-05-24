@@ -27,6 +27,12 @@ export class Login extends Component {
     this.props.setUser(this.state)
   }
 
+  createAccount = () => {
+    this.setState({
+      newUser: true
+    })
+  }
+
   render() {
     return(
       <div className='login-landing'>
