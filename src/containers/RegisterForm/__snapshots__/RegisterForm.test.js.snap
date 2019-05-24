@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegisterForm should match the snapshot 1`] = `
+<form
+  className="login-form"
+>
+  <div
+    className="full-name"
+  >
+    <label>
+      Enter Your First and Last Name
+    </label>
+    <input
+      className="login-input full_name"
+      name="full_name"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div
+    className="email"
+  >
+    <label>
+      Email
+    </label>
+    <input
+      className="login-input"
+      name="email"
+      onChange={[Function]}
+      type="email"
+    />
+  </div>
+  <div
+    className="password"
+  >
+    <label>
+      Password
+    </label>
+    <input
+      className="login-input"
+      name="password_1"
+      onChange={[Function]}
+      type="password"
+    />
+  </div>
+  <div
+    className="password"
+  >
+    <label>
+      Confirm Password
+    </label>
+    <input
+      className="login-input"
+      name="password_2"
+      onChange={[Function]}
+      type="password"
+    />
+  </div>
+  <div
+    className="role-input"
+  >
+    <p
+      className="role-input-p"
+    >
+      I am:
+    </p>
+    <div
+      className="role-choice"
+    >
+      <input
+        onClick={[Function]}
+        type="radio"
+      />
+      <p
+        className="role-input-p"
+      >
+        An Instructor
+      </p>
+    </div>
+    <div
+      className="role-choice"
+    >
+      <input
+        onClick={[Function]}
+        type="radio"
+      />
+      <p
+        className="role-input-p"
+      >
+        A Student
+      </p>
+    </div>
+  </div>
+  <button
+    className="login-button"
+    onClick={[Function]}
+  >
+    Login
+  </button>
+</form>
+`;
