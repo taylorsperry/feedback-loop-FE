@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
 import { setCurrentCohort } from '../../actions'
-import Draggable from 'react-draggable'
+// import Draggable from 'react-draggable'
 
 export class RecipientForm extends Component {
   constructor() {
@@ -54,15 +54,20 @@ export class RecipientForm extends Component {
     this.props.handlePost(url, options)
   }
 
+  onDrag = (e) => {
+    e.preventDefault()
+    console.log(e.target)
+  }
+
   render() {
     const studentsToDisplay = this.props.currentCohort.map(student => {
-      return <Draggable key={student.id} ><div className="student-nametag"><p className="student-name">{student.name}</p></div></Draggable>
+      return <div key={student.id} id={student.id} className="student-nametag" draggable onDrag={(e) => this.onDrag(e)}><p className="student-name">{student.name}</p></div>
     })
     const cohortList = this.props.cohorts.map(cohort => {
       return <option key={cohort.id} value={cohort.name} name="cohort_id" >{cohort.name}</option>
     })
     return(
-      <div>
+      <div className="recipient-controls-wrapper">
         <div className="recipients-form-wrapper">
           <h2 className="recipients-form-title">Select Recipients</h2>
           <h3 className="student-selector">Program</h3>
@@ -79,6 +84,7 @@ export class RecipientForm extends Component {
           <button className="recipients-button" disabled={!this.state.cohort_id} onClick={this.postSurvey}>Send</button>
         </div>
         <div className="students-display">{studentsToDisplay}</div>
+        <div className="groups-wrapper"><p>Drag Names Here to Make a Group</p></div>
       </div>
     )
   }

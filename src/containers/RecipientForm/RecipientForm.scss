@@ -1,11 +1,17 @@
-.students-display {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .recipients-form-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.students-display {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $accent-red;
+}
+
+.groups-wrapper {
+  background-color: $main-blue;
+  height: 200px;
 }
 
 .student-nametag {
