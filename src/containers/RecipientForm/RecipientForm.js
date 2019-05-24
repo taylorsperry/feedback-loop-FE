@@ -73,7 +73,8 @@ export class RecipientForm extends Component {
     e.preventDefault()
     const { group, draggedStudent } = this.state
     this.setState({
-      group: [...group, draggedStudent ]
+      group: [...group, draggedStudent ],
+      draggedStudent: {}
     })
   }
 
