@@ -30,7 +30,7 @@ export class LoginForm extends Component {
             type="email" 
             onChange={this.handleChange}  
             name="emailInput"
-            className="login-input"
+            className="login-input email-input"
           />
         </div>
         <div className='password'>
@@ -50,9 +50,5 @@ export class LoginForm extends Component {
     )
   }
 }
-
-// export const mapDispatchToProps = (dispatch) => ({
-//   setUser: (user) => dispatch(setUser(user))
-// })
 
 export default LoginForm
