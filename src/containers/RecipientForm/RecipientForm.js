@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
 import { setCurrentCohort } from '../../actions'
+import Draggable from 'react-draggable'
 
 export class RecipientForm extends Component {
   constructor() {
@@ -55,7 +56,7 @@ export class RecipientForm extends Component {
 
   render() {
     const studentsToDisplay = this.props.currentCohort.map(student => {
-      return <div key={student.id} className="student-nametag"><p className="student-name">{student.name}</p></div>
+      return <Draggable key={student.id} ><div className="student-nametag"><p className="student-name">{student.name}</p></div></Draggable>
     })
     const cohortList = this.props.cohorts.map(cohort => {
       return <option key={cohort.id} value={cohort.name} name="cohort_id" >{cohort.name}</option>
