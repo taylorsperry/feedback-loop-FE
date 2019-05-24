@@ -22,3 +22,8 @@ export const setUser = (user) => ({
   type: 'SET_USER',
   user
 })
+
+export const setRole = (role) => ({
+  type: 'SET_ROLE',
+  role
+})

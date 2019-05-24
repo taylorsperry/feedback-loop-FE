@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { setUser } from '../../actions'
+import { setUser, setRole } from '../../actions'
 import RegisterForm from '../RegisterForm/RegisterForm'
 import LoginForm from '../LoginForm/LoginForm'
 import { handlePost } from '../../thunks/handlePost'
+import { withRouter } from 'react-router-dom'
 
 // Select student or instructor
 // Create a new account (own endpoint) --> validate password and send { full_name: , role: , email: , password: } to BE
@@ -18,8 +19,6 @@ export class Login extends Component {
   constructor() {
     super()
     this.state = {
-        user: 'API_KEY',
-        role: 'student or instructor',
         newUser: false
     }
   }
@@ -54,21 +53,36 @@ export class Login extends Component {
   }
 
   registerUser = async (user) => {
-    const url = "https://turing-feedback-api.herokuapp.com/api/v1/users/register"
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({
-        full_name: user.full_name,
-        role: user.role,
-        email: user.email,
-        password: user.password_1
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    // const url = "https://turing-feedback-api.herokuapp.com/api/v1/users/register"
+    // const options = {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     fullName: user.full_name,
+    //     role: user.role,
+    //     email: user.email,
+    //     password: user.password_1
+    //   }),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // }
+    // const data = await this.props.handlePost(url, options)
+    // const registeredUser = 'data.api_key'
+    // const userRole = { role: data.role }
+    const dummyUser = 'dummyapikey'
+    const dummyRole = 'Student'
+    this.props.setUser(dummyUser)
+    this.props.setRole(dummyRole)
+    this.handleRedirect()
+  }
+
+  handleRedirect = () => {
+    if (this.props.role === 'Student') {
+      //We'll want to change this to push to StudentDashboard
+      this.props.history.push('/dashboard')
+    } else {
+      this.props.history.push('/dashboard')
     }
-    const data = await this.props.handlePost(url, options)
-    console.log(data)
   }
 
   render() {
@@ -93,9 +107,14 @@ export class Login extends Component {
   }
 }
 
-export const mapDispatchToProps = (dispatch) => ({
-  setUser: (user) => dispatch(setUser(user)),
-  handlePost: (url, options) => dispatch(handlePost(url, options))
+export const mapStateToProps = (state) => ({
+  role: state.role
 })
 
-export default connect(null, mapDispatchToProps)(Login)
+export const mapDispatchToProps = (dispatch) => ({
+  setUser: (user) => dispatch(setUser(user)),
+  handlePost: (url, options) => dispatch(handlePost(url, options)),
+  setRole: (role) => dispatch(setRole(role))
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
