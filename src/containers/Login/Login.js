@@ -23,21 +23,40 @@ export class Login extends Component {
     }
   }
 
-  handleLogin = (user) => {
-    console.log(user)
-  }
-
   createAccount = () => {
     this.setState({
       newUser: true
     })
   }
 
+  handleLogin = (user) => {
+    if(!this.state.newUser) {
+      this.loginUser(user)
+    } else {
+      this.registerUser(user)
+    }
+  }
+
+  loginUser = (user) => {
+    console.log('loginUser', user)
+  }
+
+  registerUser = (user) => {
+    console.log('registerUser', user)
+  }
+
   render() {
     return(
       <div className='login-landing'>
-        {!this.state.newUser && <LoginForm createAccount={this.createAccount}/>}
-        {this.state.newUser && <RegisterForm handleLogin={this.handleLogin}/>}
+        {!this.state.newUser && 
+          <LoginForm 
+            createAccount={this.createAccount}
+            handleLogin={this.handleLogin}
+          />}
+        {this.state.newUser && 
+          <RegisterForm 
+            handleLogin={this.handleLogin}
+          />}
         {/* <NavLink to='/dashboard'>
           <button className='login-button' onClick={this.handleLogin}>
           Login

@@ -20,12 +20,15 @@ export class LoginForm extends Component {
     })
   }
 
+  checkUser = () => {
+    this.props.handleLogin(this.state)
+  }
 
   render() {
     return(
       <form className='login-form'>
         <div className='email'>
-          <label for="email">Email</label>
+          <label>Email</label>
           <input 
             type="email" 
             onChange={this.handleChange}  
@@ -34,7 +37,7 @@ export class LoginForm extends Component {
           />
         </div>
         <div className='password'>
-          <label for="password">Password</label>
+          <label>Password</label>
           <input 
             type="password" 
             onChange={this.handleChange}  
@@ -43,6 +46,9 @@ export class LoginForm extends Component {
           />
         </div>
         <button className='login-button' onClick={this.props.createAccount}>Create New Account</button>
+        <button className='login-button' onClick={this.checkUser}>
+          Login
+        </button>
       </form>
     )
   }
