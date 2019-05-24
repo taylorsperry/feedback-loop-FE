@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { setUser } from '../../actions'
 import RegisterForm from '../RegisterForm/RegisterForm'
 import LoginForm from '../LoginForm/LoginForm'
+import { handlePost } from '../../thunks/handlePost'
 
 // Select student or instructor
 // Create a new account (own endpoint) --> validate password and send { full_name: , role: , email: , password: } to BE
@@ -38,7 +39,19 @@ export class Login extends Component {
   }
 
   loginUser = (user) => {
-    console.log('loginUser', user)
+    const url = "https://turing-feedback-api.herokuapp.com/api/v1/users/login"
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        email: user.email,
+        password: user.password_1
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    this.props.handlePost(url, options)
+    // console.log(data)
   }
 
   registerUser = (user) => {
@@ -68,7 +81,8 @@ export class Login extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  setUser: (user) => dispatch(setUser(user))
+  setUser: (user) => dispatch(setUser(user)),
+  handlePost: (url, options) => dispatch(handlePost(url, options))
 })
 
 export default connect(null, mapDispatchToProps)(Login)
