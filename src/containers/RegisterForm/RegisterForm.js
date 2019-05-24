@@ -19,12 +19,32 @@ export class RegisterForm extends Component {
     })
   }
 
+  checkPassword = () => {
+    const { full_name, role, email, password_1, password_2 } = this.state
+    if(password_1 === password_2) {
+      const newUser = {
+        full_name,
+        role,
+        email,
+        password_1
+      }
+      this.props.handleLogin(newUser)
+    } else {
+      console.log('bad')
+    }
+  }
+
+  setRole = (role) => {
+    this.setState({
+      role
+    })
+  }
 
   render() {
     return(
       <form className='login-form'>
         <div className='full-name'>
-          <label for="full-name">Enter Your First and Last Name</label>
+          <label>Enter Your First and Last Name</label>
           <input 
             type="text" 
             onChange={this.handleChange}  
@@ -33,7 +53,7 @@ export class RegisterForm extends Component {
           />
         </div>
         <div className='email'>
-          <label for="email">Email</label>
+          <label>Email</label>
           <input 
             type="email" 
             onChange={this.handleChange}  
@@ -42,7 +62,7 @@ export class RegisterForm extends Component {
           />
         </div>
         <div className='password'>
-          <label for="password">Password</label>
+          <label>Password</label>
           <input 
             type="password" 
             onChange={this.handleChange}  
@@ -51,7 +71,7 @@ export class RegisterForm extends Component {
           />
         </div>
         <div className='password'>
-          <label for="password">Confirm Password</label>
+          <label>Confirm Password</label>
           <input 
             type="password" 
             onChange={this.handleChange}  
@@ -62,14 +82,17 @@ export class RegisterForm extends Component {
         <div className="role-input">
           <p className="role-input-p">I am:</p>
           <div className="role-choice">
-            <input type="radio" />
+            <input type="radio" onClick={() => {this.setRole('instructor')}} />
             <p className="role-input-p">An Instructor</p>
           </div>
           <div className="role-choice">
-            <input type="radio" />
+            <input type="radio" onClick={() => {this.setRole('student')}}/>
             <p className="role-input-p">A Student</p>
           </div>
         </div>
+        <button className='login-button' onClick={this.checkPassword}>
+          Login
+        </button> 
       </form>
     )
   }

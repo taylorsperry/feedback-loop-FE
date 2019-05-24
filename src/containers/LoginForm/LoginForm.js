@@ -42,6 +42,7 @@ export class LoginForm extends Component {
             className="login-input"
           />
         </div>
+        <button className='login-button' onClick={this.props.createAccount}>Create New Account</button>
       </form>
     )
   }

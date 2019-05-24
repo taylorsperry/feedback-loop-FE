@@ -23,8 +23,8 @@ export class Login extends Component {
     }
   }
 
-  handleLogin = () => {
-    this.props.setUser(this.state)
+  handleLogin = (user) => {
+    console.log(user)
   }
 
   createAccount = () => {
@@ -36,14 +36,13 @@ export class Login extends Component {
   render() {
     return(
       <div className='login-landing'>
-        {!this.state.newUser && <LoginForm />}
-        {this.state.newUser && <RegisterForm />}
-        <button className='login-button' onClick={this.createAccount}>Create New Account</button>
-        <NavLink to='/dashboard'>
+        {!this.state.newUser && <LoginForm createAccount={this.createAccount}/>}
+        {this.state.newUser && <RegisterForm handleLogin={this.handleLogin}/>}
+        {/* <NavLink to='/dashboard'>
           <button className='login-button' onClick={this.handleLogin}>
           Login
           </button>
-        </NavLink>
+        </NavLink> */}
       </div>
     )
   }
