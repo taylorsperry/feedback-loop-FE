@@ -10,7 +10,9 @@ export class RecipientForm extends Component {
     super()
     this.state = {
       cohort_id: 0,
-      program: 'b'
+      program: 'b',
+      draggedStudent: {},
+      group: []
     }
   }
 
@@ -54,27 +56,42 @@ export class RecipientForm extends Component {
     this.props.handlePost(url, options)
   }
 
-  onDrag = (e) => {
+  onDrag = (e, student) => {
     e.preventDefault()
-    // console.log(e.target)
+    console.log(student)
+    this.setState({
+      draggedStudent: {id: student.id, name: student.name}
+    })
   }
 
   onDragOver = (e) => {
     e.preventDefault()
-    console.log(e.target)
+    // console.log(e.target)
   }
 
   onDrop = (e) => {
     e.preventDefault()
-    console.log(e.target)
+    const { group, draggedStudent } = this.state
+    this.setState({
+      group: [...group, draggedStudent ]
+    })
   }
 
   render() {
     const studentsToDisplay = this.props.currentCohort.map(student => {
-      return <div key={student.id} id={student.id} className="student-nametag" draggable onDrag={(e) => this.onDrag(e)}><p className="student-name">{student.name}</p></div>
+      return <div 
+              key={student.id}
+              id={student.id}
+              className="student-nametag" 
+              draggable onDrag={(e) => this.onDrag(e, student)}>
+              {student.name}
+             </div>
     })
     const cohortList = this.props.cohorts.map(cohort => {
       return <option key={cohort.id} value={cohort.name} name="cohort_id" >{cohort.name}</option>
+    })
+    const groupToDisplay = this.state.group.map(student => {
+      return <div key={student.id} id={student.id} className="student-nametag">{student.name}</div>
     })
     return(
       <div className="recipient-controls-wrapper">
@@ -94,7 +111,7 @@ export class RecipientForm extends Component {
           <button className="recipients-button" disabled={!this.state.cohort_id} onClick={this.postSurvey}>Send</button>
         </div>
         <div className="students-display">{studentsToDisplay}</div>
-        <div className="groups-wrapper" onDrop={e => this.onDrop(e)}  onDragOver={(e => this.onDragOver(e))}><p>Drag Names Here to Make a Group</p></div>
+        <div className="groups-wrapper" onDrop={e => this.onDrop(e)}  onDragOver={(e => this.onDragOver(e))}><p>Drag Names Here to Make a Group {groupToDisplay}</p></div>
       </div>
     )
   }
