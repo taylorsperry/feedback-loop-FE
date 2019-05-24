@@ -112,7 +112,7 @@ export class RecipientForm extends Component {
           <button className="recipients-button" disabled={!this.state.cohort_id} onClick={this.postSurvey}>Send</button>
         </div>
         <div className="students-display">{studentsToDisplay}</div>
-        <div className="groups-wrapper" onDrop={e => this.onDrop(e)}  onDragOver={(e => this.onDragOver(e))}><p>Drag Names Here to Make a Group {groupToDisplay}</p></div>
+        <div className="groups-wrapper" onDrop={e => this.onDrop(e)}  onDragOver={(e => this.onDragOver(e))}><p>Drag Names Here to Make a Group{groupToDisplay}</p></div>
       </div>
     )
   }

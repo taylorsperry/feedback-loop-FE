@@ -9,16 +9,24 @@ describe('RecipientForm', () => {
 
   beforeEach(() => {
     mockState = {
+      survey : {name: 'name', question: 'question'},
       cohorts: [
         { id: 1 ,
         name: "1811" },
         { id: 2,
         name: "1901" }
-        ]
+        ],
+      currentCohort: ['kim', 'taylor', 'april', 'peter'],
+      handlePost: jest.fn(),
+      setCurrentCohort: jest.fn()
     }
     wrapper = shallow(
       <RecipientForm 
+        survey={mockState.survey}
         cohorts={mockState.cohorts}
+        currentCohort={mockState.currentCohort}
+        handlePost={mockState.handlePost}
+        setCurrentCohort={mockState.setCurrentCohort}
       />
     )
   })
@@ -29,17 +37,23 @@ describe('RecipientForm', () => {
 
   it('should have proper default state', () => {
     expect(wrapper.state()).toEqual({
-      cohort_id: 0
+      cohort_id: 0,
+      program: 'b',
+      draggedStudent: {},
+      group: []
     })
   })
 
   it('should set state with the cohort id', () => {
     mockEvent = { target: { value: "19"} }
 
-    wrapper.instance().handleChange(mockEvent)
+    wrapper.instance().handleCohort(mockEvent)
 
-    expect(wrapper.instance().state).toEqual({
-      cohort_id: 19
+    expect(wrapper.state()).toEqual({
+      cohort_id: '19',
+      program: 'b',
+      draggedStudent: {},
+      group: []
     })
   })
   

@@ -1,26 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RecipientForm should match the snapshot 1`] = `
-<div>
-  <div>
-    <h2>
+<div
+  className="recipient-controls-wrapper"
+>
+  <div
+    className="recipients-form-wrapper"
+  >
+    <h2
+      className="recipients-form-title"
+    >
       Select Recipients
     </h2>
-    <h3>
+    <h3
+      className="student-selector"
+    >
       Program
     </h3>
-    <select>
-      <option>
+    <select
+      className="drop-down"
+      onChange={[Function]}
+    >
+      <option
+        value="b"
+      >
         BE
       </option>
-      <option>
+      <option
+        value="f"
+      >
         FE
       </option>
     </select>
-    <h3>
+    <h3
+      className="student-selector"
+    >
       Cohort
     </h3>
     <select
+      className="drop-down"
       onChange={[Function]}
     >
       <option
@@ -30,23 +48,65 @@ exports[`RecipientForm should match the snapshot 1`] = `
       </option>
       <option
         key="1"
-        value={1}
+        name="cohort_id"
+        value="1811"
       >
         1811
       </option>
       <option
         key="2"
-        value={2}
+        name="cohort_id"
+        value="1901"
       >
         1901
       </option>
     </select>
     <button
+      className="recipients-button"
+      onClick={[Function]}
+    >
+      Assign Groups
+    </button>
+    <button
+      className="recipients-button"
       disabled={true}
       onClick={[Function]}
     >
       Send
     </button>
+  </div>
+  <div
+    className="students-display"
+  >
+    <div
+      className="student-nametag"
+      draggable={true}
+      onDrag={[Function]}
+    />
+    <div
+      className="student-nametag"
+      draggable={true}
+      onDrag={[Function]}
+    />
+    <div
+      className="student-nametag"
+      draggable={true}
+      onDrag={[Function]}
+    />
+    <div
+      className="student-nametag"
+      draggable={true}
+      onDrag={[Function]}
+    />
+  </div>
+  <div
+    className="groups-wrapper"
+    onDragOver={[Function]}
+    onDrop={[Function]}
+  >
+    <p>
+      Drag Names Here to Make a Group
+    </p>
   </div>
 </div>
 `;
