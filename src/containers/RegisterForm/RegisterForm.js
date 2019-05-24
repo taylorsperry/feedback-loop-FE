@@ -31,7 +31,7 @@ export class RegisterForm extends Component {
       }
       this.props.handleLogin(newUser)
     } else {
-      console.log('bad')
+      console.log('Passwords do not match')
     }
   }
 
@@ -50,7 +50,7 @@ export class RegisterForm extends Component {
             type="text" 
             onChange={this.handleChange}  
             name="full_name"
-            className="login-input"
+            className="login-input full_name"
           />
         </div>
         <div className='email'>
