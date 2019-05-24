@@ -2,16 +2,24 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setUser } from '../../actions'
+import RegisterForm from '../RegisterForm/RegisterForm'
+import LoginForm from '../LoginForm/LoginForm'
+
+// Select student or instructor
+// Create a new account (own endpoint) --> validate password and send { full_name: , role: , email: , password: } to BE
+// Login to existing account (different endpoint) --> { email: , password: }
+// Response from BE will be { id: 1, api_key: , role: , full_name: }
+// action to set the API KEY in redux (already done)
+// action to set role in redux
+// roles will dictate if the user is pushed to InstructorDash or StudentDash
 
 export class Login extends Component {
   constructor() {
     super()
     this.state = {
-        cohort: '1811',
-        id: 3,
-        name: 'Jessica Hansen',
-        program: 'F',
-        status: 'active'
+        user: 'API_KEY',
+        role: 'student or instructor',
+        newUser: false
     }
   }
 
@@ -21,7 +29,10 @@ export class Login extends Component {
 
   render() {
     return(
-      <div className='login-container'>
+      <div className='login-landing'>
+        {!this.state.newUser && <LoginForm />}
+        {this.state.newUser && <RegisterForm />}
+        <button className='login-button' onClick={this.createAccount}>Create New Account</button>
         <NavLink to='/dashboard'>
           <button className='login-button' onClick={this.handleLogin}>
           Login
