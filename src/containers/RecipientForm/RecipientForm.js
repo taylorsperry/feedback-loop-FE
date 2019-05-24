@@ -56,6 +56,16 @@ export class RecipientForm extends Component {
 
   onDrag = (e) => {
     e.preventDefault()
+    // console.log(e.target)
+  }
+
+  onDragOver = (e) => {
+    e.preventDefault()
+    console.log(e.target)
+  }
+
+  onDrop = (e) => {
+    e.preventDefault()
     console.log(e.target)
   }
 
@@ -84,7 +94,7 @@ export class RecipientForm extends Component {
           <button className="recipients-button" disabled={!this.state.cohort_id} onClick={this.postSurvey}>Send</button>
         </div>
         <div className="students-display">{studentsToDisplay}</div>
-        <div className="groups-wrapper"><p>Drag Names Here to Make a Group</p></div>
+        <div className="groups-wrapper" onDrop={e => this.onDrop(e)}  onDragOver={(e => this.onDragOver(e))}><p>Drag Names Here to Make a Group</p></div>
       </div>
     )
   }
