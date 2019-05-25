@@ -76,6 +76,10 @@ export class RecipientForm extends Component {
       group: [...group, draggedStudent ],
       draggedStudent: {}
     })
+    const leftoverStudents = this.props.currentCohort.filter(student => {
+      return student.id !== draggedStudent.id
+    })
+    this.props.setCurrentCohort(leftoverStudents)
   }
 
   render() {
