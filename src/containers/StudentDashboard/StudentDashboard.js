@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { NavLink } from 'react-router-dom'
 import { handleGet } from '../../thunks/handleGet'
 import StudentSurvey from '../StudentSurvey/StudentSurvey'
 import { setStudentSurveys } from '../../actions/'
