@@ -8,6 +8,7 @@ import Login from '../Login/Login'
 import PageNotFound from '../../components/PageNotFound/PageNotFound'
 import NewSurvey from '../NewSurvey/NewSurvey';
 import RecipientForm from '../RecipientForm/RecipientForm'
+import StudentDashboard from '../StudentDashboard/StudentDashboard'
 import { fetchCohorts } from '../../thunks/fetchCohorts'
 
 export class App extends Component {
@@ -29,6 +30,8 @@ export class App extends Component {
             <Route exact path='/dashboard' component={Dashboard}
             />
             <Route exact path='/new-survey' component={NewSurvey}
+            />
+            <Route exact path='/student-dashboard' component={StudentDashboard}
             />
             <Route exact path='/recipients' component={RecipientForm}
             />
