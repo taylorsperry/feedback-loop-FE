@@ -73,8 +73,7 @@ export class Login extends Component {
 
   handleRedirect = () => {
     if (this.props.role === 'Student') {
-      //We'll want to change this to push to StudentDashboard
-      this.props.history.push('/dashboard')
+      this.props.history.push('/student-dashboard')
     } else {
       this.props.history.push('/dashboard')
     }

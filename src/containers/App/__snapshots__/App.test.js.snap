@@ -32,6 +32,31 @@ exports[`App should match the snapshot 1`] = `
             "$$typeof": Symbol(react.memo),
             "WrappedComponent": [Function],
             "compare": null,
+            "displayName": "Connect(StudentDashboard)",
+            "type": [Function],
+          }
+        }
+        exact={true}
+        path="/student-dashboard"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(StudentSurvey)",
+            "type": [Function],
+          }
+        }
+        path="/student-survey"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
             "displayName": "Connect(RecipientForm)",
             "type": [Function],
           }

@@ -32,3 +32,8 @@ export const setRole = (role) => ({
   type: 'SET_ROLE',
   role
 })
+
+export const setStudentSurveys = (surveys) => ({
+  type: 'SET_STUDENT_SURVEYS',
+  surveys
+})
