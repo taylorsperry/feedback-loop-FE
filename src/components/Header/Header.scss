@@ -2,6 +2,14 @@
   display: flex;
   width: 100%;
   margin: 25px;
+  align-items: center;
+}
+
+.turing-logo {
+  height: 5.3125rem;
+  width: 5.3125rem;
+  padding-right: 15%;
+  padding-left: 15%;
 }
 
 .feedback-loop-title-text {
@@ -10,4 +18,10 @@
   font-weight: bolder;
   justify-content: left;
   margin: 0px;
+  text-decoration: none;
+}
+
+.feedback-loop-title {
+  text-decoration: none;
+  align-items: center;
 }
