@@ -4,10 +4,24 @@ exports[`Header should match the snapshot 1`] = `
 <div
   className="header-container"
 >
-  <h2
-    className="feedback-loop-title-text"
+  <a
+    href="https://turing.io/"
   >
-    Feedback Loop
-  </h2>
+    <img
+      alt="logo"
+      className="turing-logo"
+      src="turinglogo.png"
+    />
+  </a>
+  <Link
+    className="feedback-loop-title"
+    to="/"
+  >
+    <h2
+      className="feedback-loop-title-text"
+    >
+      Feedback Loop
+    </h2>
+  </Link>
 </div>
 `;
