@@ -67,13 +67,6 @@ exports[`RecipientForm should match the snapshot 1`] = `
     >
       Assign Groups
     </button>
-    <button
-      className="recipients-button"
-      disabled={true}
-      onClick={[Function]}
-    >
-      Send
-    </button>
   </div>
   <div
     className="students-display"
@@ -81,32 +74,55 @@ exports[`RecipientForm should match the snapshot 1`] = `
     <div
       className="student-nametag"
       draggable={true}
+      id={1}
+      key="1"
       onDrag={[Function]}
-    />
+    >
+      kim
+    </div>
     <div
       className="student-nametag"
       draggable={true}
+      id={2}
+      key="2"
       onDrag={[Function]}
-    />
+    >
+      taylor
+    </div>
     <div
       className="student-nametag"
       draggable={true}
+      id={3}
+      key="3"
       onDrag={[Function]}
-    />
+    >
+      april
+    </div>
     <div
       className="student-nametag"
       draggable={true}
+      id={4}
+      key="4"
       onDrag={[Function]}
-    />
+    >
+      peter
+    </div>
   </div>
   <div
     className="groups-wrapper"
     onDragOver={[Function]}
     onDrop={[Function]}
   >
-    <p>
+    <div>
       Drag Names Here to Make a Group
-    </p>
+    </div>
   </div>
+  <button
+    className="recipients-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Send
+  </button>
 </div>
 `;
