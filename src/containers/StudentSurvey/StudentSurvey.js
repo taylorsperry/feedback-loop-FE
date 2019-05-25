@@ -6,7 +6,8 @@ export class StudentSurvey extends Component {
     super(props)
     this.state = {
       survey_name: '',
-      questions: []
+      questions: [],
+      test: 'taylor'
     }
   }
 
@@ -15,17 +16,12 @@ export class StudentSurvey extends Component {
     const splitPath = path.split('/')
     const title = splitPath[splitPath.length -1]
     const storedSurveys = this.props.studentSurveys
-    const foundSurvey = storedSurveys.filter(survey => {
+    const foundSurvey = storedSurveys.find(survey => {
       return survey.survey_name === title
     })
-    this.findSurvey(foundSurvey)
-    //go into the store, map over the surveys, find the survey with name that matches title, setState with that survey
-    
-  }
-  
-  findSurvey = (foundSurvey) => {
     this.setState({
       survey_name: foundSurvey.survey_name,
+      id: foundSurvey.id,
       questions: foundSurvey.questions
     })
   }
