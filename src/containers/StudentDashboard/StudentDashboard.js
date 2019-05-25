@@ -9,7 +9,21 @@ export class StudentDashboard extends Component {
   constructor() {
     super(); 
     this.state = {
-      fakeSurveys: [{survey_name: 'Week 4 Survey', id: 4, questions: ['one', 'two']}, {survey_name: 'Week 5 Survey', id: 5, questions: ['three', 'four']}]
+      fakeSurveys: [
+        { survey_name: 'Week 4 Survey', 
+          id: 4, 
+          questions: [
+            { id: 1, 
+              questionTitle: 'How are you today?', 
+              options: [ { pointValue: 1, description: 'bad' }, { pointValue: 2, description: 'fine'}, { pointValue: 3, description: 'good' }, { pointValue: 4, description: 'great' } ]
+            }, 
+            { id: 2, 
+              questionTitle: 'What day is it?', 
+              options: [ { pointValue: 1, description: 'Thursday' }, { pointValue: 2, description: 'Friday'}, { pointValue: 3, description: 'Saturday' }, { pointValue: 4, description: 'Sunday' } ]
+            }
+          ]
+        }
+      ]
     }
   }
 

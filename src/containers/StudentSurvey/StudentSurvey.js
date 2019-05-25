@@ -6,8 +6,7 @@ export class StudentSurvey extends Component {
     super(props)
     this.state = {
       survey_name: '',
-      questions: [],
-      test: 'taylor'
+      questions: []
     }
   }
 
@@ -25,11 +24,27 @@ export class StudentSurvey extends Component {
       questions: foundSurvey.questions
     })
   }
+  renderQuestions = () => {
+    const { questions } = this.state
+    return questions.map(question => {
+      return <div key={question.id}>
+          {question.questionTitle}
+          {this.getOptions(question.options)}
+        </div>
+    })
+  }
 
+  getOptions = (options) => {
+    return options.map((option, index) => {
+      return <p key={index}>{option.description}</p>
+    })
+  }
+  
   render() {
     return(
       <div>
         {this.state.survey_name}
+        {this.renderQuestions()}
       </div>
     )
   }
