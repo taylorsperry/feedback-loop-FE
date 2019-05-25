@@ -1,8 +1,48 @@
-.login-container {
+.login-landing {
   background: $white;
   width: 40%;
   margin: auto;
   padding: 25px;
+}
+
+.login-form {
+  margin: 20px 0px;
+}
+
+.login-input {
+  height: 40px;
+  padding-left: 10px;
+  font-size: 16px;
+  margin-top: 5px;
+    &:focus {
+      outline: none;
+    }
+}
+
+.email,
+.password,
+.full-name {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.role-input {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding-left: 10px
+}
+
+.role-choice {
+  display: flex;
+  margin-left: 20px;
+}
+
+.role-input-p {
+  margin: 0px;
+  font-size: 16px;
 }
 
 .login-button {
@@ -14,7 +54,8 @@
   font-weight: bold;
   font-size: 16px;
   height: 50px;
-  width: 80%;
+  width: 100%;
+  margin-bottom: 20px;
   &:hover {
     cursor: pointer;
     background-color: $main-blue-hover;

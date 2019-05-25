@@ -27,3 +27,8 @@ export const setCurrentCohort = (cohort) => ({
   type: 'SET_CURRENT_COHORT',
   cohort
 })
+
+export const setRole = (role) => ({
+  type: 'SET_ROLE',
+  role
+})

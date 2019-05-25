@@ -8,8 +8,9 @@ export const handlePost = (url, options) => {
       if (!response.ok) {
         throw Error (response.statusText)
       }
-      await response.json()
+      const data = await response.json()
       dispatch(isLoading(false))
+      return data
     } catch (error) {
       dispatch(hasError(error.message))
       dispatch(isLoading(false))
