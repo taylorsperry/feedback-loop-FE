@@ -6,6 +6,8 @@ import { setCohortsReducer } from './setCohortsReducer'
 import { setUserReducer } from './setUserReducer'
 import { setRoleReducer } from './setRoleReducer'
 import { setStudentSurveysReducer } from './setStudentSurveysReducer'
+import { setCurrentCohortReducer } from './setCurrentCohortReducer'
+
 
 const rootReducer = combineReducers({
   error: hasErrorReducer,
@@ -13,6 +15,7 @@ const rootReducer = combineReducers({
   survey: setSurveyReducer,
   cohorts: setCohortsReducer,
   user: setUserReducer,
+  currentCohort: setCurrentCohortReducer,
   role: setRoleReducer,
   studentSurveys: setStudentSurveysReducer
 })

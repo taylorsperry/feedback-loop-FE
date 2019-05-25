@@ -1,26 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RecipientForm should match the snapshot 1`] = `
-<div>
-  <div>
-    <h2>
+<div
+  className="recipient-controls-wrapper"
+>
+  <div
+    className="recipients-form-wrapper"
+  >
+    <h2
+      className="recipients-form-title"
+    >
       Select Recipients
     </h2>
-    <h3>
+    <h3
+      className="student-selector"
+    >
       Program
     </h3>
-    <select>
-      <option>
+    <select
+      className="drop-down"
+      onChange={[Function]}
+    >
+      <option
+        value="b"
+      >
         BE
       </option>
-      <option>
+      <option
+        value="f"
+      >
         FE
       </option>
     </select>
-    <h3>
+    <h3
+      className="student-selector"
+    >
       Cohort
     </h3>
     <select
+      className="drop-down"
       onChange={[Function]}
     >
       <option
@@ -30,23 +48,81 @@ exports[`RecipientForm should match the snapshot 1`] = `
       </option>
       <option
         key="1"
-        value={1}
+        name="cohort_id"
+        value="1811"
       >
         1811
       </option>
       <option
         key="2"
-        value={2}
+        name="cohort_id"
+        value="1901"
       >
         1901
       </option>
     </select>
     <button
-      disabled={true}
+      className="recipients-button"
       onClick={[Function]}
     >
-      Send
+      Assign Groups
     </button>
   </div>
+  <div
+    className="students-display"
+  >
+    <div
+      className="student-nametag"
+      draggable={true}
+      id={1}
+      key="1"
+      onDrag={[Function]}
+    >
+      kim
+    </div>
+    <div
+      className="student-nametag"
+      draggable={true}
+      id={2}
+      key="2"
+      onDrag={[Function]}
+    >
+      taylor
+    </div>
+    <div
+      className="student-nametag"
+      draggable={true}
+      id={3}
+      key="3"
+      onDrag={[Function]}
+    >
+      april
+    </div>
+    <div
+      className="student-nametag"
+      draggable={true}
+      id={4}
+      key="4"
+      onDrag={[Function]}
+    >
+      peter
+    </div>
+  </div>
+  <div
+    className="groups-wrapper"
+    onDragOver={[Function]}
+    onDrop={[Function]}
+  >
+    <div>
+      Drag Names Here to Make a Group
+    </div>
+  </div>
+  <button
+    className="recipients-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Send
+  </button>
 </div>
 `;
