@@ -9,6 +9,7 @@ import PageNotFound from '../../components/PageNotFound/PageNotFound'
 import NewSurvey from '../NewSurvey/NewSurvey';
 import RecipientForm from '../RecipientForm/RecipientForm'
 import StudentDashboard from '../StudentDashboard/StudentDashboard'
+import StudentSurvey from '../StudentSurvey/StudentSurvey'
 import { fetchCohorts } from '../../thunks/fetchCohorts'
 
 export class App extends Component {
@@ -32,6 +33,10 @@ export class App extends Component {
             <Route exact path='/new-survey' component={NewSurvey}
             />
             <Route exact path='/student-dashboard' component={StudentDashboard}
+            />
+            {/* <Route exact path = '/student-survey' render={(survey) => <StudentSurvey survey={survey}/>}
+            /> */}
+             <Route path='/student-survey' component={StudentSurvey}
             />
             <Route exact path='/recipients' component={RecipientForm}
             />

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
 import { handleGet } from '../../thunks/handleGet'
+import StudentSurvey from '../StudentSurvey/StudentSurvey'
+import { setStudentSurveys } from '../../actions/'
 
 export class StudentDashboard extends Component {
   constructor() {
@@ -18,15 +20,20 @@ export class StudentDashboard extends Component {
     // this.setState({
     //   surveys: surveys
     // })
+    const surveys = this.state.fakeSurveys
+    this.props.setStudentSurveys(surveys)
   }
   
   listSurveys = () => {
     const surveys = this.state.fakeSurveys
     return surveys.map(survey => {
-      return <NavLink to="/student-survey" key={survey.id}> 
-                <button>{survey.survey_name}</button>
-              </NavLink>
+      return <button key={survey.id} onClick={() => {this.renderSurvey(survey)}}>{survey.survey_name}</button>  
     })
+  }
+
+  renderSurvey = (survey) => {
+    this.props.history.push(`/student-survey/${survey.survey_name}`)
+    return <StudentSurvey />
   }
  
   render() {
@@ -44,7 +51,8 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  handleGet: (url) => dispatch(handleGet(url))
+  handleGet: (url) => dispatch(handleGet(url)),
+  setStudentSurveys: (surveys) => dispatch(setStudentSurveys(surveys))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard)
