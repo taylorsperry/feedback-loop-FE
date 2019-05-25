@@ -34,8 +34,6 @@ export class App extends Component {
             />
             <Route exact path='/student-dashboard' component={StudentDashboard}
             />
-            {/* <Route exact path = '/student-survey' render={(survey) => <StudentSurvey survey={survey}/>}
-            /> */}
              <Route path='/student-survey' component={StudentSurvey}
             />
             <Route exact path='/recipients' component={RecipientForm}
