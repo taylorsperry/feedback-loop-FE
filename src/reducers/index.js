@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   survey: setSurveyReducer,
   cohorts: setCohortsReducer,
   user: setUserReducer,
-  currentCohort: setCurrentCohortReducer
+  currentCohort: setCurrentCohortReducer,
   role: setRoleReducer,
 })
 
