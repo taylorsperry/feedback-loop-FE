@@ -1,29 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { handleGet } from '../../thunks/handleGet'
 
 export class StudentDashboard extends Component {
   constructor() {
     super(); 
     this.state = {
-      fakeSurveys: [{survey_name: 'Week 4 Survey'}, {survey_name: 'Week 5 Survey'}]
+      fakeSurveys: [{survey_name: 'Week 4 Survey', id: 4, questions: ['one', 'two']}, {survey_name: 'Week 5 Survey', id: 5, questions: ['three', 'four']}]
     }
   }
 
-  //on CDM, GET surveys assigned to current user
-  //response will be an array
-  //for each element in the array, setState with a key of that survey name and a value of the survey info
-
-  componentDidMount() {
+  async componentDidMount() {
     const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/${this.props.user.api_key}`
-    const surveys = await this.props.handleGet(url)
+    // const surveys = await this.props.handleGet(url)
+    // // const surveys = this.state.fakeSurveys
+    // this.setState({
+    //   surveys: surveys
+    // })
   }
   
-  //return a NavLink button with the survey_name, NavLink should go to StudentSurvey  
+  listSurveys = () => {
+    const surveys = this.state.fakeSurveys
+    return surveys.map(survey => {
+      return <NavLink to="/student-survey" key={survey.id}> 
+                <button>{survey.survey_name}</button>
+              </NavLink>
+    })
+  }
+ 
   render() {
     return(
       <div className='dashboard-container'>
         Student Dashboard
+        {this.listSurveys()}
       </div>
     )
   }
@@ -37,4 +47,4 @@ export const mapDispatchToProps = (dispatch) => ({
   handleGet: (url) => dispatch(handleGet(url))
 })
 
-export default connect(mapStateToProps)(StudentDashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard)

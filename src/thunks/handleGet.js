@@ -9,8 +9,8 @@ export const handleGet = (url) => {
         throw Error (response.statusText)
       }
       const surveys = await response.json()
-      return surveys
       dispatch(isLoading(false))
+      return surveys
     } catch(error) {
       dispatch(hasError(error.message))
       dispatch(isLoading(false))
