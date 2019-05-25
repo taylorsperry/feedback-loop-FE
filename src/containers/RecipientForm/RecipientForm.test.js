@@ -16,7 +16,9 @@ describe('RecipientForm', () => {
         { id: 2,
         name: "1901" }
         ],
-      currentCohort: ['kim', 'taylor', 'april', 'peter'],
+      currentCohort: [
+        {id: 1, name:'kim'}, {id: 2, name: 'taylor'}, {id: 3, name:'april'}, {id: 4, name:'peter'}
+      ],
       handlePost: jest.fn(),
       setCurrentCohort: jest.fn()
     }
@@ -50,7 +52,7 @@ describe('RecipientForm', () => {
     wrapper.instance().handleCohort(mockEvent)
 
     expect(wrapper.state()).toEqual({
-      cohort_id: '19',
+      cohort_id: "19",
       program: 'b',
       draggedStudent: {},
       group: []
