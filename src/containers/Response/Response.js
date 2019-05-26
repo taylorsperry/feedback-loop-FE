@@ -4,9 +4,7 @@ export class Response extends Component {
   constructor(props) {
     super(props)
     this.state={
-      // member: this.props.member,
-      // questions: this.props.questions,
-      // currStudent: this.props.currStudent,
+      responses: [],
       displayQuestions: false
     }
   }
@@ -19,10 +17,46 @@ export class Response extends Component {
 
   renderQuestions = () => {
     return this.props.questions.map(question => {
-      return <ResponseCard key={question.id} question={question} member={this.props.member} currStudent={this.props.currStuent} />
+      return <ResponseCard key={question.id} question={question} member={this.props.member} currStudent={this.props.currStudent} checkResponse={this.checkResponse} />
     })
   }
 
+  addResponse = (newResponse) => {
+    this.setState({
+      responses: [...this.state.responses, newResponse]
+    })
+  }
+
+  updateResponse = (newResponse) => {
+    const stateResponses = this.state.responses
+    const updatedResponses = stateResponses.map(stateResponse => {
+      if(stateResponse.question === newResponse.question) {
+        stateResponse = newResponse
+      }
+      return stateResponse
+    })
+    this.setState({
+      responses: updatedResponses
+    })
+  }
+
+  checkResponse = (newResponse) => {
+    const newResponseId = newResponse.question
+    if (this.state.responses.length >= 1) {
+      const questionIds = this.state.responses.map(stateResponse => {
+        return stateResponse.question
+      })
+      if(!questionIds.includes(newResponseId)) {
+        this.addResponse(newResponse)
+      } else {
+        this.updateResponse(newResponse)
+      }
+    } else {
+      this.setState({
+        responses: [newResponse]
+      })
+    }
+  }
 
   render() {
     return (

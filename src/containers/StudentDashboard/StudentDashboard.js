@@ -58,7 +58,7 @@ export class StudentDashboard extends Component {
       <div className='dashboard-container'>
         Student Dashboard
         {surveyButtons}
-        {this.state.display && <StudentSurvey key={Date.now()} studentSurveys={this.state.fakeSurveys} dummy={'dummy'}/>} 
+        {this.state.display && <StudentSurvey key={Date.now()} studentSurveys={this.state.fakeSurveys} />} 
       </div>
     )
   }

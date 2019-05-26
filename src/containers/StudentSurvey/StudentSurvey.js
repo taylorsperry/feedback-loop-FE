@@ -44,33 +44,6 @@ export class StudentSurvey extends Component {
     })
   }
 
-  renderQuestions = (member) => {
-    const { questions} = this.state
-      return questions.map(question => {
-        return <form key={question.id}>
-            {question.questionTitle}
-            {this.renderOptions(question.id, question.options, member)}
-          </form>
-      })
-  }
-
-  renderOptions = (question, options, member) => {
-    return options.map((option, index) => {
-      return <div key={index}>
-              <input 
-                type='checkbox'
-                value={option.pointValue}
-                onChange={this.handlePoints(question, option.pointValue, member)}
-              />
-              <p>{option.description}</p>
-            </div>
-    })
-  }
-
-  handlePoints = (question, points, member) => {
-    console.log('question', question, 'points', points, 'member', member, )
-  }
-
   render() {
     return(
       <div className='student-survey'>

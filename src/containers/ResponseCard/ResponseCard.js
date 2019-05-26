@@ -4,19 +4,19 @@ export class ResponseCard extends Component {
   constructor() {
     super();
     this.state = {
-      pointValue: 0
+      response: {}
     }
   }
   
   handleChange = (e) => {
     this.setState({
-      pointValue: e.target.value
-    })
-  }
-
-  handleBlur = () => {
-    console.log('blur')
-    // this.props.completeSurvey()
+      response: {
+        question: this.props.question.id,
+        currStudent: this.props.currStudent,
+        member: this.props.member.id, 
+        pointValue: parseInt(e.target.value)
+      }
+    }, () => {this.props.checkResponse(this.state.response)})
   }
 
   render() {
