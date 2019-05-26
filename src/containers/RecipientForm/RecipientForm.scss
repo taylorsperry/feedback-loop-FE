@@ -6,7 +6,6 @@
 .students-display {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   border-top: .65rem solid #ef3852;
   box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
   background-color: white;
@@ -14,6 +13,8 @@
   align-items: center;
   padding-top: 1%;
   padding-bottom: 1%;
+  overflow: auto;
+  border-radius: 5px;
 }
 
 
@@ -40,6 +41,7 @@
   flex-direction: column;
   border-top: .65rem solid #ef3852;
   box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
 .groups-title {
@@ -111,4 +113,5 @@
   justify-content: space-between;
   margin-right: 2%;
   margin-left: 2%;
+  height: 23em;
 }
