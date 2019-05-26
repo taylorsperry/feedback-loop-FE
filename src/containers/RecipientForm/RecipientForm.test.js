@@ -169,5 +169,5 @@ describe('RecipientForm', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
   })
-
+  
 })
