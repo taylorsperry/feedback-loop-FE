@@ -40,6 +40,7 @@ describe('RecipientForm', () => {
   it('should have proper default state', () => {
     expect(wrapper.state()).toEqual({
       cohort_id: 0,
+      displayTeams: "none",
       program: 'both',
       draggedStudent: {},
       group: []
@@ -53,6 +54,7 @@ describe('RecipientForm', () => {
 
     expect(wrapper.state()).toEqual({
       cohort_id: "19",
+      displayTeams: "none",
       program: 'both',
       draggedStudent: {},
       group: []
