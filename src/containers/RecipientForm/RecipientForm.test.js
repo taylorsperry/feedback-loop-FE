@@ -48,6 +48,19 @@ describe('RecipientForm', () => {
     })
   })
 
+  it('should set state with the program', () => {
+    mockEvent = { target: { value: 'f'} }
+
+    wrapper.instance().handleProgram(mockEvent)
+
+    expect(wrapper.state()).toEqual({
+      cohort_id: 0,
+      program: 'f',
+      draggedStudent: {},
+      group: []
+    })
+  })
+
   it('should set state with the cohort id', () => {
     mockEvent = { target: { value: "19"} }
 
@@ -58,6 +71,36 @@ describe('RecipientForm', () => {
       program: 'b',
       draggedStudent: {},
       group: []
+    })
+  })
+
+  it('should set state with a student when onDrag is invoked', () => {
+    const mockEvent = { preventDefault: jest.fn() }
+    const mockStudent = { id: 99, name: 'April' }
+
+    wrapper.instance().onDrag(mockEvent, mockStudent)
+
+    expect(wrapper.state('draggedStudent')).toEqual({
+      id: 99,
+      name: "April"
+    })
+  })
+
+  it('should prevent default when student is dragged when onDragOver is invoked', () => {
+    const mockEvent = { preventDefault: jest.fn() }
+    wrapper.instance().onDragOver(mockEvent)
+    expect(mockEvent.preventDefault).toHaveBeenCalled()
+  })
+
+  it.skip('should update group, reset draggedStudent and call setCurrentCohort with leftover students when onDrop is invoked', () => {
+    const mockEvent = { preventDefault: jest.fn() }
+    const mockState = {
+      group: [],
+      draggedStudent: { id: 99, name: 'April'}
+    }
+    wrapper.setState({
+      group: mockState.group,
+      draggedStudent: mockState.draggedStudent
     })
   })
   
