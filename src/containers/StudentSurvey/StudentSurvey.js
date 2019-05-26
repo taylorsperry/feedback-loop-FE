@@ -36,10 +36,10 @@ export class StudentSurvey extends Component {
 
   getOptions = (options) => {
     return options.map((option, index) => {
-      return <p key={index}>{option.description}</p>
+      return <p key={index}>{option.description}, {option.pointValue}</p>
     })
   }
-  
+
   render() {
     return(
       <div>
