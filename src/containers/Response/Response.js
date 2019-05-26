@@ -58,6 +58,13 @@ export class Response extends Component {
     }
   }
 
+  closeResponse = () => {
+    this.props.collectResponses(this.state.responses)
+    this.setState({
+      displayQuestions: !this.state.displayQuestions
+    })
+  }
+
   render() {
     return (
       <div className='member-survey'>
@@ -69,7 +76,7 @@ export class Response extends Component {
         <div className='close-button-container'>
           {this.state.displayQuestions && 
             <button 
-              onClick={this.completeSurvey} className='close-button'>
+              onClick={this.closeResponse} className='close-button'>
               Close Survey for {this.props.member.name}</button>}
         </div>
       </div>

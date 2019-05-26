@@ -10,6 +10,7 @@ export class StudentSurvey extends Component {
       // questions: [],
       // members: [],
       // responses: []
+      allResponses: [],
       fakeSurveys: this.props.studentSurveys
     }
   }
@@ -37,10 +38,22 @@ export class StudentSurvey extends Component {
     })
   }
 
+  collectResponses = (individualResponse) => {
+    if(this.state.allResponses.length >= 1) {
+      this.setState({
+        allResponses: [...this.state.allResponses, ...individualResponse]
+      })
+    } else {
+      this.setState({
+        allResponses: [...individualResponse]
+      })
+    }
+  }
+
   renderResponse = () => {
     const { members, questions, currStudent } = this.state
     return members.map(member => {
-      return <Response key={member.id} member={member} questions={questions} currStudent={currStudent.id} />
+      return <Response key={member.id} member={member} questions={questions} currStudent={currStudent.id} collectResponses={this.collectResponses}/>
     })
   }
 
