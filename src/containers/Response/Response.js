@@ -11,10 +11,6 @@ export class Response extends Component {
     }
   }
 
-  componentDidMount() {
-    // console.log(this.props)
-  } 
-
   completeSurvey = () => {
     this.setState({
       displayQuestions: !this.state.displayQuestions
@@ -31,11 +27,17 @@ export class Response extends Component {
   render() {
     return (
       <div className='member-survey'>
-        <p onClick={this.completeSurvey}>
+        <button onClick={this.completeSurvey} className=
+        'response-button'>
           Give {this.props.member.name} Feedback
-        </p>
+        </button>
         {this.state.displayQuestions && this.renderQuestions()}
-        {this.state.displayQuestions && <button onClick={this.completeSurvey}>Close Survey for {this.props.member.name}</button>}
+        <div className='close-button-container'>
+          {this.state.displayQuestions && 
+            <button 
+              onClick={this.completeSurvey} className='close-button'>
+              Close Survey for {this.props.member.name}</button>}
+        </div>
       </div>
     )
   }

@@ -74,7 +74,7 @@ export class StudentSurvey extends Component {
   render() {
     return(
       <div className='student-survey'>
-        {this.state.surveyName}
+        <p className='response-survey-name'>{this.state.surveyName}</p>
         {this.state.members && this.renderResponse()}
       </div>
     )
