@@ -5,21 +5,22 @@
 
 .students-display {
   display: flex;
-  flex-wrap: wrap;
-  background-color: $accent-red;
+  flex-direction: column;
+  border-top: .65rem solid $accent-red;
+  box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
+  background-color: #FFF;
+  width: 30%;
+  align-items: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  overflow: auto;
+  border-radius: 5px;
 }
 
-.groups-wrapper {
-  background-color: $main-blue;
-  height: 200px;
-}
 
 .student-nametag {
   background-color: $light-grey;
   border-radius: 4px;
-  height: 75px;
-  margin: 1rem;
-  width: 100px;
   &:hover {
     color: $main-grey;
     cursor: grab;
@@ -27,6 +28,36 @@
     background-color: $light-grey-hover;
     box-shadow: 1px 1px 2px $main-grey;
   }
+  margin: 1%;
+  padding: 2%;
+  width: 10em;
+  height: fit-content;
+}
+
+.groups-wrapper {
+  background-color: #FFF;
+  width: 68%;
+  display: flex;
+  flex-direction: column;
+  border-top: .65rem solid $accent-red;
+  box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.groups-title {
+  margin: 2%;
+  font-family: $main-font;
+  font-weight: bold;
+}
+
+.groups {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+  justify-content: space-evenly;
 }
 
 .student-name {
@@ -40,6 +71,14 @@
   font-family: $main-font
 }
 
+.recipients-form-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 43px;
+  color: #FFF;
+  font-weight: bolder;
+}
+
 .drop-down {
   height: 40px;
   margin: auto;
@@ -47,6 +86,7 @@
   &:focus {
     outline: 2px solid $main-blue;
   }
+  margin-right: 1%;
 }
 
 .recipients-button {
@@ -57,11 +97,21 @@
   font-family: $main-font;
   font-weight: bold;
   font-size: 16px;
-  height: 50px;
+  height: 40px;
   margin: 20px auto;
   width: 200px;
   &:hover {
     cursor: pointer;
     background-color: $main-blue-hover;
   }
+  text-align: center;
+  justify-content: center;
+}
+
+.student-groups-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 2%;
+  margin-left: 2%;
+  height: 23em;
 }

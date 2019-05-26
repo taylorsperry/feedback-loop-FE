@@ -9,9 +9,10 @@ export class RecipientForm extends Component {
     super()
     this.state = {
       cohort_id: 0,
-      program: 'b',
+      program: 'both',
       draggedStudent: {},
-      group: []
+      group: [],
+      displayTeams: "none"
     }
   }
 
@@ -29,10 +30,16 @@ export class RecipientForm extends Component {
 
   handleAssignGroups = async () => {
     const { cohort_id, program } = this.state
-    const url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}&&program=${program}`
+    let url
+    this.state.program == "both"
+    ? url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}`
+    : url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}&&program=${program}`
     const response = await fetch(url)
     const cohort = await response.json()
     await this.props.setCurrentCohort(cohort)
+    this.setState({
+      displayTeams: "flex"
+    })
   }
 
   postSurvey = () => {
@@ -88,10 +95,10 @@ export class RecipientForm extends Component {
 
   render() {
     const studentsToDisplay = this.props.currentCohort.map(student => {
-      return <div 
+      return <div
               key={student.id}
               id={student.id}
-              className="student-nametag" 
+              className="student-nametag"
               draggable onDrag={(e) => this.onDrag(e, student)}>
               {student.name}
              </div>
@@ -106,21 +113,38 @@ export class RecipientForm extends Component {
       <div className="recipient-controls-wrapper">
         <div className="recipients-form-wrapper">
           <h2 className="recipients-form-title">Select Recipients</h2>
-          <h3 className="student-selector">Program</h3>
-          <select className="drop-down" onChange={this.handleProgram}>
-            <option value="b" >BE</option>
-            <option value="f" >FE</option>
-          </select>
-          <h3 className="student-selector">Cohort</h3>
-          <select className="drop-down" onChange={this.handleCohort} >
-            <option value="0">select a cohort</option>
+          <div className="student-selector-wrapper">
+            <select className="drop-down" onChange={this.handleCohort} >
+            <option value="0">Select a cohort</option>
             {cohortList}
-          </select>
-          <button className="recipients-button" onClick={this.handleAssignGroups}>Assign Groups</button>
+            </select>
+            <select className="drop-down" onChange={this.handleProgram}>
+              <option>Select a program</option>
+              <option value="b" >BE</option>
+              <option value="f" >FE</option>
+              <option value="both" >Both</option>
+            </select>
+            <button className="recipients-button" onClick={this.handleAssignGroups}>Populate Students</button>
+          </div>
         </div>
-        <div className="students-display">{studentsToDisplay}</div>
-        <div className="groups-wrapper" onDrop={e => this.onDrop(e)}  onDragOver={(e => this.onDragOver(e))}><div>Drag Names Here to Make a Group{groupToDisplay}</div></div>
-        <button className="recipients-button" disabled={!this.state.cohort_id} onClick={this.postSurvey}>Send</button>
+        <div className="student-groups-wrapper"
+             style={{display: this.state.displayTeams}}>
+          <div className="groups-wrapper"
+                onDrop={e => this.onDrop(e)}
+                onDragOver={(e => this.onDragOver(e))}>
+            <div className="groups-title">Drag Names Here to Form Groups
+            </div>
+            <div className="groups">
+              {groupToDisplay}
+            </div>
+          </div>
+          <div className="students-display">{studentsToDisplay}
+          </div>
+        </div>
+        <button className="recipients-button"
+                disabled={!this.state.cohort_id} onClick={this.postSurvey}
+                style={{display: this.state.displayTeams}}>Send Survey
+        </button>
       </div>
     )
   }

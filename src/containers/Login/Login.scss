@@ -3,6 +3,8 @@
   width: 40%;
   margin: auto;
   padding: 25px;
+  border-radius: 5px;
+  border-top: .65rem solid $main-blue;
 }
 
 .login-form {
@@ -12,7 +14,9 @@
 .login-input {
   height: 40px;
   padding-left: 10px;
+  padding-right: 10px;
   font-size: 16px;
+  border-radius: 5px;
   margin-top: 5px;
     &:focus {
       outline: none;
