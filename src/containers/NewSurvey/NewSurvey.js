@@ -57,12 +57,12 @@ export class NewSurvey extends Component {
   }
 
   displayQuestion = (question) => (
-    <Question 
-      key={question.id} 
+    <Question
+      key={question.id}
       {...question}
       updateQuestions={this.updateQuestions} />
   )
-  
+
   render() {
 
     let questionCards
@@ -73,17 +73,17 @@ export class NewSurvey extends Component {
     return(
       <div className='new-survey-container'>
         <form onSubmit={this.handleSubmit} className='new-survey-landing-form'>
-          <input 
+          <input
             type="text"
             name="surveyName"
             className="survey-name"
-            placeholder="Untitled Survey"
+            placeholder="Add Survey Name"
             value={this.state.surveyName}
             onChange={this.handleChange}
           />
           <label className="begin-create-survey-label">
             <p className="exp">Expiration Date:</p>
-            <DatePicker 
+            <DatePicker
               selected={this.state.surveyExpiration}
               onChange={this.handleDate}
               showTimeSelect

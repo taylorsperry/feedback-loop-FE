@@ -6,6 +6,8 @@
   padding: 25px;
   display: grid;
   grid-template-rows: 100px 1fr 50px;
+  border-top: .5rem solid #12f1fc;
+  overflow: auto;
 }
 
 .new-survey-landing-form {
@@ -35,6 +37,11 @@
   text-align: left;
   padding: 5px;
   display: flex;
+  input {
+    width: 100%;
+    border-radius: 5px;
+    padding: 2%;
+  }
 }
 
 .controls {
@@ -54,6 +61,8 @@
   width: auto;
   padding: 0px 20px;
   margin-left: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   &:hover {
     cursor: pointer;
     background-color: $main-blue-hover;
