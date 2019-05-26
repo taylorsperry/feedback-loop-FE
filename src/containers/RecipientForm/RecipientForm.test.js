@@ -23,7 +23,7 @@ describe('RecipientForm', () => {
       setCurrentCohort: jest.fn()
     }
     wrapper = shallow(
-      <RecipientForm 
+      <RecipientForm
         survey={mockState.survey}
         cohorts={mockState.cohorts}
         currentCohort={mockState.currentCohort}
@@ -40,7 +40,7 @@ describe('RecipientForm', () => {
   it('should have proper default state', () => {
     expect(wrapper.state()).toEqual({
       cohort_id: 0,
-      program: 'b',
+      program: 'both',
       draggedStudent: {},
       group: []
     })
@@ -53,12 +53,12 @@ describe('RecipientForm', () => {
 
     expect(wrapper.state()).toEqual({
       cohort_id: "19",
-      program: 'b',
+      program: 'both',
       draggedStudent: {},
       group: []
     })
   })
-  
+
   describe('mapStateToProps', () => {
     it('should return the expected state as props', () => {
       mockState = {
@@ -84,5 +84,5 @@ describe('RecipientForm', () => {
       expect(mappedProps).toEqual(expected)
     })
   })
-  
+
 })
