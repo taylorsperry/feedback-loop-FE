@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom'
 import Header from '../../components/Header/Header'
-import Dashboard from '../Dashboard/Dashboard'
+import InstructorDashboard from '../Dashboard/InstructorDashboard'
 import Login from '../Login/Login'
 import PageNotFound from '../../components/PageNotFound/PageNotFound'
 import NewSurvey from '../NewSurvey/NewSurvey';
@@ -28,7 +28,7 @@ export class App extends Component {
           <Switch>
             <Route exact path='/' component={Login}
             />
-            <Route exact path='/dashboard' component={Dashboard}
+            <Route exact path='/dashboard' component={InstructorDashboard}
             />
             <Route exact path='/new-survey' component={NewSurvey}
             />
