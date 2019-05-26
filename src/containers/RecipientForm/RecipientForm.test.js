@@ -1,6 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { RecipientForm, mapStateToProps } from './RecipientForm'
+import { RecipientForm, mapStateToProps, mapDispatchToProps } from './RecipientForm'
+jest.mock('../../thunks/handlePost')
+import { setCurrentCohort } from '../../actions'
 
 describe('RecipientForm', () => {
   let mockState
@@ -84,6 +86,45 @@ describe('RecipientForm', () => {
       const mappedProps = mapStateToProps(mockState)
 
       expect(mappedProps).toEqual(expected)
+    })
+  })
+
+
+
+  describe('mapDispatchToProps', () => {
+    it('should return handlePost to dispatch', () => {
+      const mockUrl = 'www.post.com'
+        const mockOptions = {
+          method: 'POST',
+          body: { name: "name",
+                  email: "email@gmail.com"
+                },
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+        const mockDispatch = jest.fn()
+        const handlePost = jest.fn()
+        const actionToDispatch = handlePost(mockUrl, mockOptions)
+        const mappedProps = mapDispatchToProps(mockDispatch)
+  
+        mappedProps.handlePost(mockUrl, mockOptions)
+  
+        expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+
+    it('should return setCurrentCohort to disptch', () => {
+      const mockCohort = [
+        { id: 1, name: 'Kim'},
+        { id: 2, name: 'Taylor'}
+      ]
+      const mockDispatch = jest.fn()
+      const actionToDispatch = setCurrentCohort(mockCohort)
+      const mappedProps = mapDispatchToProps(mockDispatch)
+
+      mappedProps.setCurrentCohort(mockCohort)
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
   })
 
