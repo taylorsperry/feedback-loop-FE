@@ -1,24 +1,44 @@
 import React, { Component } from 'react'
 
 export class ResponseCard extends Component {
-  constructor(props) {
-    super(props)
-    this.state={
-      member: this.props.member,
-      questions: this.props.questions,
-      currStudent: this.props.currStudent,
+  constructor() {
+    super();
+    this.state = {
+      pointValue: 0
     }
   }
-
-  componentDidMount() {
-    console.log(this.props)
-  } 
+  
+  handleChange = (e) => {
+    this.setState({
+      pointValue: e.target.value
+    })
+  }
 
   render() {
     return (
-      <div className='member-survey'>
-        <p>Give {this.state.member.name} Feedback</p>
-      </div>
+      <form>
+        <p>{this.props.question.questionTitle}</p>
+        <div>
+          <div>
+            <input 
+              type="radio" 
+              name="option" 
+              value={this.props.question.options[0].pointValue}
+              onChange={this.handleChange}
+            />
+            <p>{this.props.question.options[0].description}</p>
+          </div>
+          <div>
+            <input 
+              type="radio" 
+              name="option"
+              value={this.props.question.options[1].pointValue}
+              onChange={this.handleChange}
+            />
+            <p>{this.props.question.options[1].description}</p>
+          </div>
+        </div>
+      </form>
     )
   }
 }

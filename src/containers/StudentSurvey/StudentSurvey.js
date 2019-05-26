@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ResponseCard from '../ResponseCard/ResponseCard'
+import Response from '../Response/Response'
 import { connect } from 'react-redux'
 
 export class StudentSurvey extends Component {
@@ -37,15 +37,10 @@ export class StudentSurvey extends Component {
     })
   }
 
-  //this should probably be its own component
-  renderResponseCards = () => {
+  renderResponse = () => {
     const { members, questions, currStudent } = this.state
     return members.map(member => {
-      return <ResponseCard key={member.id} member={member} questions={questions} currStudent={currStudent.id} />
-      // return <div key={member.id} className='member-survey'>
-      //   <p>Give {member.name} feedback</p>
-      //   {this.renderQuestions(member.id)} 
-      // </div>
+      return <Response key={member.id} member={member} questions={questions} currStudent={currStudent.id} />
     })
   }
 
@@ -80,7 +75,7 @@ export class StudentSurvey extends Component {
     return(
       <div className='student-survey'>
         {this.state.surveyName}
-        {this.state.members && this.renderResponseCards()}
+        {this.state.members && this.renderResponse()}
       </div>
     )
   }
