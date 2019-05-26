@@ -8,7 +8,7 @@ export class StudentDashboard extends Component {
   constructor() {
     super(); 
     this.state = {
-      surveys: []
+      // surveys: []
       // fakeSurveys: [
       //   { survey_name: 'Week 4 Survey', 
       //     id: 4, 
@@ -30,9 +30,7 @@ export class StudentDashboard extends Component {
   async componentDidMount() {
     const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/pending?api_key=${this.props.user}`
     const surveys = await this.props.handleGet(url)
-    this.setState({
-      surveys: surveys
-    }, () => {this.props.setStudentSurveys(this.state.surveys)})
+    this.props.setStudentSurveys(surveys)
   }
 
   renderSurvey = (survey) => {
