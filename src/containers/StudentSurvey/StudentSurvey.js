@@ -31,32 +31,42 @@ export class StudentSurvey extends Component {
   renderMembers = () => {
     const { members } = this.state
     return members.map(member => {
-      return <div key={member.id}>
+      return <div key={member.id} className='member-survey'>
         <p>Give {member.name} feedback</p>
-        {this.renderQuestions()} 
+        {this.renderQuestions(member.id)} 
       </div>
     })
   }
 
-  renderQuestions = () => {
+  renderQuestions = (member) => {
     const { questions} = this.state
       return questions.map(question => {
         return <div key={question.id}>
             {question.questionTitle}
-            {this.renderOptions(question.options)}
+            {this.renderOptions(question.id, question.options, member)}
           </div>
       })
   }
 
-  renderOptions = (options) => {
+  renderOptions = (question, options, member) => {
     return options.map((option, index) => {
-      return <p key={index}>{option.description}, {option.pointValue}</p>
+      return <div key={index}>
+              <input 
+                type='radio'
+                checked={this.handlePoints(question, option.pointValue, member)}
+              />
+              <p>{option.description}</p>
+            </div>
     })
+  }
+
+  handlePoints = (question, points, member) => {
+    console.log('question', question, 'points', points, 'member', member, )
   }
 
   render() {
     return(
-      <div>
+      <div className='student-survey'>
         {this.state.surveyName}
         {this.state.members && this.renderMembers()}
       </div>

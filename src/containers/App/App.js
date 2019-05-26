@@ -11,10 +11,32 @@ import RecipientForm from '../RecipientForm/RecipientForm'
 import StudentDashboard from '../StudentDashboard/StudentDashboard'
 import StudentSurvey from '../StudentSurvey/StudentSurvey'
 import { fetchCohorts } from '../../thunks/fetchCohorts'
+// import { setStudentSurveys } from '../../actions'
 
 export class App extends Component {
-
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     fakeSurveys: [
+  //       { surveyName: 'Week 4 Survey', 
+  //         id: 4, 
+  //         questions: [
+  //           { id: 1, 
+  //             questionTitle: 'How are you today?', 
+  //             options: [ { pointValue: 1, description: 'bad' }, { pointValue: 2, description: 'fine'}, { pointValue: 3, description: 'good' }, { pointValue: 4, description: 'great' } ]
+  //           }, 
+  //           { id: 2, 
+  //             questionTitle: 'What day is it?', 
+  //             options: [ { pointValue: 1, description: 'Thursday' }, { pointValue: 2, description: 'Friday'}, { pointValue: 3, description: 'Saturday' }, { pointValue: 4, description: 'Sunday' } ]
+  //           }
+  //         ],
+  //         groups: [{ members: [{name: 'Kim', id: 3}, {name: 'April', id: 7}] }]
+  //       }
+  //     ]
+  //   }
+  // }
   componentDidMount() {
+    // this.props.setStudentSurveys(this.state.fakeSurveys)
     this.props.fetchCohorts()
   }
 
@@ -58,7 +80,8 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchCohorts: () => dispatch(fetchCohorts())
+  fetchCohorts: () => dispatch(fetchCohorts()),
+  // setStudentSurveys: (surveys) => dispatch(setStudentSurveys(surveys))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
