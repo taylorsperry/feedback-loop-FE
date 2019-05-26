@@ -3,5 +3,39 @@
 }
 
 .member-survey {
-  border: solid pink 2px;
+  background: lavenderblush
+}
+
+.response-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 30px 10px;
+  background: $white;
+  border: solid #f4f4f4 .5px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.20);
+  margin-bottom: 5px;
+}
+
+.question-title {
+  width: 100%;
+  border: none;
+  border-bottom: solid $main-grey 1px;
+  font-size: 20px;
+  color: $accent-charcoal;
+}
+
+.response-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.response-option {
+  display: flex;
+  align-items: center;
+}
+
+.response-description {
+  padding-left: 10px;
+  font-size: 15px;
 }
