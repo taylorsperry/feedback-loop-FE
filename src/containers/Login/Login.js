@@ -67,6 +67,7 @@ export class Login extends Component {
     const validUser = data.api_key
     const userRole = data.role
     this.props.setUser(validUser)
+    localStorage.setItem('currentUser', validUser);
     this.props.setRole(userRole)
     this.handleRedirect()
   }
@@ -82,13 +83,13 @@ export class Login extends Component {
   render() {
     return(
       <div className='login-landing'>
-        {!this.state.newUser && 
-          <LoginForm 
+        {!this.state.newUser &&
+          <LoginForm
             createAccount={this.createAccount}
             handleLogin={this.handleLogin}
           />}
-        {this.state.newUser && 
-          <RegisterForm 
+        {this.state.newUser &&
+          <RegisterForm
             handleLogin={this.handleLogin}
           />}
       </div>
