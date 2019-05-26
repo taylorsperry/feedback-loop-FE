@@ -56,6 +56,7 @@ describe('RecipientForm', () => {
 
     expect(wrapper.state()).toEqual({
       cohort_id: 0,
+      displayTeams: 'none',
       program: 'f',
       draggedStudent: {},
       group: []
