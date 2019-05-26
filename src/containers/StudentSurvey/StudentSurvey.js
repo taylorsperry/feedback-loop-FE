@@ -1,50 +1,61 @@
 import React, { Component } from 'react'
+import ResponseCard from '../ResponseCard/ResponseCard'
 import { connect } from 'react-redux'
 
 export class StudentSurvey extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      surveyName: '',
-      questions: [],
-      members: [],
-      responses: []
+      // surveyName: '',
+      // questions: [],
+      // members: [],
+      // responses: []
+      fakeSurveys: this.props.studentSurveys
     }
   }
 
   componentDidMount() {
-    const path = this.props.location.pathname
-    const splitPath = path.split('/')
-    const title = splitPath[splitPath.length -1]
-    const storedSurveys = this.props.studentSurveys
-    const foundSurvey = storedSurveys.find(survey => {
-      return survey.surveyName === title
-    })
+    // const path = this.props.location.pathname
+    // const splitPath = path.split('/')
+    // const title = splitPath[splitPath.length -1]
+    // const storedSurveys = this.props.studentSurveys
+    // const foundSurvey = storedSurveys.find(survey => {
+    //   return survey.surveyName === title
+    // })
+    // this.setState({
+    //   surveyName: foundSurvey.surveyName,
+    //   id: foundSurvey.id,
+    //   questions: foundSurvey.questions,
+    //   members: foundSurvey.groups[0].members,
+    // })
     this.setState({
-      surveyName: foundSurvey.surveyName,
-      id: foundSurvey.id,
-      questions: foundSurvey.questions,
-      members: foundSurvey.groups[0].members,
+      currStudent: {name: 'taylor', id: 18},
+      surveyName: this.props.studentSurveys[0].surveyName,
+      id: this.props.studentSurveys[0].id,
+      questions: this.props.studentSurveys[0].questions,
+      members: this.props.studentSurveys[0].groups[0].members
     })
   }
 
-  renderMembers = () => {
-    const { members } = this.state
+  //this should probably be its own component
+  renderResponseCards = () => {
+    const { members, questions, currStudent } = this.state
     return members.map(member => {
-      return <div key={member.id} className='member-survey'>
-        <p>Give {member.name} feedback</p>
-        {this.renderQuestions(member.id)} 
-      </div>
+      return <ResponseCard key={member.id} member={member} questions={questions} currStudent={currStudent.id} />
+      // return <div key={member.id} className='member-survey'>
+      //   <p>Give {member.name} feedback</p>
+      //   {this.renderQuestions(member.id)} 
+      // </div>
     })
   }
 
   renderQuestions = (member) => {
     const { questions} = this.state
       return questions.map(question => {
-        return <div key={question.id}>
+        return <form key={question.id}>
             {question.questionTitle}
             {this.renderOptions(question.id, question.options, member)}
-          </div>
+          </form>
       })
   }
 
@@ -52,8 +63,9 @@ export class StudentSurvey extends Component {
     return options.map((option, index) => {
       return <div key={index}>
               <input 
-                type='radio'
-                checked={this.handlePoints(question, option.pointValue, member)}
+                type='checkbox'
+                value={option.pointValue}
+                onChange={this.handlePoints(question, option.pointValue, member)}
               />
               <p>{option.description}</p>
             </div>
@@ -68,14 +80,16 @@ export class StudentSurvey extends Component {
     return(
       <div className='student-survey'>
         {this.state.surveyName}
-        {this.state.members && this.renderMembers()}
+        {this.state.members && this.renderResponseCards()}
       </div>
     )
   }
 }
 
-export const mapStateToProps = (state) => ({
-  studentSurveys: state.studentSurveys
-})
+// export const mapStateToProps = (state) => ({
+  // studentSurveys: state.studentSurveys
+// })
 
-export default connect(mapStateToProps)(StudentSurvey)
+// export default connect(mapStateToProps)(StudentSurvey)
+
+export default StudentSurvey
