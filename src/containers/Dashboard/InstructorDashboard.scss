@@ -6,6 +6,14 @@
   padding: 25px;
   border-radius: 5px;
   border-top: .65rem solid #ef3852;
+  display: flex;
+  flex-direction: column;
+}
+
+.inst-surveys {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .create-new-survey-button {

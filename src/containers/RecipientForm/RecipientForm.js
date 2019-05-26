@@ -53,7 +53,7 @@ export class RecipientForm extends Component {
     const options = {
         method: 'POST',
         body: JSON.stringify({
-          api_key: 'a60f21ee-f251-4389-9ece-9267e0c0e61e',
+          api_key: 'ed940f6d-cd06-4f13-bd4f-be2d78805aab',
           survey:
             {
               surveyName: survey.surveyName,
