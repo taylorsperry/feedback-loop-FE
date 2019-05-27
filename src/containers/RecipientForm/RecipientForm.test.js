@@ -155,7 +155,7 @@ describe('RecipientForm', () => {
         expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
 
-    it('should return setCurrentCohort to disptch', () => {
+    it('should return setCurrentCohort to dispatch', () => {
       const mockCohort = [
         { id: 1, name: 'Kim'},
         { id: 2, name: 'Taylor'}
