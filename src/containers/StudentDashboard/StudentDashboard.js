@@ -36,7 +36,7 @@ export class StudentDashboard extends Component {
 
   renderSurvey = (survey) => {
     // this.setState({ display: true})
-    this.props.history.push(`/student-survey/${survey.surveyName}`)
+    this.props.history.push(`/student-survey/${survey.id}`)
     return <StudentSurvey key={survey.id} />
   }
  

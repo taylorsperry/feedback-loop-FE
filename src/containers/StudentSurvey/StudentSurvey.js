@@ -15,10 +15,10 @@ export class StudentSurvey extends Component {
   componentDidMount() {
     const path = this.props.location.pathname
     const splitPath = path.split('/')
-    const title = splitPath[splitPath.length -1]
+    const id = splitPath[splitPath.length -1]
     const storedSurveys = this.props.studentSurveys
     const foundSurvey = storedSurveys.find(survey => {
-      return survey.surveyName === title
+      return survey.id == id
     })
     this.setState({
       surveyName: foundSurvey.surveyName,
@@ -26,6 +26,8 @@ export class StudentSurvey extends Component {
       questions: foundSurvey.questions,
       members: foundSurvey.groups[0].members,
     })
+
+
     // this.setState({
     //   currStudent: {name: 'taylor', id: 18},
     //   surveyName: this.props.studentSurveys[0].surveyName,
@@ -57,7 +59,7 @@ export class StudentSurvey extends Component {
   }
 
   postResponse = async () => {
-    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/pending?api_key=${this.props.user}`
+    const url = "https://turing-feedback-api.herokuapp.com/api/v1/responses"
     const options = {
       method: 'POST',
       body: JSON.stringify({
@@ -76,7 +78,7 @@ export class StudentSurvey extends Component {
       <div className='student-survey'>
         <p className='response-survey-name'>{this.state.surveyName}</p>
         {this.state.members && this.renderResponse()}
-        <button className='response-button' onClick={this.postResponse()}>Submit Response</button>
+        <button className='response-button' onClick={this.postResponse}>Submit Response</button>
       </div>
     )
   }
