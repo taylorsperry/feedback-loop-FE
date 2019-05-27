@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import cogoToast from 'cogo-toast';
 
 export class LoginForm extends Component {
   constructor() {
@@ -18,7 +19,15 @@ export class LoginForm extends Component {
 
   checkUser = (e) => {
     e.preventDefault()
-    this.props.handleLogin(this.state)
+    if(!this.state.emailInput || !this.state.passwordInput) {
+      this.sendToast('Please enter an email and password to login')
+    } else {
+      this.props.handleLogin(this.state)
+    }
+  }
+
+  sendToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
   }
 
   render() {
