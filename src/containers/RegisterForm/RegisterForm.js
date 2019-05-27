@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import cogoToast from 'cogo-toast';
 
 export class RegisterForm extends Component {
   constructor() {
@@ -29,9 +30,9 @@ export class RegisterForm extends Component {
         email,
         password_1
       }
-      this.props.handleLogin(newUser)
+      this.checkFields(newUser)
     } else {
-      console.log('Passwords do not match')
+      this.sendToast('Passwords do not match')
     }
   }
 
@@ -39,6 +40,18 @@ export class RegisterForm extends Component {
     this.setState({
       role
     })
+  }
+
+  sendToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
+  }
+
+  checkFields = (newUser) => {
+    if(!newUser.full_name || !newUser.role || !newUser.email || !newUser.password_1) {
+      this.sendToast('Please complete all fields to create new account')
+    } else {
+      this.props.handleLogin(newUser)
+    }
   }
 
   render() {

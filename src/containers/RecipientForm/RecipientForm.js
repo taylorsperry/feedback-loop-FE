@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
 import { setCurrentCohort } from '../../actions'
+import cogoToast from 'cogo-toast';
 
 export class RecipientForm extends Component {
   constructor() {
@@ -43,30 +44,38 @@ export class RecipientForm extends Component {
   }
 
   postSurvey = () => {
-    const membersIds = []
-    this.state.group.forEach(student => {
-      membersIds.push(student.id)
-    })
-    const { cohort_id } = this.state
-    const { survey } = this.props
-    const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
-    const options = {
-        method: 'POST',
-        body: JSON.stringify({
-          api_key: this.props.user,
-          survey:
-            {
-              surveyName: survey.surveyName,
-              surveyExpiration: survey.surveyExpiration,
-              questions: survey.questions,
-              groups: [{name: cohort_id, members_ids: membersIds}]
-            }
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    if(this.state.group.length < 2) {
+      this.sendToast('There must be at least two students in a group')
+    } else {
+      const membersIds = []
+      this.state.group.forEach(student => {
+        membersIds.push(student.id)
+      })
+      const { cohort_id } = this.state
+      const { survey } = this.props
+      const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
+      const options = {
+          method: 'POST',
+          body: JSON.stringify({
+            api_key: this.props.user,
+            survey:
+              {
+                surveyName: survey.surveyName,
+                surveyExpiration: survey.surveyExpiration,
+                questions: survey.questions,
+                groups: [{name: cohort_id, members_ids: membersIds}]
+              }
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+      }
+      // this.props.handlePost(url, options)
     }
-    this.props.handlePost(url, options)
+  }
+
+  sendToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
   }
 
   onDrag = (e, student) => {
@@ -142,7 +151,7 @@ export class RecipientForm extends Component {
           </div>
         </div>
         <button className="recipients-button"
-                disabled={this.state.group.length < 2} onClick={this.postSurvey}
+                onClick={this.postSurvey}
                 style={{display: this.state.displayTeams}}>Send Survey
         </button>
       </div>
