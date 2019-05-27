@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Response from '../Response/Response'
 import { connect } from 'react-redux'
+import { handlePost } from '../../thunks/handlePost'
 
 export class StudentSurvey extends Component {
   constructor(props) {
@@ -34,6 +35,15 @@ export class StudentSurvey extends Component {
     // })
   }
 
+  
+  renderResponse = () => {
+    const { members, questions } = this.state
+    //There's no currStudent in state, took it out of linke 50 and didn't pass down on 53
+    return members.map(member => {
+      return <Response key={member.id} member={member} questions={questions} collectResponses={this.collectResponses}/>
+    })
+  }
+
   collectResponses = (individualResponse) => {
     if(this.state.allResponses.length >= 1) {
       this.setState({
@@ -46,12 +56,19 @@ export class StudentSurvey extends Component {
     }
   }
 
-  renderResponse = () => {
-    const { members, questions } = this.state
-    //There's no currStudent in state, took it out of linke 50 and didn't pass down on 53
-    return members.map(member => {
-      return <Response key={member.id} member={member} questions={questions} collectResponses={this.collectResponses}/>
-    })
+  postResponse = async () => {
+    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/pending?api_key=${this.props.user}`
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        api_key: this.props.user,
+        responses: this.state.allResponses
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    this.props.handlePost(url, options)
   }
 
   render() {
@@ -59,15 +76,19 @@ export class StudentSurvey extends Component {
       <div className='student-survey'>
         <p className='response-survey-name'>{this.state.surveyName}</p>
         {this.state.members && this.renderResponse()}
+        <button className='response-button' onClick={this.postResponse()}>Submit Response</button>
       </div>
     )
   }
 }
 
 export const mapStateToProps = (state) => ({
-  studentSurveys: state.studentSurveys
+  studentSurveys: state.studentSurveys,
+  user: state.user
 })
 
-export default connect(mapStateToProps)(StudentSurvey)
+export const mapDispatchToProps = (dispatch) => ({
+  handlePost: (url, options) => dispatch(handlePost(url, options))
+})
 
-// export default StudentSurvey
+export default connect(mapStateToProps, mapDispatchToProps)(StudentSurvey)

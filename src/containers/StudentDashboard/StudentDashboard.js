@@ -50,7 +50,7 @@ export class StudentDashboard extends Component {
     // }
     if (this.props.studentSurveys) {
       surveyButtons = this.props.studentSurveys.map(survey => {
-        return <button key={survey.id} onClick={() => {this.renderSurvey(survey)}}>{survey.surveyName}</button>
+        return <button className='response-button' key={survey.id} onClick={() => {this.renderSurvey(survey)}}>{survey.surveyName}</button>
       })
     }
     
