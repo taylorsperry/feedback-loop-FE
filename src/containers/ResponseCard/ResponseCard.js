@@ -9,7 +9,6 @@ export class ResponseCard extends Component {
   }
   
   handleChange = (e) => {
-    //took currStudent out of response object
     this.setState({
       response: {
         question: this.props.question.id,
