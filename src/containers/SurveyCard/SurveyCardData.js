@@ -31,9 +31,32 @@ export class SurveyCardData extends Component {
 
   displayGroup = (group) => {
     return(
-      <section className="s-group">{group.name}
+      <>
+        {this.state.averages &&
+          <section className="s-group">{group.name}
+            {this.state.averages.averages.map(question => {
+              return this.displayQuestionData(question)
+            })}
+          </section>
+        }
+      </>
+    )
+  }
+
+  displayQuestionData = (question) => {
+    return(
+      <section className="s-question-data">
+        <article className="s-question">Question: {question.questionTitle}</article>
+        <article className='q-avg-rating'>Class Average: {question.average_rating}</article>
+        <article className='user-ratings'>
+          Student Ratings: {this.displayStudentData()}
+        </article>
       </section>
     )
+  }
+
+  displayStudentData = () => {
+
   }
 
   render() {

@@ -1,4 +1,11 @@
 var avg = {
+  "averages": [
+    {
+      "question_id": 42,
+      "questionTitle": "Pick a number between one and four",
+      "average_rating": 3.3333333333333333
+    }
+  ],
   "survey": {
     "id": 1,
     "surveyName": "Test survey",
@@ -44,14 +51,7 @@ var avg = {
         }
       ],
     }
-  ],
-    "averages": [
-      {
-        "question_id": 42,
-        "questionTitle": "Pick a number between one and four",
-        "average_rating": 3.3333333333333333
-      }
-    ]
+  ]
   }
 }
 
