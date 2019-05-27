@@ -16,7 +16,6 @@ export class Response extends Component {
   }
 
   renderQuestions = () => {
-    //not passing down currStudent to ResponseCard
     return this.props.questions.map(question => {
       return <ResponseCard key={question.id} question={question} member={this.props.member} checkResponse={this.checkResponse} />
     })
