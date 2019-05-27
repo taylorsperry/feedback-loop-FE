@@ -142,7 +142,7 @@ export class RecipientForm extends Component {
           </div>
         </div>
         <button className="recipients-button"
-                disabled={!this.state.cohort_id} onClick={this.postSurvey}
+                disabled={this.state.group.length < 2} onClick={this.postSurvey}
                 style={{display: this.state.displayTeams}}>Send Survey
         </button>
       </div>

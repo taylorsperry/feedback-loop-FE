@@ -106,6 +106,9 @@
   }
   text-align: center;
   justify-content: center;
+  &:disabled {
+    background-color: $light-grey
+  }
 }
 
 .student-groups-wrapper {
