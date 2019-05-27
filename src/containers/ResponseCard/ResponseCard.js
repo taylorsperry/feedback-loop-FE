@@ -26,7 +26,8 @@ export class ResponseCard extends Component {
           <div className='response-option'>
             <input 
               type="radio" 
-              name="option" 
+              name="option"
+              id="op1" 
               value={this.props.question.options[0].id}
               onChange={this.handleChange}
             />
