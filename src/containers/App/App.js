@@ -13,7 +13,6 @@ import StudentSurvey from '../StudentSurvey/StudentSurvey'
 import { fetchCohorts } from '../../thunks/fetchCohorts'
 
 export class App extends Component {
-
   componentDidMount() {
     this.props.fetchCohorts()
   }
@@ -34,7 +33,7 @@ export class App extends Component {
             />
             <Route exact path='/student-dashboard' component={StudentDashboard}
             />
-             <Route path='/student-survey' component={StudentSurvey}
+            <Route path='/student-survey' component={StudentSurvey}
             />
             <Route exact path='/recipients' component={RecipientForm}
             />
@@ -58,7 +57,7 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchCohorts: () => dispatch(fetchCohorts())
+  fetchCohorts: () => dispatch(fetchCohorts()),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

@@ -1,57 +1,85 @@
 import React, { Component } from 'react'
+import Response from '../Response/Response'
 import { connect } from 'react-redux'
+import { handlePost } from '../../thunks/handlePost'
 
 export class StudentSurvey extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      survey_name: '',
-      questions: []
+      allResponses: [],
     }
   }
 
   componentDidMount() {
     const path = this.props.location.pathname
     const splitPath = path.split('/')
-    const title = splitPath[splitPath.length -1]
+    const id = splitPath[splitPath.length -1]
     const storedSurveys = this.props.studentSurveys
     const foundSurvey = storedSurveys.find(survey => {
-      return survey.survey_name === title
+      return survey.id == id
     })
     this.setState({
-      survey_name: foundSurvey.survey_name,
+      surveyName: foundSurvey.surveyName,
       id: foundSurvey.id,
-      questions: foundSurvey.questions
-    })
-  }
-  renderQuestions = () => {
-    const { questions } = this.state
-    return questions.map(question => {
-      return <div key={question.id}>
-          {question.questionTitle}
-          {this.getOptions(question.options)}
-        </div>
+      questions: foundSurvey.questions,
+      members: foundSurvey.groups[0].members,
     })
   }
 
-  getOptions = (options) => {
-    return options.map((option, index) => {
-      return <p key={index}>{option.description}</p>
+  
+  renderResponse = () => {
+    const { members, questions } = this.state
+    return members.map(member => {
+      return <Response key={member.id} member={member} questions={questions} collectResponses={this.collectResponses}/>
     })
   }
-  
+
+  collectResponses = (individualResponse) => {
+    if(this.state.allResponses.length >= 1) {
+      this.setState({
+        allResponses: [...this.state.allResponses, ...individualResponse]
+      })
+    } else {
+      this.setState({
+        allResponses: [...individualResponse]
+      })
+    }
+  }
+
+  postResponse = async () => {
+    const url = "https://turing-feedback-api.herokuapp.com/api/v1/responses"
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        api_key: this.props.user,
+        responses: this.state.allResponses
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    this.props.handlePost(url, options)
+  }
+
   render() {
     return(
-      <div>
-        {this.state.survey_name}
-        {this.renderQuestions()}
+      <div className='student-survey'>
+        <p className='response-survey-name'>{this.state.surveyName}</p>
+        {this.state.members && this.renderResponse()}
+        <button className='response-button' onClick={this.postResponse}>Submit Response</button>
       </div>
     )
   }
 }
 
 export const mapStateToProps = (state) => ({
-  studentSurveys: state.studentSurveys
+  studentSurveys: state.studentSurveys,
+  user: state.user
 })
 
-export default connect(mapStateToProps)(StudentSurvey)
+export const mapDispatchToProps = (dispatch) => ({
+  handlePost: (url, options) => dispatch(handlePost(url, options))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentSurvey)

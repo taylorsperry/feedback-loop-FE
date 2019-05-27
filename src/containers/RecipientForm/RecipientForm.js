@@ -53,7 +53,7 @@ export class RecipientForm extends Component {
     const options = {
         method: 'POST',
         body: JSON.stringify({
-          api_key: 'ed940f6d-cd06-4f13-bd4f-be2d78805aab',
+          api_key: this.props.user,
           survey:
             {
               surveyName: survey.surveyName,
@@ -158,7 +158,8 @@ RecipientForm.propTypes = {
 export const mapStateToProps = (state) => ({
   survey: state.survey,
   cohorts: state.cohorts,
-  currentCohort: state.currentCohort
+  currentCohort: state.currentCohort,
+  user: state.user
 })
 
 export const mapDispatchToProps = (dispatch) => ({
