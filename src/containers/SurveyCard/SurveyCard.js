@@ -6,6 +6,7 @@ export class SurveyCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dataDisplay: "none"
     }
   }
 
@@ -16,6 +17,17 @@ export class SurveyCard extends Component {
   handleChange = (e) => {
   }
 
+  toggleData = () => {
+    let display
+    this.state.dataDisplay == "none"
+    ? display = "flex"
+    : display = "none"
+
+    this.setState({
+      dataDisplay: display
+    })
+  }
+
   prettyDate = (dateString) => {
     let date = new Date(dateString)
     date = date.toLocaleDateString()
@@ -24,14 +36,21 @@ export class SurveyCard extends Component {
 
   render() {
     return(
-      <div className='survey-card'>
-        <article className='survey-card-name'>
-          {this.props.surveyData.surveyName}
-        </article>
-        <article className='card-exp-date'>
-          {this.prettyDate(this.props.surveyData.surveyExpiration)}
-        </article>
-      </div>
+      <section className='survey-accordion'>
+        <div className='survey-card'
+             onClick={this.toggleData}>
+          <article className='survey-card-name'>
+            {this.props.surveyData.surveyName}
+          </article>
+          <article className='card-exp-date'>
+            {this.prettyDate(this.props.surveyData.surveyExpiration)}
+          </article>
+        </div>
+        <div className='survey-data'
+             style={{display: this.state.dataDisplay}}>
+          BUTTS
+        </div>
+      </section>
     )
   }
 }
