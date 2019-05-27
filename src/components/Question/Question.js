@@ -44,16 +44,16 @@ export class Question extends Component {
   render() {
     return (
       <form onBlur={this.handleSubmit} className='question-form'>
-        <div> 
-          <input 
+        <div>
+          <input
             type="text"
             name="questionTitle"
             className="question-input"
-            placeholder="Untitled Question"
+            placeholder="Add Your Question Text"
             value={this.state.questionTitle}
             onChange={this.handleTitleChange}
           />
-        </div> 
+        </div>
         <div className='option-container'>
           <div className='option'>
             <input
@@ -61,7 +61,7 @@ export class Question extends Component {
               name="radio" />
             <input
               type="text"
-              placeholder="Option description"
+              placeholder="Add Response Description 1"
               name="option_1"
               id='op1'
               className='option'
@@ -74,7 +74,7 @@ export class Question extends Component {
               name="radio" />
             <input
               type="text"
-              placeholder="Option description"
+              placeholder="Add Response Description 2"
               name="option_2"
               className='option'
               value={this.state.option_2.description}
@@ -86,7 +86,7 @@ export class Question extends Component {
               name="radio" />
             <input
               type="text"
-              placeholder="Option description"
+              placeholder="Add Response Description 3"
               name="option_3"
               className='option'
               value={this.state.option_3.description}
@@ -98,7 +98,7 @@ export class Question extends Component {
               name="radio" />
             <input
               type="text"
-              placeholder="Option description"
+              placeholder="Add Response Description 4"
               name="option_4"
               className='option'
               value={this.state.option_4.description}

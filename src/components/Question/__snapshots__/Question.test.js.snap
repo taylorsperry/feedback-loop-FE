@@ -10,7 +10,7 @@ exports[`Question should match the snapshot 1`] = `
       className="question-input"
       name="questionTitle"
       onChange={[Function]}
-      placeholder="Untitled Question"
+      placeholder="Add Your Question Text"
       type="text"
       value=""
     />
@@ -30,7 +30,7 @@ exports[`Question should match the snapshot 1`] = `
         id="op1"
         name="option_1"
         onChange={[Function]}
-        placeholder="Option description"
+        placeholder="Add Response Description 1"
         type="text"
         value=""
       />
@@ -46,7 +46,7 @@ exports[`Question should match the snapshot 1`] = `
         className="option"
         name="option_2"
         onChange={[Function]}
-        placeholder="Option description"
+        placeholder="Add Response Description 2"
         type="text"
         value=""
       />
@@ -62,7 +62,7 @@ exports[`Question should match the snapshot 1`] = `
         className="option"
         name="option_3"
         onChange={[Function]}
-        placeholder="Option description"
+        placeholder="Add Response Description 3"
         type="text"
         value=""
       />
@@ -78,7 +78,7 @@ exports[`Question should match the snapshot 1`] = `
         className="option"
         name="option_4"
         onChange={[Function]}
-        placeholder="Option description"
+        placeholder="Add Response Description 4"
         type="text"
         value=""
       />
