@@ -70,8 +70,14 @@ export class RecipientForm extends Component {
             'Content-Type': 'application/json'
           }
       }
-      // this.props.handlePost(url, options)
+      this.props.handlePost(url, options)
+      this.handleSuccess()
     }
+  }
+
+  handleSuccess = () => {
+    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
+    this.props.history.push('/dashboard')
   }
 
   sendToast = (message) => {
