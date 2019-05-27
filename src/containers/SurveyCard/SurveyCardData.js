@@ -33,7 +33,10 @@ export class SurveyCardData extends Component {
     return(
       <>
         {this.state.averages &&
-          <section className="s-group">{group.name}
+          <section className="s-group">
+            <section className="s-group-name group-box">
+              Group Name: {group.name}
+            </section>
             {this.state.averages.averages.map(question => {
               return this.displayQuestionData(question)
             })}
@@ -46,23 +49,33 @@ export class SurveyCardData extends Component {
   displayQuestionData = (question) => {
     return(
       <section className="s-question-data">
-        <article className="s-question">Question: {question.questionTitle}</article>
-        <article className='q-avg-rating'>Class Average: {question.average_rating}</article>
-        <article className='user-ratings'>
-          Student Ratings: {this.displayStudentData()}
+        <article className="s-question group-box">Question: {question.questionTitle}</article>
+        <article className='q-avg-rating group-box'>Class Average: {question.average_rating}</article>
+        <article className='u-ratings-container group-box'>
+          {this.displayStudentData(question.question_id)}
         </article>
       </section>
     )
   }
 
-  displayStudentData = () => {
-
+  displayStudentData = (question_id) => {
+    return(
+      <section className='u-ratings'>
+        {this.state.userAverages.averages.map(average => {
+          if (average.question_id == question_id) {
+            return <article className='user-rating'>
+              {average.fullName}: {average.average_rating}
+            </article>
+          }
+        })}
+      </section>
+    )
   }
 
   render() {
     return(
       <>
-        <section className="s-status">{this.props.sData.status}</section>
+        <section className="s-status">Survey Status:  {this.props.sData.status}</section>
         <section className="s-groups">{this.props.sData.groups.map(group => {
           return this.displayGroup(group)
         })}
