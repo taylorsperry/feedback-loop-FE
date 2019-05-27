@@ -12,46 +12,30 @@ export class InstructorDashboard extends Component {
   constructor() {
     super();
     this.state = {
-      fakeSurveys: OpenSurveys
+      surveys: null
     }
   }
 
   async componentDidMount() {
-    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/${this.props.user.api_key}`
-    // const surveys = await this.props.handleGet(url)
-    // // const surveys = this.state.fakeSurveys
-    // this.setState({
-    //   surveys: surveys
-    // })
-    const surveys = this.state.fakeSurveys
-    this.props.setStudentSurveys(surveys)
+    const myKey = await this.props.user
+    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys?api_key=${myKey}`
+    const surveys = await this.props.handleGet(url)
+    this.setState({
+      surveys: surveys
+    })
   }
-  //
-  // listSurveys = () => {
-  //   const surveys = this.state.fakeSurveys
-  //   return surveys.map(survey => {
-  //     return <button key={survey.id} onClick={() => {this.renderSurvey(survey)}}>{survey.surveyName}</button>
-  //   })
-  // }
-  //
-  // closedSurveys = () => {
-  //   return ClosedSurveys.map(survey => {
-  //     return <button key={survey.id} onClick={() => {this.renderSurvey(survey)}}>{survey.surveyName}</button>
-  //   })
-  // }
 
   render() {
-    const openSurveys = OpenSurveys.map(survey => {
-      return <SurveyCard key={survey.id}
-                         surveyData={survey}/>
-    })
     return(
       <div className='surveys-accordion'>
         <Link to='/new-survey'>
         <button className='create-new-survey-button'>Create New Survey</button>
         </Link>
         <div className='inst-surveys'>
-          {openSurveys}
+          {this.state.surveys && this.state.surveys.map(survey => {
+            return <SurveyCard key={survey.id}
+                               surveyData={survey}/>
+          })}
         </div>
       </div>
     )

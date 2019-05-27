@@ -14,17 +14,17 @@ export class SurveyCardData extends Component {
   }
 
   componentDidMount = async () => {
-    // avgsUrl = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/${this.props.sData.id}/averages`
-    // avgsResponse = await fetch(avgsUrl)
-    // averages = await avgsResponse.json()
-    //
-    // userAvgsUrl = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/${this.props.sData.id}/user_averages`
-    // userAvgsResponse = await fetch(userAvgsUrl)
-    // userAverages = await userAvgsResponse.json()
+    const avgsUrl = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/${this.props.sData.id}/averages`
+    const avgsResponse = await fetch(avgsUrl)
+    const averages = await avgsResponse.json()
+
+    const userAvgsUrl = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/${this.props.sData.id}/user_averages`
+    const userAvgsResponse = await fetch(userAvgsUrl)
+    const userAverages = await userAvgsResponse.json()
 
     this.setState({
-      averages: AvgResp,
-      userAverages: UserAvg
+      averages: averages,
+      userAverages: userAverages
     })
   }
 
