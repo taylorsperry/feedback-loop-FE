@@ -35,7 +35,7 @@ export class SurveyCardData extends Component {
         {this.state.averages &&
           <section className="s-group">
             <section className="s-group-name group-box">
-              Group Name: {group.name}
+              Group {group.name}
             </section>
             {this.state.averages.averages.map(question => {
               return this.displayQuestionData(question)
@@ -49,8 +49,8 @@ export class SurveyCardData extends Component {
   displayQuestionData = (question) => {
     return(
       <section className="s-question-data">
-        <article className="s-question group-box">Question: {question.questionTitle}</article>
-        <article className='q-avg-rating group-box'>Class Average: {question.average_rating}</article>
+        <article className="s-question group-box"> {question.questionTitle}</article>
+        <article className='q-avg-rating group-box'>Survey Average: {question.average_rating.toFixed(2)}</article>
         <article className='u-ratings-container group-box'>
           {this.displayStudentData(question.question_id)}
         </article>
@@ -64,7 +64,7 @@ export class SurveyCardData extends Component {
         {this.state.userAverages.averages.map(average => {
           if (average.question_id == question_id) {
             return <article className='user-rating'>
-              {average.fullName}: {average.average_rating}
+              {average.fullName}: {average.average_rating.toFixed(2)}
             </article>
           }
         })}
