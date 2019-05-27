@@ -16,27 +16,9 @@ export class Response extends Component {
   }
 
   renderQuestions = () => {
+    //not passing down currStudent to ResponseCard
     return this.props.questions.map(question => {
-      return <ResponseCard key={question.id} question={question} member={this.props.member} currStudent={this.props.currStudent} checkResponse={this.checkResponse} />
-    })
-  }
-
-  addResponse = (newResponse) => {
-    this.setState({
-      responses: [...this.state.responses, newResponse]
-    })
-  }
-
-  updateResponse = (newResponse) => {
-    const stateResponses = this.state.responses
-    const updatedResponses = stateResponses.map(stateResponse => {
-      if(stateResponse.question === newResponse.question) {
-        stateResponse = newResponse
-      }
-      return stateResponse
-    })
-    this.setState({
-      responses: updatedResponses
+      return <ResponseCard key={question.id} question={question} member={this.props.member} checkResponse={this.checkResponse} />
     })
   }
 
@@ -58,6 +40,25 @@ export class Response extends Component {
     }
   }
 
+  addResponse = (newResponse) => {
+    this.setState({
+      responses: [...this.state.responses, newResponse]
+    })
+  }
+
+  updateResponse = (newResponse) => {
+    const stateResponses = this.state.responses
+    const updatedResponses = stateResponses.map(stateResponse => {
+      if(stateResponse.question === newResponse.question) {
+        stateResponse = newResponse
+      }
+      return stateResponse
+    })
+    this.setState({
+      responses: updatedResponses
+    })
+  }
+
   closeResponse = () => {
     this.props.collectResponses(this.state.responses)
     this.setState({
@@ -77,7 +78,9 @@ export class Response extends Component {
           {this.state.displayQuestions && 
             <button 
               onClick={this.closeResponse} className='close-button'>
-              Close Survey for {this.props.member.name}</button>}
+              Save Feedback for {this.props.member.name}
+            </button>
+          }
         </div>
       </div>
     )

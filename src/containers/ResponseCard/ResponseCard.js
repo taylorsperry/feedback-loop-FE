@@ -9,12 +9,12 @@ export class ResponseCard extends Component {
   }
   
   handleChange = (e) => {
+    //took currStudent out of response object
     this.setState({
       response: {
         question: this.props.question.id,
-        currStudent: this.props.currStudent,
         member: this.props.member.id, 
-        pointValue: parseInt(e.target.value)
+        answer: parseInt(e.target.value)
       }
     }, () => {this.props.checkResponse(this.state.response)})
   }
@@ -28,7 +28,7 @@ export class ResponseCard extends Component {
             <input 
               type="radio" 
               name="option" 
-              value={this.props.question.options[0].pointValue}
+              value={this.props.question.options[0].id}
               onChange={this.handleChange}
             />
             <p className='response-description'>{this.props.question.options[0].description}</p>
@@ -37,7 +37,7 @@ export class ResponseCard extends Component {
             <input 
               type="radio" 
               name="option"
-              value={this.props.question.options[1].pointValue}
+              value={this.props.question.options[1].id}
               onChange={this.handleChange}
             />
             <p className='response-description'>{this.props.question.options[1].description}</p>
@@ -46,7 +46,7 @@ export class ResponseCard extends Component {
             <input 
               type="radio" 
               name="option"
-              value={this.props.question.options[2].pointValue}
+              value={this.props.question.options[2].id}
               onChange={this.handleChange}
             />
             <p className='response-description'>{this.props.question.options[2].description}</p>
@@ -55,7 +55,7 @@ export class ResponseCard extends Component {
             <input 
               type="radio" 
               name="option"
-              value={this.props.question.options[3].pointValue}
+              value={this.props.question.options[3].id}
               onChange={this.handleChange}
             />
             <p className='response-description'>{this.props.question.options[3].description}</p>
