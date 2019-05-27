@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StudentSurvey should match the snapshot 1`] = `
+<div
+  className="student-survey"
+>
+  <p
+    className="response-survey-name"
+  >
+    Survey 1
+  </p>
+  <Response
+    collectResponses={[Function]}
+    key="1"
+    member={
+      Object {
+        "id": 1,
+        "name": "name1",
+      }
+    }
+  />
+  <Response
+    collectResponses={[Function]}
+    key="2"
+    member={
+      Object {
+        "id": 2,
+        "name": "name2",
+      }
+    }
+  />
+  <button
+    className="response-button"
+    onClick={[Function]}
+  >
+    Submit Response
+  </button>
+</div>
+`;

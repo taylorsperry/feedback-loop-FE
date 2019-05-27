@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { handleGet } from '../../thunks/handleGet'
 import StudentSurvey from '../StudentSurvey/StudentSurvey'
 import { setStudentSurveys } from '../../actions/'
+import PropTypes from 'prop-types'
 
 export class StudentDashboard extends Component {
   constructor() {
@@ -38,6 +39,13 @@ export class StudentDashboard extends Component {
       </div>
     )
   }
+}
+
+StudentDashboard.propTypes = {
+  user: PropTypes.string,
+  studentSurveys: PropTypes.array,
+  handleGet: PropTypes.func,
+  setStudentSurveys: PropTypes.func
 }
 
 export const mapStateToProps = (state) => ({
