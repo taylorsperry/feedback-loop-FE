@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import SurveyCardData from './SurveyCardData'
+import UserAvg from './UserAverages'
+import AvgResp from './AverageResponses'
 
 export class SurveyCard extends Component {
   constructor(props) {
@@ -48,7 +51,8 @@ export class SurveyCard extends Component {
         </div>
         <div className='survey-data'
              style={{display: this.state.dataDisplay}}>
-          BUTTS
+          <SurveyCardData key={this.props.surveyData.id}
+                          sData={this.props.surveyData}/>
         </div>
       </section>
     )
