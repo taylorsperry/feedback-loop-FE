@@ -47,12 +47,12 @@ export class InstructorDashboard extends Component {
     })
     return(
       <div className='surveys-accordion'>
+        <Link to='/new-survey'>
+        <button className='create-new-survey-button'>Create New Survey</button>
+        </Link>
         <div className='inst-surveys'>
           {openSurveys}
         </div>
-        <Link to='/new-survey'>
-          <button className='create-new-survey-button'>Create New Survey</button>
-        </Link>
       </div>
     )
   }
