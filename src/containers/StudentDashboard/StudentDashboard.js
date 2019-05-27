@@ -8,23 +8,7 @@ export class StudentDashboard extends Component {
   constructor() {
     super();
     this.state = {
-      // fakeSurveys: [
-      //   { surveyName: 'Week 4 Survey', 
-      //     id: 4, 
-      //     questions: [
-      //       { id: 1, 
-      //         questionTitle: 'How are you today?', 
-      //         options: [ { pointValue: 1, description: 'bad' }, { pointValue: 2, description: 'fine'}, { pointValue: 3, description: 'good' }, { pointValue: 4, description: 'great' } ]
-      //       }, 
-      //       { id: 2, 
-      //         questionTitle: 'What day is it?', 
-      //         options: [ { pointValue: 1, description: 'Thursday' }, { pointValue: 2, description: 'Friday'}, { pointValue: 3, description: 'Saturday' }, { pointValue: 4, description: 'Sunday' } ]
-      //       }
-      //     ],
-      //     groups: [{ members: [{name: 'Kim', id: 3}, {name: 'April', id: 7}] }]
-      //   }
-      // ],
-      // display: false
+     
     }
   }
 
@@ -35,7 +19,6 @@ export class StudentDashboard extends Component {
   }
 
   renderSurvey = (survey) => {
-    // this.setState({ display: true})
     this.props.history.push(`/student-survey/${survey.id}`)
     return <StudentSurvey key={survey.id} />
   }
@@ -43,11 +26,6 @@ export class StudentDashboard extends Component {
   render() {
     let surveyButtons
 
-    // if (this.state.fakeSurveys) {
-    //   surveyButtons = this.state.fakeSurveys.map(survey => {
-    //     return <button key={survey.id} onClick={() => {this.renderSurvey(survey)}}>{survey.surveyName}</button>
-    //   })
-    // }
     if (this.props.studentSurveys) {
       surveyButtons = this.props.studentSurveys.map(survey => {
         return <button className='response-button' key={survey.id} onClick={() => {this.renderSurvey(survey)}}>{survey.surveyName}</button>
@@ -57,7 +35,6 @@ export class StudentDashboard extends Component {
     return(
       <div className='dashboard-container'>
         {surveyButtons}
-        {/* {this.state.display && <StudentSurvey key={Date.now()} studentSurveys={this.state.fakeSurveys} />}  */}
       </div>
     )
   }
