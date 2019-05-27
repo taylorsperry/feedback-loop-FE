@@ -11,7 +11,6 @@ import RecipientForm from '../RecipientForm/RecipientForm'
 import StudentDashboard from '../StudentDashboard/StudentDashboard'
 import StudentSurvey from '../StudentSurvey/StudentSurvey'
 import { fetchCohorts } from '../../thunks/fetchCohorts'
-// import { setStudentSurveys } from '../../actions'
 
 export class App extends Component {
   componentDidMount() {
@@ -59,7 +58,6 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   fetchCohorts: () => dispatch(fetchCohorts()),
-  // setStudentSurveys: (surveys) => dispatch(setStudentSurveys(surveys))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
