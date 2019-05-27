@@ -16,10 +16,21 @@ export class SurveyCard extends Component {
   handleChange = (e) => {
   }
 
+  prettyDate = (dateString) => {
+    let date = new Date(dateString)
+    date = date.toLocaleDateString()
+    return date
+  }
+
   render() {
     return(
       <div className='survey-card'>
-      {this.props.surveyData.surveyName}
+        <article className='survey-card-name'>
+          {this.props.surveyData.surveyName}
+        </article>
+        <article className='card-exp-date'>
+          {this.prettyDate(this.props.surveyData.surveyExpiration)}
+        </article>
       </div>
     )
   }
