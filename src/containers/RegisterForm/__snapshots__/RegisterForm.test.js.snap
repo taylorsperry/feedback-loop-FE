@@ -68,6 +68,7 @@ exports[`RegisterForm should match the snapshot 1`] = `
       className="role-choice"
     >
       <input
+        name="radio"
         onClick={[Function]}
         type="radio"
       />
@@ -81,6 +82,7 @@ exports[`RegisterForm should match the snapshot 1`] = `
       className="role-choice"
     >
       <input
+        name="radio"
         onClick={[Function]}
         type="radio"
       />
