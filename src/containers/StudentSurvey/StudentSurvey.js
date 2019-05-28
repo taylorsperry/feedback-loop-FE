@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Response from '../Response/Response'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
+import cogoToast from 'cogo-toast'
 
 export class StudentSurvey extends Component {
   constructor(props) {
@@ -48,18 +49,32 @@ export class StudentSurvey extends Component {
   }
 
   postResponse = async () => {
-    const url = "https://turing-feedback-api.herokuapp.com/api/v1/responses"
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({
-        api_key: this.props.user,
-        responses: this.state.allResponses
-      }),
-      headers: {
-        'Content-Type': 'application/json'
+    if(!this.state.allResponses.length) {
+      this.warnToast('Please complete surveys before submitting your response')
+    } else {
+      const url = "https://turing-feedback-api.herokuapp.com/api/v1/responses"
+      const options = {
+        method: 'POST',
+        body: JSON.stringify({
+          api_key: this.props.user,
+          responses: this.state.allResponses
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
+      this.props.handlePost(url, options)
+      this.handleSuccess('Thank you for completing this survey')
     }
-    this.props.handlePost(url, options)
+  }
+
+  warnToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
+  }
+
+  handleSuccess = (message) => {
+    cogoToast.success(message, {position: 'bottom-left'})
+    this.props.history.push('/student-dashboard')
   }
 
   render() {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import cogoToast from 'cogo-toast';
 
 export class RegisterForm extends Component {
   constructor() {
@@ -29,9 +30,9 @@ export class RegisterForm extends Component {
         email,
         password_1
       }
-      this.props.handleLogin(newUser)
+      this.checkFields(newUser)
     } else {
-      console.log('Passwords do not match')
+      this.sendToast('Passwords do not match')
     }
   }
 
@@ -39,6 +40,18 @@ export class RegisterForm extends Component {
     this.setState({
       role
     })
+  }
+
+  sendToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
+  }
+
+  checkFields = (newUser) => {
+    if(!newUser.full_name || !newUser.role || !newUser.email || !newUser.password_1) {
+      this.sendToast('Please complete all fields to create new account')
+    } else {
+      this.props.handleLogin(newUser)
+    }
   }
 
   render() {
@@ -83,11 +96,11 @@ export class RegisterForm extends Component {
         <div className="role-input">
           <p className="role-input-p">I am:</p>
           <div className="role-choice">
-            <input type="radio" onClick={() => {this.setRole('Instructor')}} />
+            <input name="radio" type="radio" onClick={() => {this.setRole('Instructor')}} />
             <p className="role-input-p">An Instructor</p>
           </div>
           <div className="role-choice">
-            <input type="radio" onClick={() => {this.setRole('Student')}}/>
+            <input name="radio" type="radio" onClick={() => {this.setRole('Student')}}/>
             <p className="role-input-p">A Student</p>
           </div>
         </div>
