@@ -2,7 +2,7 @@ import React from 'react';
 import { App, mapStateToProps, mapDispatchToProps } from './App';
 import { shallow, mount } from 'enzyme';
 import Login from '../Login/Login'
-import InstructorDashboard from '../Dashboard/InstructorDashboard'
+import InstructorDashboard from '../InstructorDashboard/InstructorDashboard'
 import PageNotFound from '../../components/PageNotFound/PageNotFound'
 import { MemoryRouter } from 'react-router'
 jest.mock('../../thunks/fetchCohorts')

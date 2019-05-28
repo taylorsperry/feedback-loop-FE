@@ -32,7 +32,7 @@ exports[`SurveyCard should match the snapshot 1`] = `
       }
     }
   >
-    <SurveyCardData
+    <ConnectFunction
       key="21"
       sData={
         Object {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { SurveyCard, mapStateToProps, mapDispatchToProps } from './SurveyCard'
-import MockSurvey from './MockSurvey'
+import MockSurvey from '../../utils/MockSurvey'
 jest.mock('../../thunks/handlePost')
 
 describe('SurveyCard', () => {
