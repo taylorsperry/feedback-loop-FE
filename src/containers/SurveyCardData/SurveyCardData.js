@@ -56,7 +56,7 @@ export class SurveyCardData extends Component {
 
   averageRating = (question_id) => {
     return(
-      <div>
+      <>
         {this.state.averages &&
             this.state.averages.averages.map(average => {
             if (average.question_id == question_id) {
@@ -64,7 +64,7 @@ export class SurveyCardData extends Component {
             }
           })
         }
-      </div>
+      </>
     )
   }
 
