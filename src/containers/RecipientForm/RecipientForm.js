@@ -57,7 +57,7 @@ export class RecipientForm extends Component {
       const options = {
           method: 'POST',
           body: JSON.stringify({
-            api_key: this.props.user,
+            api_key: localStorage.getItem('currentUser'),
             survey:
               {
                 surveyName: survey.surveyName,
