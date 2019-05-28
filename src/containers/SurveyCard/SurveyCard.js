@@ -13,13 +13,6 @@ export class SurveyCard extends Component {
     }
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-  }
-
-  handleChange = (e) => {
-  }
-
   toggleData = () => {
     let display
     this.state.dataDisplay == "none"
@@ -38,10 +31,19 @@ export class SurveyCard extends Component {
   }
 
   render() {
+    const displayStatus = (status) => {
+      if (status == "Active") {
+       return ".5rem solid #F9AE05"
+     } else {
+       return ".5rem solid #EF3853"
+      }
+    }
+
     return(
       <section className='survey-accordion'>
         <div className='survey-card'
-             onClick={this.toggleData}>
+             onClick={this.toggleData}
+             style={{"border-top": displayStatus(this.props.surveyData.status)}}>
           <article className='survey-card-name'>
             {this.props.surveyData.surveyName}
           </article>

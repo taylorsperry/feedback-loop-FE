@@ -14,7 +14,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: auto;
+  overflow-y: scroll;
+  height: 38em;
 }
 
 .create-new-survey-button {
