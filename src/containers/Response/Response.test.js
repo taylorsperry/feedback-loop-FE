@@ -51,7 +51,8 @@ describe('Response', () => {
   it('should have a default state', () => {
     const expected = {
       responses: [],
-      displayQuestions: false
+      displayQuestions: false,
+      saveResponses: false,
     }
     expect(wrapper.state()).toEqual(expected)
   })
