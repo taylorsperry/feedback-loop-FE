@@ -76,8 +76,6 @@ export class Login extends Component {
       this.props.history.push('/student-dashboard')
     } else if (this.props.role === 'Instructor') {
       this.props.history.push('/dashboard')
-    } else {
-      console.log("NO LOGIN")
     }
   }
 
