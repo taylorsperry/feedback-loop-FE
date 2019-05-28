@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import ResponseCard from '../ResponseCard/ResponseCard'
+import cogoToast from 'cogo-toast'
+
 export class Response extends Component {
   constructor(props) {
     super(props)
@@ -59,10 +61,18 @@ export class Response extends Component {
   }
 
   closeResponse = () => {
-    this.props.collectResponses(this.state.responses)
-    this.setState({
-      displayQuestions: !this.state.displayQuestions
-    })
+    if (this.state.responses.length < this.props.questions.length) {
+      this.warnToast('Please answer each question before saving feedback')
+    } else {
+      this.props.collectResponses(this.state.responses)
+      this.setState({
+        displayQuestions: !this.state.displayQuestions
+      })
+    }
+  }
+
+  warnToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
   }
 
   render() {
