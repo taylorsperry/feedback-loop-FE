@@ -15,7 +15,8 @@ describe('StudentSurvey', () => {
     mockStudentSurveys = [
       { 
         id: 1, 
-        surveyName: "Survey 1", 
+        surveyName: "Survey 1",
+        questions: [ { id: 7 }, { id: 8 } ], 
         groups: [{members: [{id: 1, name: "name1"}, {id: 2, name: "name2"}]}]},
     ]
     mockHandlePost = jest.fn()
@@ -33,6 +34,65 @@ describe('StudentSurvey', () => {
 
   it('should match the snapshot', () => {
     expect(wrapper).toMatchSnapshot()
+  })
+
+  it('should have default state', () => {
+    expect(wrapper.state('allResponses')).toEqual([])
+    expect(wrapper.state('membersReviewed')).toBe(0)
+  })
+
+  it('should set state on componentDidMount', () => {
+    const expected = {
+      allResponses: [],
+      membersReviewed: 0,
+      surveyName: 'Survey 1',
+      id: 1,
+      questions: [ { id: 7 }, { id: 8} ],
+      members: [{id: 1, name: "name1"}, {id: 2, name: "name2"}], 
+    }
+    wrapper.instance().componentDidMount()
+    expect(wrapper.state()).toEqual(expected)
+  })
+  
+  it('should return a Response component for each member', () => {
+    wrapper.instance().componentDidMount()
+    const result = wrapper.instance().renderResponse()
+    expect(result).toHaveLength(2)
+  })
+
+  it('should update empty allResponses in state if collectResponses is called', () => {
+    wrapper.setState({
+      allResponses: []
+    })
+    const individualResponse = [{ question: 4, answer: 2, member: 7 }]
+    wrapper.instance().collectResponses(individualResponse)
+    expect(wrapper.state('allResponses')).toEqual(individualResponse)
+    expect(wrapper.state('membersReviewed')).toEqual(1)
+  })
+
+  it('should update populated allResponses in state if collectResponses is called', () => {
+    wrapper.setState({
+      allResponses: [{ question: 5, answer: 3, member: 2 }]
+    })
+    const individualResponse = [{ question: 4, answer: 2, member: 7 }]
+    const expected = [{ question: 5, answer: 3, member: 2 }, { question: 4, answer: 2, member: 7 }]
+    wrapper.instance().collectResponses(individualResponse)
+    expect(wrapper.state('allResponses')).toEqual(expected)
+  })
+
+
+  it('should call warnToast if membersReviewed is less than the number of members', () => {
+    const warnToastSpy = jest.spyOn(wrapper.instance(), 'warnToast')
+    wrapper.instance().postResponse()
+    expect(warnToastSpy).toHaveBeenCalled()
+  })
+
+  it('should call handlePost when postResponse is called', () => {
+    const individualResponse = [{ question: 4, answer: 2, member: 7 }]
+    wrapper.instance().collectResponses(individualResponse)
+    wrapper.instance().collectResponses(individualResponse)
+    wrapper.instance().postResponse()
+    expect(mockHandlePost).toHaveBeenCalled()
   })
 
   describe('mapStateToProps', () => {
