@@ -51,4 +51,4 @@ export const mapDispatchToProps = (dispatch) => ({
   setStudentSurveys: (surveys) => dispatch(setStudentSurveys(surveys))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(InstructorDashboard)
+export default InstructorDashboard
