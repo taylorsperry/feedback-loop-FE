@@ -12,8 +12,7 @@ export class RecipientForm extends Component {
       program: 'both',
       draggedStudent: {},
       group: [],
-      displayTeams: "none",
-      redirect: false
+      displayTeams: "none"
     }
   }
 

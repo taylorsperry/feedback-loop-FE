@@ -2,7 +2,7 @@ import React from 'react';
 import { App, mapStateToProps, mapDispatchToProps } from './App';
 import { shallow, mount } from 'enzyme';
 import Login from '../Login/Login'
-import Dashboard from '../Dashboard/Dashboard'
+import InstructorDashboard from '../Dashboard/InstructorDashboard'
 import PageNotFound from '../../components/PageNotFound/PageNotFound'
 import { MemoryRouter } from 'react-router'
 jest.mock('../../thunks/fetchCohorts')
@@ -40,11 +40,11 @@ describe('App', () => {
   it('should route to Dashboard for /dashboard route', () => {
     const wrapper = mount(
       <MemoryRouter initialEntries = {['/dashboard']}>
-        <Dashboard />
+        <InstructorDashboard />
       </MemoryRouter>
     )
 
-    expect(wrapper.find(Dashboard)).toHaveLength(1)
+    expect(wrapper.find(InstructorDashboard)).toHaveLength(1)
   })
 
   it('should route to PageNotFound for invalid path', () => {
