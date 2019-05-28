@@ -13,7 +13,7 @@ export class NewSurvey extends Component {
     this.state = {
       surveyName: '',
       surveyExpiration: new Date(),
-      questions: [],
+      questions: [ { id: shortid()} ],
     }
   }
 
