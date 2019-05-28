@@ -6,6 +6,7 @@ import Question from '../../components/Question/Question'
 import shortid from 'shortid'
 import { setSurvey } from '../../actions'
 import { withRouter } from 'react-router-dom'
+import cogoToast from 'cogo-toast';
 
 export class NewSurvey extends Component {
   constructor(props) {
@@ -19,8 +20,16 @@ export class NewSurvey extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.setSurvey(this.state)
-    this.props.history.push('/recipients')
+    if(!this.state.surveyName || !this.state.questions[0].questionTitle || !this.state.questions[0].options[0].option_1.description) {
+      this.warnToast('Your survey must have a name and at least one question')
+    } else {
+      this.props.setSurvey(this.state)
+      this.props.history.push('/recipients')
+    }
+  }
+
+  warnToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
   }
 
   handleChange = (e) => {
