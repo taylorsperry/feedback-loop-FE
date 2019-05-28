@@ -26,6 +26,11 @@ describe('NewSurvey', () => {
 
   it('should call setSurvey when handleSubmit is invoked', () => {
     const preventDefault = { preventDefault: jest.fn() }
+    const mockState = {
+      surveyName: 'Name',
+      questions: [{id: 6, questionTitle: 'First question', options: [{ option_1: { description: 'first description'}}]}]
+    }
+    wrapper.setState(mockState)
     wrapper.instance().handleSubmit(preventDefault)
     expect(mockFn).toHaveBeenCalled()
   })
