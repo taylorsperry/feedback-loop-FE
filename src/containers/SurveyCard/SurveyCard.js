@@ -35,7 +35,7 @@ export class SurveyCard extends Component {
       if (status == "Active") {
        return ".5rem solid #F9AE05"
      } else {
-       return ".5rem solid #EF3853"
+       return ".5rem solid #13F1FC"
       }
     }
 
