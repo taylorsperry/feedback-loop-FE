@@ -63,19 +63,19 @@ export class Login extends Component {
     this.handleUser(data)
   }
 
-  handleUser = (data) => {
+  handleUser = async (data) => {
     const validUser = data.api_key
     const userRole = data.role
-    this.props.setUser(validUser)
-    localStorage.setItem('currentUser', validUser);
-    this.props.setRole(userRole)
-    this.handleRedirect()
+    await this.props.setUser(validUser)
+    await this.props.setRole(userRole)
+    await localStorage.setItem('currentUser', validUser);
+    await this.handleRedirect()
   }
 
   handleRedirect = () => {
     if (this.props.role === 'Student') {
       this.props.history.push('/student-dashboard')
-    } else {
+    } else if (this.props.role === 'Instructor') {
       this.props.history.push('/dashboard')
     }
   }

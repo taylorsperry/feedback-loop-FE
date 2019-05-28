@@ -1,0 +1,103 @@
+.student-survey {
+  background: #fff;
+}
+
+.member-survey {
+  border: solid #f4f4f4 .5px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.20);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.response-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 30px 10px;
+  background: $white;
+  border: solid #f4f4f4 .5px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.20);
+  margin-bottom: 5px;
+}
+
+.question-title {
+  width: 100%;
+  border: none;
+  border-bottom: solid $main-grey 1px;
+  font-size: 20px;
+  color: $accent-charcoal;
+}
+
+.response-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.response-option {
+  display: flex;
+  align-items: center;
+}
+
+.response-description {
+  padding-left: 10px;
+  font-size: 15px;
+}
+
+.response-button {
+  background-color: $main-blue;
+  border-radius: 10px;
+  border: none;
+  color: $accent-teal;
+  font-family: $main-font;
+  font-weight: bold;
+  font-size: 16px;
+  height: 50px;
+  width: 100%;
+  margin: 10px 0px;
+  &:hover {
+    cursor: pointer;
+    background-color: $main-blue-hover;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    background-color: $light-grey;
+    cursor: not-allowed;
+  }
+}
+
+.close-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-button {
+  background-color: $main-blue;
+  border-radius: 10px;
+  border: none;
+  color: $accent-teal;
+  font-family: $main-font;
+  font-weight: bold;
+  font-size: 16px;
+  height: 50px;
+  width: 35%;
+  margin: 10px 0px;
+  &:hover {
+    cursor: pointer;
+    background-color: $main-blue-hover;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.response-survey-name {
+  font-size: 34px;
+  height: 51px;
+  width: 100%;
+  border: none;
+  margin: 0px;
+  color: $main-grey;
+  line-height: 135%;
+}

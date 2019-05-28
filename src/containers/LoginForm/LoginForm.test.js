@@ -32,6 +32,10 @@ describe('LoginForm', () => {
   })
 
   it('should call handleLogin when checkUser is called', () => {
+    wrapper.setState({
+      emailInput: 'taylor@',
+      passwordInput: 'taylor'
+    })
     const preventDefault = { preventDefault: jest.fn() }
     wrapper.instance().checkUser(preventDefault)
     expect(mockFn).toHaveBeenCalled()

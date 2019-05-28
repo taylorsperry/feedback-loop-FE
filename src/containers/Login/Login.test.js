@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { Login, mapDispatchToProps } from './Login'
-import { setUser } from '../../actions'
+import { setUser, setRole } from '../../actions'
 jest.mock('../../thunks/handlePost')
 
 describe('Login', () => {
@@ -20,10 +20,10 @@ describe('Login', () => {
       "id": 2,
       "role": "Student"
     }
-  
+
 
     wrapper = shallow(
-      <Login 
+      <Login
         setUser={mockSetUser}
         setRole={mockSetRole}
         handlePost={jest.fn()}
@@ -59,20 +59,39 @@ describe('Login', () => {
     expect(registerUserSpy).toHaveBeenCalled()
   })
 
-  it.skip('should dispatch handlePost when loginUser is called', async () => {
-    const user = { emailInput: 'user@gmail.com', passwordInput: 'abc'}
-    const data = await wrapper.instance().loginUser(user);
-    // window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-    //   ok: true,
-    //   json: () => Promise.resolve(mockUser)
-    // }))
-    // console.log(data)
-    // expect(wrapper.instance().props.handlePost).toHaveBeenCalled();
+  it('should dispatch handlePost when loginUser is called', async () => {
+    const url = 'https://turing-feedback-api.herokuapp.com/api/v1/users/login'
+    const user = {
+                  name: 'Carlos',
+                  emailInput: 'user@gmail.com'}
+    const mockOptions = {
+      method: 'POST',
+      body: JSON.stringify({
+              email: 'user@gmail.com'
+            }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    wrapper.instance().loginUser(user)
+    expect(wrapper.instance().props.handlePost).toHaveBeenCalledWith(url, mockOptions)
   });
 
-  it.skip('should dispatch handlePost when registerUser is called', async () => {
-
-  })
+  it('should dispatch handlePost when registerUser is called', async () => {
+    const url = 'https://turing-feedback-api.herokuapp.com/api/v1/users/register'
+    const user = {
+                  name: 'Carlos',
+                  emailInput: 'user@gmail.com'}
+    const mockOptions = {
+      method: 'POST',
+      body: JSON.stringify({}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    wrapper.instance().registerUser(user)
+    expect(wrapper.instance().props.handlePost).toHaveBeenCalledWith(url, mockOptions)
+    })
 
   it('should call setUser when handleUser is called', () => {
     const mockData = { api_key: 'mockApiKey', role: 'Student'}
@@ -80,10 +99,18 @@ describe('Login', () => {
     expect(mockSetUser).toHaveBeenCalled()
   })
 
-  it('should call setRole when handleUser is called', () => {
+  it.skip('should call setRole when handleUser is called for a Student', () => {
     const mockData = { api_key: 'mockApiKey', role: 'Student'}
     wrapper.instance().handleUser(mockData)
     expect(mockSetRole).toHaveBeenCalled()
+  })
+
+  it.skip('should navigate to /student-dashboard if the role is Student', () => {
+
+  })
+
+  it.skip('should navigate to /dashboard if the role is NOT student', () => {
+
   })
 
   describe('mapDispatchToProps', () => {
@@ -94,6 +121,38 @@ describe('Login', () => {
       const mappedProps = mapDispatchToProps(mockDispatch)
 
       mappedProps.setUser(user)
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+
+    it('should return handlePost to dispatch', () => {
+      const mockUrl = 'www.post.com'
+      const mockOptions = {
+        method: 'POST',
+        body: { name: "name",
+                email: "email@gmail.com"
+              },
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      const mockDispatch = jest.fn()
+      const handlePost = jest.fn()
+      const actionToDispatch = handlePost(mockUrl, mockOptions)
+      const mappedProps = mapDispatchToProps(mockDispatch)
+
+      mappedProps.handlePost(mockUrl, mockOptions)
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+
+    it('should return setRole to dispatch', () => {
+      const mockRole = 'Student'
+      const mockDispatch = jest.fn()
+      const actionToDispatch = setRole(mockRole)
+      const mappedProps = mapDispatchToProps(mockDispatch)
+
+      mappedProps.setRole(mockRole)
 
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })

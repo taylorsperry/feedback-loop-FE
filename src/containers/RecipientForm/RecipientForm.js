@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
 import { setCurrentCohort } from '../../actions'
+import cogoToast from 'cogo-toast';
 
 export class RecipientForm extends Component {
   constructor() {
@@ -43,30 +44,44 @@ export class RecipientForm extends Component {
   }
 
   postSurvey = () => {
-    const membersIds = []
-    this.state.group.forEach(student => {
-      membersIds.push(student.id)
-    })
-    const { cohort_id } = this.state
-    const { survey } = this.props
-    const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
-    const options = {
-        method: 'POST',
-        body: JSON.stringify({
-          api_key: 'a60f21ee-f251-4389-9ece-9267e0c0e61e',
-          survey:
-            {
-              surveyName: survey.surveyName,
-              surveyExpiration: survey.surveyExpiration,
-              questions: survey.questions,
-              groups: [{name: cohort_id, members_ids: membersIds}]
-            }
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    if(this.state.group.length < 2) {
+      this.sendToast('There must be at least two students in a group')
+    } else {
+      const membersIds = []
+      this.state.group.forEach(student => {
+        membersIds.push(student.id)
+      })
+      const { cohort_id } = this.state
+      const { survey } = this.props
+      const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
+      const options = {
+          method: 'POST',
+          body: JSON.stringify({
+            api_key: this.props.user,
+            survey:
+              {
+                surveyName: survey.surveyName,
+                surveyExpiration: survey.surveyExpiration,
+                questions: survey.questions,
+                groups: [{name: cohort_id, members_ids: membersIds}]
+              }
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+      }
+      this.props.handlePost(url, options)
+      this.handleSuccess()
     }
-    this.props.handlePost(url, options)
+  }
+
+  handleSuccess = () => {
+    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
+    this.props.history.push('/dashboard')
+  }
+
+  sendToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
   }
 
   onDrag = (e, student) => {
@@ -142,7 +157,7 @@ export class RecipientForm extends Component {
           </div>
         </div>
         <button className="recipients-button"
-                disabled={!this.state.cohort_id} onClick={this.postSurvey}
+                onClick={this.postSurvey}
                 style={{display: this.state.displayTeams}}>Send Survey
         </button>
       </div>
@@ -158,7 +173,8 @@ RecipientForm.propTypes = {
 export const mapStateToProps = (state) => ({
   survey: state.survey,
   cohorts: state.cohorts,
-  currentCohort: state.currentCohort
+  currentCohort: state.currentCohort,
+  user: state.user
 })
 
 export const mapDispatchToProps = (dispatch) => ({

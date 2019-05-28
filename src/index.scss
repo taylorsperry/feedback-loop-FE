@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 @import './utils/variables.scss';
 @import './containers/Login/Login.scss';
-@import './containers/Dashboard/Dashboard.scss';
+@import './containers/InstructorDashboard/InstructorDashboard.scss';
 @import './containers/NewSurvey/NewSurvey.scss';
 @import './components/Header/Header.scss';
 @import './containers/App/App.scss';
 @import './components/Question/Question.scss';
 @import './components/Loader/Loader.scss';
 @import './containers/RecipientForm/RecipientForm.scss';
+@import './containers/SurveyCard/SurveyCard.scss';
+@import './containers/SurveyCardData/SurveyCardData.scss';
+@import './containers/StudentSurvey/StudentSurvey.scss';
 
 body {
   margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;

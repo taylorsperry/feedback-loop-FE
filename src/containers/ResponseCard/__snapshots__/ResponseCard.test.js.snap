@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResponseCard should match the snapshot 1`] = `
+<form
+  className="response-card"
+>
+  <p
+    className="question-title"
+  >
+    My Question
+  </p>
+  <div
+    className="response-container"
+  >
+    <div
+      className="response-option"
+    >
+      <input
+        id="op1"
+        name="option"
+        onChange={[Function]}
+        type="radio"
+        value={1}
+      />
+      <p
+        className="response-description"
+      >
+        Option One
+      </p>
+    </div>
+    <div
+      className="response-option"
+    >
+      <input
+        name="option"
+        onChange={[Function]}
+        type="radio"
+        value={2}
+      />
+      <p
+        className="response-description"
+      >
+        Option Two
+      </p>
+    </div>
+    <div
+      className="response-option"
+    >
+      <input
+        name="option"
+        onChange={[Function]}
+        type="radio"
+        value={3}
+      />
+      <p
+        className="response-description"
+      >
+        Option Three
+      </p>
+    </div>
+    <div
+      className="response-option"
+    >
+      <input
+        name="option"
+        onChange={[Function]}
+        type="radio"
+        value={4}
+      />
+      <p
+        className="response-description"
+      >
+        Option Four
+      </p>
+    </div>
+  </div>
+</form>
+`;

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Response should match the snapshot 1`] = `
+<div
+  className="member-survey"
+>
+  <button
+    className="response-button"
+    disabled={false}
+    onClick={[Function]}
+  >
+    Give 
+     Feedback
+  </button>
+  <div
+    className="close-button-container"
+  />
+</div>
+`;

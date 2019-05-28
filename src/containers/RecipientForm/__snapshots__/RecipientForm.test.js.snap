@@ -135,7 +135,6 @@ exports[`RecipientForm should match the snapshot 1`] = `
   </div>
   <button
     className="recipients-button"
-    disabled={true}
     onClick={[Function]}
     style={
       Object {
