@@ -9,6 +9,7 @@ export class StudentSurvey extends Component {
     super(props);
     this.state = {
       allResponses: [],
+      membersReviewed: 0,
     }
   }
 
@@ -39,17 +40,19 @@ export class StudentSurvey extends Component {
   collectResponses = (individualResponse) => {
     if(this.state.allResponses.length >= 1) {
       this.setState({
-        allResponses: [...this.state.allResponses, ...individualResponse]
+        allResponses: [...this.state.allResponses, ...individualResponse],
+        membersReviewed: this.state.membersReviewed + 1
       })
     } else {
       this.setState({
-        allResponses: [...individualResponse]
+        allResponses: [...individualResponse],
+        membersReviewed: this.state.membersReviewed + 1
       })
     }
   }
 
   postResponse = async () => {
-    if(!this.state.allResponses.length) {
+    if(this.state.membersReviewed < this.state.members.length) {
       this.warnToast('Please complete surveys before submitting your response')
     } else {
       const url = "https://turing-feedback-api.herokuapp.com/api/v1/responses"
