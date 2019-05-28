@@ -59,7 +59,7 @@ export class StudentSurvey extends Component {
       const options = {
         method: 'POST',
         body: JSON.stringify({
-          api_key: this.props.user,
+          api_key: localStorage.getItem('currentUser'),
           responses: this.state.allResponses
         }),
         headers: {

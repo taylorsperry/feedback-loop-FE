@@ -69,13 +69,14 @@ export class Login extends Component {
     await this.props.setUser(validUser)
     await this.props.setRole(userRole)
     await localStorage.setItem('currentUser', validUser);
+    await localStorage.setItem('userRole', userRole)
     await this.handleRedirect()
   }
 
   handleRedirect = () => {
-    if (this.props.role === 'Student') {
+    if (localStorage.getItem('userRole') === 'Student') {
       this.props.history.push('/student-dashboard')
-    } else if (this.props.role === 'Instructor') {
+    } else if (localStorage.getItem('userRole') === 'Instructor') {
       this.props.history.push('/dashboard')
     }
   }
