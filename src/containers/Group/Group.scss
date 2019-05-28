@@ -1,0 +1,23 @@
+.groups-wrapper {
+  background-color: #FFF;
+  width: 68%;
+  display: flex;
+  flex-direction: column;
+  border-top: .65rem solid $accent-red;
+  box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.add-another-group-button {
+  border-radius: 10px;
+  border: none;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  float: left;
+  margin: 12px 24px 0px 24px;
+  &:hover {
+    cursor: pointer;
+    background-color: $light-grey-hover;
+  }
+}

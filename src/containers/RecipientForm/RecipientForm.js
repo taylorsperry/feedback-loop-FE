@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
 import { setCurrentCohort } from '../../actions'
+import Group from '../Group/Group'
 import cogoToast from 'cogo-toast';
+import plusbutton from '../../assets/plusbutton.png'
+import shortid from 'shortid'
 
 export class RecipientForm extends Component {
   constructor() {
@@ -11,8 +14,8 @@ export class RecipientForm extends Component {
     this.state = {
       cohort_id: 0,
       program: 'both',
-      draggedStudent: {},
-      group: [],
+      // draggedStudent: {},
+      groups: [],
       displayTeams: "none"
     }
   }
@@ -43,9 +46,13 @@ export class RecipientForm extends Component {
     })
   }
 
+  //addGroup
+  //this will add a component of Group
+
   postSurvey = () => {
-    if(this.state.group.length < 2) {
-      this.sendToast('There must be at least two students in a group')
+    if(!this.state.groups.length) {
+      // this.sendToast('There must be at least two students in a group')
+      this.sendToast('You must create at least one group before sending a survey')
     } else {
       const membersIds = []
       this.state.group.forEach(student => {
@@ -63,7 +70,8 @@ export class RecipientForm extends Component {
                 surveyName: survey.surveyName,
                 surveyExpiration: survey.surveyExpiration,
                 questions: survey.questions,
-                groups: [{name: cohort_id, members_ids: membersIds}]
+                // groups: [{name: cohort_id, members_ids: membersIds}]
+                groups: this.state.groups
               }
           }),
           headers: {
@@ -84,46 +92,68 @@ export class RecipientForm extends Component {
     cogoToast.warn(message, {position: 'bottom-left'})
   }
 
-  onDrag = (e, student) => {
-    e.preventDefault()
+  handleNewGroup = () => {
+    console.log("Let's make another group")
     this.setState({
-      draggedStudent: {id: student.id, name: student.name}
+      groups: [...this.state.groups, { id: shortid() }]
     })
   }
 
-  onDragOver = (e) => {
-    e.preventDefault()
-  }
+  displayGroups = (group) => (
+    <Group
+      key={group.id}
+      {...group}
+    />
+  )
+  
 
-  onDrop = (e) => {
-    e.preventDefault()
-    const { group, draggedStudent } = this.state
-    this.setState({
-      group: [...group, draggedStudent ],
-      draggedStudent: {}
-    })
-    const leftoverStudents = this.props.currentCohort.filter(student => {
-      return student.id !== draggedStudent.id
-    })
-    this.props.setCurrentCohort(leftoverStudents)
-  }
+  // onDrag = (e, student) => {
+  //   e.preventDefault()
+  //   this.setState({
+  //     draggedStudent: {id: student.id, name: student.name}
+  //   })
+  // }
+  
+  // onDragOver = (e) => {
+  //   e.preventDefault()
+  // }
+
+  //MOVE TO GROUP.JS
+
+  // onDrop = (e) => {
+  //   e.preventDefault()
+  //   const { group, draggedStudent } = this.state
+  //   this.setState({
+  //     group: [...group, draggedStudent ],
+  //     draggedStudent: {}
+  //   })
+  //   const leftoverStudents = this.props.currentCohort.filter(student => {
+  //     return student.id !== draggedStudent.id
+  //   })
+  //   this.props.setCurrentCohort(leftoverStudents)
+  // }
 
   render() {
-    const studentsToDisplay = this.props.currentCohort.map(student => {
-      return <div
-              key={student.id}
-              id={student.id}
-              className="student-nametag"
-              draggable onDrag={(e) => this.onDrag(e, student)}>
-              {student.name}
-             </div>
-    })
+
+    let groupCards
+    if(this.state.groups.length) {
+      groupCards = this.state.groups.map(group => this.displayGroups(group))
+    }
+    // const studentsToDisplay = this.props.currentCohort.map(student => {
+    //   return <div
+    //           key={student.id}
+    //           id={student.id}
+    //           className="student-nametag"
+    //           draggable onDrag={(e) => this.onDrag(e, student)}>
+    //           {student.name}
+    //          </div>
+    // })
     const cohortList = this.props.cohorts.map(cohort => {
       return <option key={cohort.id} value={cohort.name} name="cohort_id" >{cohort.name}</option>
     })
-    const groupToDisplay = this.state.group.map(student => {
-      return <div key={student.id} id={student.id} className="student-nametag">{student.name}</div>
-    })
+    // const groupToDisplay = this.state.group.map(student => {
+    //   return <div key={student.id} id={student.id} className="student-nametag">{student.name}</div>
+    // })
     return(
       <div className="recipient-controls-wrapper">
         <div className="recipients-form-wrapper">
@@ -142,9 +172,12 @@ export class RecipientForm extends Component {
             <button className="recipients-button" onClick={this.handleAssignGroups}>Populate Students</button>
           </div>
         </div>
-        <div className="student-groups-wrapper"
-             style={{display: this.state.displayTeams}}>
-          <div className="groups-wrapper"
+        <Group handleNewGroup={this.handleNewGroup}
+               groups={this.state.groups} />
+        { groupCards }
+        {/* <div className="student-groups-wrapper" */}
+             {/* style={{display: this.state.displayTeams}}> */}
+          {/* <div className="groups-wrapper"
                 onDrop={e => this.onDrop(e)}
                 onDragOver={(e => this.onDragOver(e))}>
             <div className="groups-title">Drag Names Here to Form Groups
@@ -152,10 +185,17 @@ export class RecipientForm extends Component {
             <div className="groups">
               {groupToDisplay}
             </div>
-          </div>
-          <div className="students-display">{studentsToDisplay}
-          </div>
-        </div>
+          </div> */}
+
+          {/* this stays here */}
+          {/* <div className="students-display">{studentsToDisplay}
+          </div> */}
+        {/* </div> */}
+        <button 
+          className="add-another-group-button"
+          onClick={this.handleNewGroup}>
+          <img src={plusbutton} alt={'Add another group button'}/>
+        </button>
         <button className="recipients-button"
                 onClick={this.postSurvey}
                 style={{display: this.state.displayTeams}}>Send Survey
