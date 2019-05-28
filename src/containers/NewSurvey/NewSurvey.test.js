@@ -21,7 +21,7 @@ describe('NewSurvey', () => {
 
   it('should have a default state', () => {
     expect(wrapper.state().surveyName).toEqual('')
-    expect(wrapper.state().questions).toEqual([])
+    expect(wrapper.state().questions).toHaveLength(1)
   })
 
   it('should call setSurvey when handleSubmit is invoked', () => {
