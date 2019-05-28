@@ -51,7 +51,8 @@ describe('Response', () => {
   it('should have a default state', () => {
     const expected = {
       responses: [],
-      displayQuestions: false
+      displayQuestions: false,
+      saveResponses: false,
     }
     expect(wrapper.state()).toEqual(expected)
   })
@@ -169,9 +170,22 @@ describe('Response', () => {
     expect(wrapper.state('responses')).toEqual(expected)
   })
 
-  it('should toggle displayQuestions when closeResponse is called', () => {
-    expect(wrapper.state('displayQuestions')).toBe(false)
+  it('should call warnToast when closeResponse is called', () => {
+    const warnToastSpy = jest.spyOn(wrapper.instance(), 'warnToast')
+    wrapper.setState({
+      responses: [ { question: 4 } ]
+    })
     wrapper.instance().closeResponse()
-    expect(wrapper.state('displayQuestions')).toBe(true)
+    expect(warnToastSpy).toHaveBeenCalled()
+
+  })
+
+  it('should toggle displayQuestions when closeResponse is called', () => {
+    wrapper.setState({
+      responses: [ { question: 1 }, { question: 2 } ],
+      displayQuestions: true
+    })
+    wrapper.instance().closeResponse()
+    expect(wrapper.state('displayQuestions')).toBe(false)
   })
 })
