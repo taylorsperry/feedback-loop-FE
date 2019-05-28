@@ -14,7 +14,7 @@ export class StudentDashboard extends Component {
   }
 
   async componentDidMount() {
-    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/pending?api_key=${this.props.user}`
+    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/pending?api_key=${localStorage.getItem('currentUser')}`
     const surveys = await this.props.handleGet(url)
     this.props.setStudentSurveys(surveys)
   }

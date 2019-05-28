@@ -1,8 +1,43 @@
 .header-container {
   display: flex;
-  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%;
   margin: 25px;
   align-items: center;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  align-self: flex-end;
+  width: 40%;
+  justify-content: flex-end;
+  margin-bottom: 2%;
+}
+
+.nav-right a {
+  color: #5f5f5f;
+  text-decoration: none;
+  -webkit-transition: border-color .333s;
+  transition: border-color .333s;
+  font-weight: bold;
+  margin-left: 10%;
+  text-decoration: none;
+  width: 40%;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  &:hover {
+    border-bottom: 3px solid $main-blue;
+  }
 }
 
 .turing-logo {
@@ -19,9 +54,11 @@
   justify-content: left;
   margin: 0px;
   text-decoration: none;
+  letter-spacing: -3px;
 }
 
 .feedback-loop-title {
   text-decoration: none;
   align-items: center;
+  margin-left: 0%;
 }
