@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom'
 import Header from '../../components/Header/Header'
-import InstructorDashboard from '../Dashboard/InstructorDashboard'
+import InstructorDashboard from '../InstructorDashboard/InstructorDashboard'
 import Login from '../Login/Login'
 import PageNotFound from '../../components/PageNotFound/PageNotFound'
 import NewSurvey from '../NewSurvey/NewSurvey';

@@ -61,11 +61,15 @@ export class SurveyCardData extends Component {
 
   averageRating = (question_id) => {
     return(
-      this.state.averages.averages.map(average => {
-        if (average.question_id == question_id) {
-          return average.average_rating ? Number.parseFloat(average.average_rating).toFixed(2) : "Pending"
+      <>
+        {this.state.averages &&
+            this.state.averages.averages.map(average => {
+            if (average.question_id == question_id) {
+              return average.average_rating ? Number.parseFloat(average.average_rating).toFixed(2) : "Pending"
+            }
+          })
         }
-      })
+      </>
     )
   }
 

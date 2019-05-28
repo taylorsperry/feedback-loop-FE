@@ -5,8 +5,8 @@ import StudentSurvey from '../StudentSurvey/StudentSurvey'
 import { Link } from "react-router-dom";
 import { setStudentSurveys } from '../../actions/'
 import SurveyCard from '../SurveyCard/SurveyCard'
-import OpenSurveys from './sampleSurveys.js'
-import ClosedSurveys from './closedSampleSurveys.js'
+import OpenSurveys from '../../utils/sampleSurveys.js'
+import ClosedSurveys from '../../utils/closedSampleSurveys.js'
 
 export class InstructorDashboard extends Component {
   constructor() {
