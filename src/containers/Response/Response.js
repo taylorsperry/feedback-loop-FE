@@ -7,13 +7,14 @@ export class Response extends Component {
     super(props)
     this.state={
       responses: [],
-      displayQuestions: false
+      displayQuestions: false,
+      saveResponses: false,
     }
   }
 
   completeSurvey = () => {
     this.setState({
-      displayQuestions: !this.state.displayQuestions
+      displayQuestions: true
     })
   }
 
@@ -66,7 +67,8 @@ export class Response extends Component {
     } else {
       this.props.collectResponses(this.state.responses)
       this.setState({
-        displayQuestions: !this.state.displayQuestions
+        displayQuestions: false,
+        saveResponses: true
       })
     }
   }
@@ -79,7 +81,7 @@ export class Response extends Component {
     return (
       <div className='member-survey'>
         <button onClick={this.completeSurvey} className=
-        'response-button'>
+        'response-button' disabled={this.state.saveResponses}>
           Give {this.props.member.name} Feedback
         </button>
         {this.state.displayQuestions && this.renderQuestions()}
