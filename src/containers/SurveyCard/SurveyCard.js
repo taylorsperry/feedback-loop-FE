@@ -39,7 +39,7 @@ export class SurveyCard extends Component {
       <section className='survey-accordion'>
         <div className='survey-card'
              onClick={this.toggleData}
-             style={{"border-top": displayStatus(this.props.surveyData.status)}}>
+             style={{"borderTop": displayStatus(this.props.surveyData.status)}}>
           <article className='survey-card-name'>
             {this.props.surveyData.surveyName}
           </article>
