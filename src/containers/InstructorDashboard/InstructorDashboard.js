@@ -12,13 +12,13 @@ export class InstructorDashboard extends Component {
   constructor() {
     super();
     this.state = {
-      surveys: []
+      surveys: null
     }
   }
 
   async componentDidMount() {
     const myKey = await this.props.user
-    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys?api_key=${myKey}`
+    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/?api_key=${myKey}`
     const surveys = await this.props.handleGet(url)
     this.setState({
       surveys: surveys
@@ -32,7 +32,7 @@ export class InstructorDashboard extends Component {
           <button className='create-new-survey-button'>Create New Survey</button>
         </Link>
         <div className='inst-surveys'>
-          {this.state.surveys.length && this.state.surveys.map(survey => {
+          {this.state.surveys && this.state.surveys.map(survey => {
             return <SurveyCard key={survey.id}
                                surveyData={survey}/>
           })}

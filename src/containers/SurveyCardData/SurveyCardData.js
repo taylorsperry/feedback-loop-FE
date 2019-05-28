@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import UserAvg from '../../utils/UserAverages'
 import AvgResp from '../../utils/AverageResponses'
+import { handleGet } from '../../thunks/handleGet'
 
 export class SurveyCardData extends Component {
   constructor(props) {
@@ -16,21 +17,15 @@ export class SurveyCardData extends Component {
 
   componentDidMount = async () => {
     const avgsUrl = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/${this.props.sData.id}/averages`
-    const avgsResponse = await fetch(avgsUrl)
-    const averages = await avgsResponse.json()
+    const averages = await this.props.handleGet(avgsUrl)
 
     const userAvgsUrl = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/${this.props.sData.id}/user_averages`
-    const userAvgsResponse = await fetch(userAvgsUrl)
-    const userAverages = await userAvgsResponse.json()
-
-    const surveyUrl = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/${this.props.sData.id}`
-    const surveyResponse = await fetch(surveyUrl)
-    const survey = await surveyResponse.json()
+    const userAverages = await this.props.handleGet(userAvgsUrl)
 
     this.setState({
       averages: averages,
       userAverages: userAverages,
-      survey: survey
+      survey: this.props.sData
     })
   }
 
@@ -61,7 +56,7 @@ export class SurveyCardData extends Component {
 
   averageRating = (question_id) => {
     return(
-      <>
+      <div>
         {this.state.averages &&
             this.state.averages.averages.map(average => {
             if (average.question_id == question_id) {
@@ -69,14 +64,15 @@ export class SurveyCardData extends Component {
             }
           })
         }
-      </>
+      </div>
     )
   }
 
   displayStudentData = (question_id) => {
     return(
       <section className='u-ratings'>
-        {this.state.userAverages.averages.map(average => {
+        {this.state.userAverages &&
+          this.state.userAverages.averages.map(average => {
           if (average.question_id == question_id) {
             return <article className='user-rating'>
               {average.fullName}: {average.average_rating ? Number.parseFloat(average.average_rating).toFixed(2) : "Pending"}
@@ -90,7 +86,7 @@ export class SurveyCardData extends Component {
   render() {
     return(
       <>
-        {this.state.survey &&
+        {this.state.survey ?
           <>
             <section className="s-status">
               Survey Status:  {this.state.survey.status}
@@ -101,10 +97,18 @@ export class SurveyCardData extends Component {
               })}
             </section>
           </>
+          :
+          <p>NOT READY YET</p>
         }
       </>
     )
   }
 }
 
-export default SurveyCardData
+export const mapDispatchToProps = (dispatch) => ({
+  handleGet: (url) => dispatch(handleGet(url))
+})
+export const mapStateToProps = (state) => ({
+  error: state.error
+})
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyCardData)
