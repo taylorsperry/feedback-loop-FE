@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import UserAvg from '../../utils/UserAverages'
-import AvgResp from '../../utils/AverageResponses'
 import { handleGet } from '../../thunks/handleGet'
 
 export class SurveyCardData extends Component {
