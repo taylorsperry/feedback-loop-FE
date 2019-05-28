@@ -1,0 +1,40 @@
+.s-status {
+  align-self: flex-start;
+  padding-bottom: 1%;
+  color: $accent-charcoal;
+}
+
+.s-groups {
+  margin-left: 10%;
+  margin-right: -15px;
+}
+
+.s-group {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 2px 1px rgba(0,0,0,.2);
+}
+
+.s-group-name {
+  text-align: left;
+  padding-left: 2%;
+  padding-bottom: 2%;
+}
+
+.s-question, .user-rating, .q-avg-rating {
+  text-align: end;
+  padding-right: 2%;
+}
+
+.s-question-data, .s-question {
+  margin-bottom: 1%;
+}
+
+.s-question {
+  color: $accent-charcoal;
+  font-weight: bold;
+}

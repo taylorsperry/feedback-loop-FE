@@ -61,6 +61,10 @@
   &:focus {
     outline: none;
   }
+  &:disabled {
+    background-color: $light-grey;
+    cursor: not-allowed;
+  }
 }
 
 .close-button-container {

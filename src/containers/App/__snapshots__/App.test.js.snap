@@ -17,7 +17,15 @@ exports[`App should match the snapshot 1`] = `
         path="/"
       />
       <Route
-        component={[Function]}
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(InstructorDashboard)",
+            "type": [Function],
+          }
+        }
         exact={true}
         path="/dashboard"
       />

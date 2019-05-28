@@ -1,0 +1,33 @@
+.survey-card {
+  -webkit-box-shadow: 0 0 2px 1px rgba(0,0,0,.2);
+  box-shadow: 0 0 2px 1px rgba(0,0,0,.2);
+  color: $accent-charcoal;
+  cursor: pointer;
+  padding: 1rem;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.survey-data {
+  color: white;
+  background-color: $light-grey;
+  width: 100%;
+  padding: 1rem;
+  box-shadow: 0 0 2px 1px rgba(0,0,0,.2);
+  transition: ease .4s all;
+  animation-name: fadeIn;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  will-change: transform;
+  display: flex;
+  flex-direction: column;
+}
+
+.survey-accordion {
+  margin-bottom: 1%;
+  width: 80%;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}

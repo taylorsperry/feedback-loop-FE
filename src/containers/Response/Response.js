@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
 import ResponseCard from '../ResponseCard/ResponseCard'
+import cogoToast from 'cogo-toast'
+
 export class Response extends Component {
   constructor(props) {
     super(props)
     this.state={
       responses: [],
-      displayQuestions: false
+      displayQuestions: false,
+      saveResponses: false,
     }
   }
 
   completeSurvey = () => {
     this.setState({
-      displayQuestions: !this.state.displayQuestions
+      displayQuestions: true
     })
   }
 
@@ -59,17 +62,26 @@ export class Response extends Component {
   }
 
   closeResponse = () => {
-    this.props.collectResponses(this.state.responses)
-    this.setState({
-      displayQuestions: !this.state.displayQuestions
-    })
+    if (this.state.responses.length < this.props.questions.length) {
+      this.warnToast('Please answer each question before saving feedback')
+    } else {
+      this.props.collectResponses(this.state.responses)
+      this.setState({
+        displayQuestions: false,
+        saveResponses: true
+      })
+    }
+  }
+
+  warnToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
   }
 
   render() {
     return (
       <div className='member-survey'>
         <button onClick={this.completeSurvey} className=
-        'response-button'>
+        'response-button' disabled={this.state.saveResponses}>
           Give {this.props.member.name} Feedback
         </button>
         {this.state.displayQuestions && this.renderQuestions()}

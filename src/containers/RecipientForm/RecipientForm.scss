@@ -6,7 +6,7 @@
 .students-display {
   display: flex;
   flex-direction: column;
-  border-top: .65rem solid $accent-red;
+  border-top: .65rem solid $main-blue;
   box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
   background-color: #FFF;
   width: 30%;
@@ -34,15 +34,15 @@
   height: fit-content;
 }
 
-// .groups-wrapper {
-//   background-color: #FFF;
-//   width: 68%;
-//   display: flex;
-//   flex-direction: column;
-//   border-top: .65rem solid $accent-red;
-//   box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
-//   border-radius: 5px;
-// }
+.groups-wrapper {
+  background-color: #FFF;
+  width: 68%;
+  display: flex;
+  flex-direction: column;
+  border-top: .65rem solid $main-blue;
+  box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
 
 .groups-title {
   margin: 2%;
@@ -77,6 +77,7 @@
   font-size: 43px;
   color: #FFF;
   font-weight: bolder;
+  text-shadow: black 0px 0px 10px;
 }
 
 .drop-down {
