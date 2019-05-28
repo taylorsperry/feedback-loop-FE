@@ -12,7 +12,8 @@ export class RecipientForm extends Component {
       program: 'both',
       draggedStudent: {},
       group: [],
-      displayTeams: "none"
+      displayTeams: "none",
+      redirect: false
     }
   }
 
@@ -42,7 +43,7 @@ export class RecipientForm extends Component {
     })
   }
 
-  postSurvey = () => {
+  postSurvey = async () => {
     const membersIds = []
     this.state.group.forEach(student => {
       membersIds.push(student.id)
@@ -66,7 +67,8 @@ export class RecipientForm extends Component {
           'Content-Type': 'application/json'
         }
     }
-    this.props.handlePost(url, options)
+    await this.props.handlePost(url, options)
+    await this.props.history.push(`/dashboard`)
   }
 
   onDrag = (e, student) => {
