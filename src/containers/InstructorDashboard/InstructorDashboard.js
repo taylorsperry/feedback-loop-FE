@@ -12,7 +12,7 @@ export class InstructorDashboard extends Component {
   constructor() {
     super();
     this.state = {
-      surveys: null
+      surveys: []
     }
   }
 
@@ -29,10 +29,10 @@ export class InstructorDashboard extends Component {
     return(
       <div className='surveys-accordion'>
         <Link to='/new-survey'>
-        <button className='create-new-survey-button'>Create New Survey</button>
+          <button className='create-new-survey-button'>Create New Survey</button>
         </Link>
         <div className='inst-surveys'>
-          {this.state.surveys && this.state.surveys.map(survey => {
+          {this.state.surveys.length && this.state.surveys.map(survey => {
             return <SurveyCard key={survey.id}
                                surveyData={survey}/>
           })}

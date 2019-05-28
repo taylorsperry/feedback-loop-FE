@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import SurveyCardData from './SurveyCardData'
-import UserAvg from './UserAverages'
-import AvgResp from './AverageResponses'
+import SurveyCardData from '../SurveyCardData/SurveyCardData'
+import UserAvg from '../../utils/UserAverages'
+import AvgResp from '../../utils/AverageResponses'
 
 export class SurveyCard extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export class SurveyCard extends Component {
 
   toggleData = () => {
     let display
-    this.state.dataDisplay == "none"
+    this.state.dataDisplay === "none"
     ? display = "flex"
     : display = "none"
 
@@ -32,7 +32,7 @@ export class SurveyCard extends Component {
 
   render() {
     const displayStatus = (status) => {
-      if (status == "Active") {
+      if (status === "Active") {
        return ".5rem solid #F9AE05"
      } else {
        return ".5rem solid #13F1FC"
