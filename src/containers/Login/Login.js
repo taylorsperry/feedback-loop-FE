@@ -5,6 +5,7 @@ import RegisterForm from '../RegisterForm/RegisterForm'
 import LoginForm from '../LoginForm/LoginForm'
 import { handlePost } from '../../thunks/handlePost'
 import { withRouter } from 'react-router-dom'
+import cogoToast from 'cogo-toast';
 
 export class Login extends Component {
   constructor() {
@@ -42,7 +43,11 @@ export class Login extends Component {
     }
     this.props.handlePost(url, options)
     const data = await this.props.handlePost(url, options)
-    this.handleUser(data)
+    if(this.props.error) {
+      this.warnToast('Incorrect login. Please try again')
+    } else {
+      this.handleUser(data)
+    }
   }
 
   registerUser = async (user) => {
@@ -60,7 +65,15 @@ export class Login extends Component {
       }
     }
     const data = await this.props.handlePost(url, options)
-    this.handleUser(data)
+    if(this.props.error) {
+      this.warnToast('Incorrect login. Please try again')
+    } else {
+      this.handleUser(data)
+    }
+  }
+
+  warnToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
   }
 
   handleUser = async (data) => {
@@ -99,7 +112,8 @@ export class Login extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  role: state.role
+  role: state.role,
+  error: state,
 })
 
 export const mapDispatchToProps = (dispatch) => ({
