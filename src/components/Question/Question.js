@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import shortid from 'shortid'
 
 export class Question extends Component {
   constructor(props) {

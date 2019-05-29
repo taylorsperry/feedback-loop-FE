@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import SurveyCardData from '../SurveyCardData/SurveyCardData'
-import UserAvg from '../../utils/UserAverages'
-import AvgResp from '../../utils/AverageResponses'
 
 export class SurveyCard extends Component {
   constructor(props) {
@@ -43,7 +39,7 @@ export class SurveyCard extends Component {
       <section className='survey-accordion'>
         <div className='survey-card'
              onClick={this.toggleData}
-             style={{"border-top": displayStatus(this.props.surveyData.status)}}>
+             style={{"borderTop": displayStatus(this.props.surveyData.status)}}>
           <article className='survey-card-name'>
             {this.props.surveyData.surveyName}
           </article>
