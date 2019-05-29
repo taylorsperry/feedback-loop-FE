@@ -6,18 +6,6 @@ exports[`InstructorDashboard should match the snapshot 1`] = `
 >
   <div
     className="inst-surveys"
-  />
-  <Link
-    to="/new-survey"
-  >
-    <button
-      className="create-new-survey-button"
-    >
-      Create New Survey
-    </button>
-  </Link>
-  <div
-    className="inst-surveys"
   >
     <SurveyCard
       key="1"
@@ -38,5 +26,14 @@ exports[`InstructorDashboard should match the snapshot 1`] = `
       }
     />
   </div>
+  <Link
+    to="/new-survey"
+  >
+    <button
+      className="create-new-survey-button"
+    >
+      Create New Survey
+    </button>
+  </Link>
 </div>
 `;
