@@ -38,15 +38,8 @@ export class RecipientForm extends Component {
     this.state.program === "both"
     ? url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}`
     : url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}&&program=${program}`
-    const response = await fetch(url)
-    const cohort = await response.json()
+    const cohort = await this.props.handleGet(url)
     await this.props.setCurrentCohort(cohort)
-  }
-
-  handleSuccess = () => {
-    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
-
-    this.props.history.push('/dashboard')
   }
 
   sendToast = (message) => {
@@ -164,6 +157,7 @@ export class RecipientForm extends Component {
     this.handleSuccess()
   }
 
+
   handleSuccess = async () => {
     cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
     const myKey = await localStorage.getItem('currentUser')
@@ -262,6 +256,7 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
+  handleGet: (url) => dispatch(handleGet(url)),
   handlePost: (url, options) => dispatch(handlePost(url, options)),
   handleGet: (url) => dispatch(handleGet(url)),
   setCurrentCohort: (cohort) => dispatch(setCurrentCohort(cohort)),
