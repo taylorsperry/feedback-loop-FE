@@ -4,6 +4,7 @@ import { handleGet } from '../../thunks/handleGet'
 import StudentSurvey from '../StudentSurvey/StudentSurvey'
 import StudentResult from '../StudentResult/StudentResult'
 import { setStudentSurveys } from '../../actions/'
+import { setClosedSurveys } from '../../actions/'
 import PropTypes from 'prop-types'
 
 export class StudentDashboard extends Component {
@@ -16,7 +17,9 @@ export class StudentDashboard extends Component {
   async componentDidMount() {
     const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/pending?api_key=${localStorage.getItem('currentUser')}`
     const surveys = await this.props.handleGet(url)
+    // const closedSurveys = await this.props.handleGet(closedUrl)
     this.props.setStudentSurveys(surveys)
+    // this.props.setClosedSurveys(closedSurveys)
   }
 
   renderSurvey = (survey) => {
@@ -64,7 +67,8 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   handleGet: (url) => dispatch(handleGet(url)),
-  setStudentSurveys: (surveys) => dispatch(setStudentSurveys(surveys))
+  setStudentSurveys: (surveys) => dispatch(setStudentSurveys(surveys)),
+  setClosedSurveys: (closedSurveys) => dispatch(setClosedSurveys(closedSurveys))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard)

@@ -37,3 +37,8 @@ export const setStudentSurveys = (surveys) => ({
   type: 'SET_STUDENT_SURVEYS',
   surveys
 })
+
+export const setClosedSurveys = (surveys) => ({
+  type: 'SET_CLOSED_SURVEYS',
+  surveys
+})
