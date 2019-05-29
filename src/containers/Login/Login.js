@@ -43,7 +43,7 @@ export class Login extends Component {
     }
     this.props.handlePost(url, options)
     const data = await this.props.handlePost(url, options)
-    if(this.props.error) {
+    if(this.props.error.length) {
       this.warnToast('Incorrect login. Please try again')
     } else {
       this.handleUser(data)
