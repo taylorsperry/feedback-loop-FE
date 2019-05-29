@@ -72,25 +72,23 @@ exports[`RecipientForm should match the snapshot 1`] = `
   </div>
   <div
     className="student-groups-wrapper"
-    style={
-      Object {
-        "display": "none",
-      }
-    }
   >
     <div
       className="groups-wrapper"
       onDragOver={[Function]}
       onDrop={[Function]}
     >
-      <div
-        className="groups-title"
-      >
-        Drag Names Here to Form Groups
-      </div>
-      <div
-        className="groups"
+      <Team
+        handleTeamName={[Function]}
+        id="yV9qeBCqC"
+        key="yV9qeBCqC"
+        members={Array []}
       />
+      <button
+        onClick={[Function]}
+      >
+        Add a New Team
+      </button>
     </div>
     <div
       className="students-display"
@@ -136,11 +134,6 @@ exports[`RecipientForm should match the snapshot 1`] = `
   <button
     className="recipients-button"
     onClick={[Function]}
-    style={
-      Object {
-        "display": "none",
-      }
-    }
   >
     Send Survey
   </button>

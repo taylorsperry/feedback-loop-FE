@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
 import { setCurrentCohort } from '../../actions'
 import cogoToast from 'cogo-toast';
+import shortid from 'shortid'
+import Team from '../../components/Team/Team'
 
 export class RecipientForm extends Component {
   constructor() {
@@ -13,7 +15,8 @@ export class RecipientForm extends Component {
       program: 'both',
       draggedStudent: {},
       group: [],
-      displayTeams: "none"
+      // displayTeams: "none",
+      teams: [{id: shortid(), name: '', members: []}]
     }
   }
 
@@ -38,42 +41,8 @@ export class RecipientForm extends Component {
     const response = await fetch(url)
     const cohort = await response.json()
     await this.props.setCurrentCohort(cohort)
-    this.setState({
-      displayTeams: "flex"
-    })
   }
-
-  postSurvey = () => {
-    if(this.state.group.length < 2) {
-      this.sendToast('There must be at least two students in a group')
-    } else {
-      const membersIds = []
-      this.state.group.forEach(student => {
-        membersIds.push(student.id)
-      })
-      const { cohort_id } = this.state
-      const { survey } = this.props
-      const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
-      const options = {
-          method: 'POST',
-          body: JSON.stringify({
-            api_key: localStorage.getItem('currentUser'),
-            survey:
-              {
-                surveyName: survey.surveyName,
-                surveyExpiration: survey.surveyExpiration,
-                questions: survey.questions,
-                groups: [{name: cohort_id, members_ids: membersIds}]
-              }
-          }),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-      }
-      this.props.handlePost(url, options)
-      this.handleSuccess()
-    }
-  }
+<<<<<<< HEAD
 
   handleSuccess = () => {
     cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
@@ -85,6 +54,9 @@ export class RecipientForm extends Component {
     cogoToast.warn(message, {position: 'bottom-left'})
   }
 
+=======
+  
+>>>>>>> master
   onDrag = (e, student) => {
     e.preventDefault()
     this.setState({
@@ -98,15 +70,111 @@ export class RecipientForm extends Component {
 
   onDrop = (e) => {
     e.preventDefault()
-    const { group, draggedStudent } = this.state
+    const { draggedStudent } = this.state
+    const teams = this.state.teams.map(team => {
+      if(team.id === e.target.id) {
+        const arr = team.members
+        arr.push(draggedStudent)
+        team.members = arr
+        return team
+      } else {
+        return team
+      }
+    })
     this.setState({
-      group: [...group, draggedStudent ],
-      draggedStudent: {}
+      teams: teams
     })
     const leftoverStudents = this.props.currentCohort.filter(student => {
       return student.id !== draggedStudent.id
     })
     this.props.setCurrentCohort(leftoverStudents)
+  }
+
+  addTeam = () => {
+    this.setState({
+      teams: [...this.state.teams, {id: shortid(), members: []}]
+    })
+  }
+
+  handleTeamName = (teamId, teamName) => {
+    const updatedTeams = this.state.teams.map(team => {
+      if(team.id === teamId) {
+        team.name = teamName
+        return team
+      } else {
+        return team
+      }
+    })
+    this.setState({
+      teams: updatedTeams
+    })
+  }
+
+  checkSurvey = () => {
+    this.checkTeamNames()
+  }
+
+  checkTeamNames = () => {
+    const names = this.state.teams.filter(team => {
+      if (team.name !== '') {
+        return team.name
+      }
+    })
+    if(names.length < this.state.teams.length) {
+      this.sendToast('Each team must have a name')
+    } else {
+      this.checkGroups()
+    }
+  }
+
+  checkGroups = () => {
+    const formattedGroups = this.state.teams.map(team => {
+      const formattedMembers = team.members.map(member => {
+        return member.id
+      })
+      if (formattedMembers.length < 2) {
+        this.sendToast('There must be at least two students in a group')
+      } else {
+        const formattedGroup = {
+          name: team.name,
+          members_ids: formattedMembers
+        }
+        return formattedGroup
+      }
+    })
+    this.postSurvey(formattedGroups)
+  }
+
+  postSurvey = (formattedGroups) => {
+    const { survey } = this.props
+    const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
+    const options = {
+        method: 'POST',
+        body: JSON.stringify({
+          api_key: this.props.user,
+          survey:
+            {
+              surveyName: survey.surveyName,
+              surveyExpiration: survey.surveyExpiration,
+              questions: survey.questions,
+              groups: formattedGroups
+            }
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    }
+    this.props.handlePost(url, options)
+    this.handleSuccess()
+  }
+
+  handleSuccess = () => {
+    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
+    this.props.history.push('/dashboard')
+  }
+
+  sendToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
   }
 
   render() {
@@ -122,12 +190,15 @@ export class RecipientForm extends Component {
     const cohortList = this.props.cohorts.map(cohort => {
       return <option key={cohort.id} value={cohort.name} name="cohort_id" >{cohort.name}</option>
     })
-    const groupToDisplay = this.state.group.map(student => {
-      return <div key={student.id} id={student.id} className="student-nametag">{student.name}</div>
+
+    const teams = this.state.teams.map(team => {
+      return <Team key={team.id} id={team.id} members={team.members} handleTeamName={this.handleTeamName}/>
     })
+
     return(
-      <div className="recipient-controls-wrapper">
-        <div className="recipients-form-wrapper">
+      <div className="recipient-wrapper">
+        {/* top section */}
+        <div className="recipients-form">
           <h2 className="recipients-form-title">Select Recipients</h2>
           <div className="student-selector-wrapper">
             <select className="drop-down" onChange={this.handleCohort} >
@@ -143,24 +214,29 @@ export class RecipientForm extends Component {
             <button className="recipients-button" onClick={this.handleAssignGroups}>Populate Students</button>
           </div>
         </div>
-        <div className="student-groups-wrapper"
-             style={{display: this.state.displayTeams}}>
-          <div className="groups-wrapper"
+
+        {/* middle section */}
+        <div className="student-groups-wrapper">
+          <div className="assigned-students"
                 onDrop={e => this.onDrop(e)}
                 onDragOver={(e => this.onDragOver(e))}>
-            <div className="groups-title">Drag Names Here to Form Groups
+            <div className='teams-container'>
+              {teams}
             </div>
-            <div className="groups">
-              {groupToDisplay}
+            <div className='team-button-container'>
+              <button onClick={this.addTeam} className='team-button'>Add a New Team</button>
             </div>
           </div>
-          <div className="students-display">{studentsToDisplay}
+          <div className="available-students">
+            {studentsToDisplay}
           </div>
         </div>
-        <button className="recipients-button"
-                onClick={this.postSurvey}
-                style={{display: this.state.displayTeams}}>Send Survey
-        </button>
+
+        {/* bottom button */}
+        <div className='send-button-container'>
+          <button className="send-button"
+                  onClick={this.checkSurvey}>Send Survey</button>
+        </div>
       </div>
     )
   }
@@ -184,3 +260,4 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipientForm)
+
