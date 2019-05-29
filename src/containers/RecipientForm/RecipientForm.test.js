@@ -254,7 +254,7 @@ describe('RecipientForm', () => {
 
       mappedProps.handleGet(mockUrl)
   
-        expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
 
     it('should return setCurrentCohort to dispatch', () => {
