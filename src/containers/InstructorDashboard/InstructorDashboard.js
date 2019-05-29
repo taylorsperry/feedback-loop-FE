@@ -24,15 +24,15 @@ export class InstructorDashboard extends Component {
   render() {
     return(
       <div className='surveys-accordion'>
-        <Link to='/new-survey'>
-          <button className='create-new-survey-button'>Create New Survey</button>
-        </Link>
         <div className='inst-surveys'>
           {this.state.surveys && this.state.surveys.map(survey => {
             return <SurveyCard key={survey.id}
                                surveyData={survey}/>
           })}
         </div>
+        <Link to='/new-survey'>
+          <button className='create-new-survey-button'>Create New Survey</button>
+        </Link>
       </div>
     )
   }
