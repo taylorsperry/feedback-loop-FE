@@ -1,37 +1,36 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { SurveyCardData, mapStateToProps, mapDispatchToProps } from './SurveyCardData'
+import { InstructorDashboard , mapStateToProps, mapDispatchToProps} from './InstructorDashboard'
 jest.mock('../../thunks/handleGet')
 
-describe('SurveyCardData', () => {
+describe('InstructorDashboard', () => {
   let wrapper
   let handleGet
-  let mockError
-  
+  let user
+
   beforeEach(() => {
-    handleGet = jest.fn()
-    mockError = "Something went wrong"
+    handleGet = jest.fn
+    user = "2nf9rnad"
     wrapper = shallow(
-      <SurveyCardData
+      <InstructorDashboard
         handleGet={handleGet}
-        error={mockError}
+        user={user}
       />
     )
   })
 
-  it ('should match the snapshot', () => {
-    expect(wrapper).toMatchSnapshot()
+  it('should match the snapshot', () => {
+    expect(wrapper).toMatchSnapshot()  
   })
 
   describe('mapStateToProps', () => {
-
-    it('should return an error as props', () => {
+    it('should return a user as props', () => {
       const mockState = {
-        error: "Something went wrong",
+        user: "2nf9rnad",
         fakeState: "fakeState"
       }
       const expected = {
-        error: "Something went wrong"
+        user: "2nf9rnad"
       }
       const mappedProps = mapStateToProps(mockState)
       expect(mappedProps).toEqual(expected)
@@ -49,4 +48,5 @@ describe('SurveyCardData', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
   })
+
 })
