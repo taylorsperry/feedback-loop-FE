@@ -16,5 +16,27 @@ exports[`InstructorDashboard should match the snapshot 1`] = `
       Create New Survey
     </button>
   </Link>
+  <div
+    className="inst-surveys"
+  >
+    <SurveyCard
+      key="1"
+      surveyData={
+        Object {
+          "id": 1,
+          "name": "Survey 1",
+        }
+      }
+    />
+    <SurveyCard
+      key="2"
+      surveyData={
+        Object {
+          "id": 2,
+          "name": "Survey 2",
+        }
+      }
+    />
+  </div>
 </div>
 `;
