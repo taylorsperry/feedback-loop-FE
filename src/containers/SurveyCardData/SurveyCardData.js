@@ -31,7 +31,11 @@ export class SurveyCardData extends Component {
     return(
       <section key={group.name} className="s-group">
         <section className="s-group-name group-box">
-          Group {group.name}
+          <article className="s-team-title">
+            Group {group.name}
+          </article>
+          <article className="s-response-count"> Responses Received:  {this.state.averages.averages.length}
+          </article>
         </section>
         {this.state.survey.questions.map(question => {
           return this.displayQuestionData(question, group)
