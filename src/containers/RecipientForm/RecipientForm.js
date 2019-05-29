@@ -32,7 +32,7 @@ export class RecipientForm extends Component {
   handleAssignGroups = async () => {
     const { cohort_id, program } = this.state
     let url
-    this.state.program == "both"
+    this.state.program === "both"
     ? url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}`
     : url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}&&program=${program}`
     const response = await fetch(url)
