@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SurveyCardData should match the snapshot 1`] = `
+<Fragment>
+  <p>
+    NOT READY YET
+  </p>
+</Fragment>
+`;
