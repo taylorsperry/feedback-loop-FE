@@ -70,7 +70,6 @@ export class SurveyCardData extends Component {
       <section className='u-ratings'>
         {group.members.map(member => {
           var userAve = this.findUserAve(member.id, question_id)
-          console.log("USERAVE: ", userAve)
           return <article className='user-rating'>
             {member.name}: {userAve ? userAve : "Pending"}
           </article>
