@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Response from '../Response/Response'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
+import { handleGet } from '../../thunks/handleGet'
+import { setStudentSurveys } from '../../actions'
 import cogoToast from 'cogo-toast'
 
 export class StudentSurvey extends Component {
@@ -29,7 +31,6 @@ export class StudentSurvey extends Component {
     })
   }
 
-  
   renderResponse = () => {
     const { members, questions } = this.state
     return members.map(member => {
@@ -59,7 +60,7 @@ export class StudentSurvey extends Component {
       const options = {
         method: 'POST',
         body: JSON.stringify({
-          api_key: this.props.user,
+          api_key: localStorage.getItem('currentUser'),
           responses: this.state.allResponses
         }),
         headers: {
@@ -75,8 +76,11 @@ export class StudentSurvey extends Component {
     cogoToast.warn(message, {position: 'bottom-left'})
   }
 
-  handleSuccess = (message) => {
+  handleSuccess = async (message) => {
     cogoToast.success(message, {position: 'bottom-left'})
+    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/pending?api_key=${this.props.user}`
+    const surveys = await this.props.handleGet(url)
+    this.props.setStudentSurveys(surveys)
     this.props.history.push('/student-dashboard')
   }
 
@@ -97,7 +101,9 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  handlePost: (url, options) => dispatch(handlePost(url, options))
+  handlePost: (url, options) => dispatch(handlePost(url, options)),
+  handleGet: (url) => dispatch(handleGet(url)),
+  setStudentSurveys: (surveys) => dispatch(setStudentSurveys(surveys))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentSurvey)

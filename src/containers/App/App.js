@@ -18,6 +18,15 @@ export class App extends Component {
   }
 
   render() {
+    const loginRoute = () => {
+      if (localStorage.getItem('userRole') === 'Instructor') {
+          return InstructorDashboard
+      } else if (localStorage.getItem('userRole') === 'Student') {
+          return StudentDashboard
+      } else {
+          return Login
+      }
+    }
     return (
       <div className="App">
         <div>
@@ -25,7 +34,7 @@ export class App extends Component {
         </div>
         <div className="route-container">
           <Switch>
-            <Route exact path='/' component={Login}
+            <Route exact path='/' component={loginRoute()}
             />
             <Route exact path='/dashboard' component={InstructorDashboard}
             />
