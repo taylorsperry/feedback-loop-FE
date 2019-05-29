@@ -9,7 +9,7 @@ exports[`SurveyCard should match the snapshot 1`] = `
     onClick={[Function]}
     style={
       Object {
-        "border-top": ".5rem solid #13F1FC",
+        "borderTop": ".5rem solid #13F1FC",
       }
     }
   >
