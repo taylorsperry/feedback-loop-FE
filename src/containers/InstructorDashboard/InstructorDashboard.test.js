@@ -7,10 +7,12 @@ describe('InstructorDashboard', () => {
   let wrapper
   let handleGet
   let user
+  let mockDispatch
 
   beforeEach(() => {
     handleGet = jest.fn
     user = "2nf9rnad"
+    mockDispatch = jest.fn()
     wrapper = shallow(
       <InstructorDashboard
         handleGet={handleGet}
