@@ -43,7 +43,7 @@ export class SurveyCardData extends Component {
     return(
       <section key={question.id} className="s-question-data">
         <article className="s-question group-box"> {question.questionTitle}</article>
-        <article className='q-avg-rating group-box'>Survey Average: {this.state.averages ? this.averageRating(question.id) : "Pending"}</article>
+        <article className='q-avg-rating group-box'>Survey Average: {this.state.averages.averages.length ? this.averageRating(question.id) : "Pending"}</article>
         <article className='u-ratings-container group-box'>
           {this.displayStudentData(question.id)}
         </article>
@@ -54,10 +54,9 @@ export class SurveyCardData extends Component {
   averageRating = (question_id) => {
     return(
       <>
-        {this.state.averages &&
-            this.state.averages.averages.map(average => {
-            if (average.question_id == question_id) {
-              return average.average_rating ? Number.parseFloat(average.average_rating).toFixed(2) : "Pending"
+        {this.state.averages.averages.map(average => {
+            if (average.question_id === question_id) {
+              return Number.parseFloat(average.average_rating).toFixed(2)
             }
           })
         }

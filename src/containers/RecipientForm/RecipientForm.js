@@ -77,6 +77,7 @@ export class RecipientForm extends Component {
 
   handleSuccess = () => {
     cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
+    
     this.props.history.push('/dashboard')
   }
 
