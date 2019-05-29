@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 95%;
-  margin: 25px;
+  margin: 1% 2% 1% 2%;
   align-items: center;
+  height: 12vh;
+  min-height: 5.3125rem;
 }
 
 .nav-left {
@@ -22,8 +23,9 @@
   width: 40%;
   justify-content: flex-end;
   margin-bottom: 2%;
+  margin-right:2%;
   li {
-    width: 20%;
+    width: 100px;
   }
 }
 
