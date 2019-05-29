@@ -46,19 +46,51 @@ describe('actions', () => {
   })
 
   it('should have a type of SET_USER', () => {
-    const user = {
-      cohort: '1811',
-      id: 3,
-      name: 'Jessica Hansen',
-      program: 'F',
-      status: 'active'
-    }
+    const user = 'fL8Denah3foen'
     const expectedAction = {
       type: 'SET_USER',
       user
     }
 
     const result = actions.setUser(user)
+    expect(result).toEqual(expectedAction)
+  })
+
+  it('should have a type of SET_CURRENT_COHORT', () => {
+    const cohort = [
+      {id: 13, name:'1903', students: []}
+    ]
+    const expectedAction = {
+      type: 'SET_CURRENT_COHORT',
+      cohort
+    }
+
+    const result = actions.setCurrentCohort(cohort)
+    expect(result).toEqual(expectedAction)
+  })
+
+  it('should have a type of SET_ROLE', () => {
+    const role = "Instructor"
+    const expectedAction = {
+      type: 'SET_ROLE',
+      role
+    }
+
+    const result = actions.setRole(role)
+    expect(result).toEqual(expectedAction)
+  })
+
+  it('should have a type of SET_STUDENT_SURVEYS', () => {
+    const surveys = [
+      { id: 1, name: "Survey1"},
+      { id: 2, name: "Survey2"}
+    ]
+    const expectedAction = {
+      type: 'SET_STUDENT_SURVEYS',
+      surveys
+    }
+
+    const result = actions.setStudentSurveys(surveys)
     expect(result).toEqual(expectedAction)
   })
 
