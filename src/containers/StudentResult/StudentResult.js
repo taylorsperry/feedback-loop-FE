@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import StudentResult from '../StudentResult/StudentResult'
 import { connect } from 'react-redux'
 import { handleGet } from '../../thunks/handleGet'
 import cogoToast from 'cogo-toast'
@@ -18,7 +17,7 @@ export class StudentResult extends Component {
     await this.fetchClassResult()
   }
 
-  fetchStudentResult = () => {
+  fetchStudentResult = async () => {
     const myKey = await localStorage.getItem('currentUser')
     const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/${this.props.survey.id}/averages/student?api_key=${myKey}`
     const studentResult = await this.props.handleGet(url)
@@ -28,7 +27,7 @@ export class StudentResult extends Component {
     })
   }
 
-  fetchClassResult = () => {
+  fetchClassResult = async () => {
     const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/${this.props.survey.id}/averages`
     const classResult = await this.props.handleGet(url)
 
@@ -68,9 +67,7 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  handlePost: (url, options) => dispatch(handlePost(url, options)),
-  handleGet: (url) => dispatch(handleGet(url)),
-  setStudentSurveys: (surveys) => dispatch(setStudentSurveys(surveys))
+  handleGet: (url) => dispatch(handleGet(url))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentResult)

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleGet } from '../../thunks/handleGet'
 import StudentSurvey from '../StudentSurvey/StudentSurvey'
+import StudentResult from '../StudentResult/StudentResult'
 import { setStudentSurveys } from '../../actions/'
 import PropTypes from 'prop-types'
 
@@ -9,7 +10,6 @@ export class StudentDashboard extends Component {
   constructor() {
     super();
     this.state = {
-
     }
   }
 
@@ -25,7 +25,7 @@ export class StudentDashboard extends Component {
   }
 
   renderResult = (result) => {
-    return <StudentResult key={survey.id} />
+    return <StudentResult key={result.id} />
   }
 
   render() {
@@ -38,15 +38,15 @@ export class StudentDashboard extends Component {
     }
 
     return(
-      <>
-        <div className='dashboard-container'>
+      <div className='dashboard-container'>
+        <article className='pending-student-surveys'>
           {surveyButtons}
-        </div>
-        <div className='dashboard-container'>
-          {studentResults}
-        </div>
-      </>
-    )
+        </article>
+        <article className='pending-student-surveys'>
+          {this.state.studentResults}
+        </article>
+      </div>
+     )
   }
 }
 
