@@ -9,12 +9,24 @@ export class StudentResult extends Component {
     this.state = {
       studentResult: null,
       classResult: null,
+      dataDisplay: "none"
     }
   }
 
   componentDidMount = async () => {
     await this.fetchStudentResult()
     await this.fetchClassResult()
+  }
+
+  toggleData = () => {
+    let display
+    this.state.dataDisplay === "none"
+    ? display = "flex"
+    : display = "none"
+
+    this.setState({
+      dataDisplay: display
+    })
   }
 
   fetchStudentResult = async () => {
@@ -40,18 +52,18 @@ export class StudentResult extends Component {
     var question = question
     return(
       <div className='result-question'>
-        Question: {question.questionTitle}
-        Class Average: {(this.state.classResult && this.state.classResult.averages) ? this.classAverage(question.id) : "Unavailable"}
-        Your Average: {(this.state.studentResult && this.state.studentResult.averages) ? this.studentAverage(question.id) : "Unavailable"}
+        <p>{question.questionTitle}</p>
+        <p>Class Average: {(this.state.classResult && this.state.classResult.averages.length) ? Number.parseFloat(this.classAverage(question.id)).toFixed(2) : "Unavailable"}</p>
+        <p>Your Average: {(this.state.studentResult && this.state.studentResult.averages.length) ? Number.parseFloat(this.studentAverage(question.id)).toFixed(2) : "Unavailable"}</p>
       </div>
     )
   }
 
   studentAverage = (question_id) => {
     var id = question_id
-    let ave
+    let ave = null
     this.state.studentResult.averages.map(average => {
-      if (average.question_id === id) {
+      if (average.question_id === id && average.average_rating) {
         ave = average.average_rating
       }
     })
@@ -60,9 +72,9 @@ export class StudentResult extends Component {
 
   classAverage = (question_id) => {
     var id = question_id
-    let ave
+    let ave = null
     this.state.classResult.averages.map(average => {
-      if (average.question_id === id) {
+      if (average.question_id === id && average.average_rating) {
         ave = average.average_rating
       }
     })
@@ -72,12 +84,17 @@ export class StudentResult extends Component {
   render() {
     return(
       <div className='student-result'>
-        <p className='response-survey-name'>{this.props.survey.surveyName}</p>
+        <p className='result-card'
+           onClick={this.toggleData}>{this.props.survey.surveyName}
+        </p>
+        <div className='result-data'
+             style={{display: this.state.dataDisplay}}>
         {this.state.studentResult &&
           this.state.studentResult.survey.questions.map(question => {
             return this.displayQuestionResult(question)
           })
         }
+        </div>
       </div>
     )
   }

@@ -17,10 +17,11 @@ export class StudentDashboard extends Component {
 
   async componentDidMount() {
     const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/pending?api_key=${localStorage.getItem('currentUser')}`
+    const closedUrl = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/closed?api_key=${localStorage.getItem('currentUser')}`
     const surveys = await this.props.handleGet(url)
-    // const closedSurveys = await this.props.handleGet(closedUrl)
+    const closedSurveys = await this.props.handleGet(closedUrl)
     this.props.setStudentSurveys(surveys)
-    this.props.setClosedSurveys(Surveys)
+    this.props.setClosedSurveys(closedSurveys)
   }
 
   renderSurvey = (survey) => {
