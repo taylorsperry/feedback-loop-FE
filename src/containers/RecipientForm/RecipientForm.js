@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
 import { setCurrentCohort } from '../../actions'
 import cogoToast from 'cogo-toast';
+import shortid from 'shortid'
+import Team from '../../components/Team/Team'
 
 export class RecipientForm extends Component {
   constructor() {
@@ -13,7 +15,8 @@ export class RecipientForm extends Component {
       program: 'both',
       draggedStudent: {},
       group: [],
-      displayTeams: "none"
+      displayTeams: "none",
+      teams: [{id: shortid(), members: []}]
     }
   }
 
@@ -97,15 +100,30 @@ export class RecipientForm extends Component {
 
   onDrop = (e) => {
     e.preventDefault()
-    const { group, draggedStudent } = this.state
+    const { draggedStudent } = this.state
+    const teams = this.state.teams.map(team => {
+      if(team.id === e.target.id) {
+        const arr = team.members
+        arr.push(draggedStudent)
+        team.members = arr
+        return team
+      } else {
+        return team
+      }
+    })
     this.setState({
-      group: [...group, draggedStudent ],
-      draggedStudent: {}
+      teams: teams
     })
     const leftoverStudents = this.props.currentCohort.filter(student => {
       return student.id !== draggedStudent.id
     })
     this.props.setCurrentCohort(leftoverStudents)
+  }
+
+  addTeam = () => {
+    this.setState({
+      teams: [...this.state.teams, {id: shortid(), members: []}]
+    })
   }
 
   render() {
@@ -124,6 +142,11 @@ export class RecipientForm extends Component {
     const groupToDisplay = this.state.group.map(student => {
       return <div key={student.id} id={student.id} className="student-nametag">{student.name}</div>
     })
+
+    const teams = this.state.teams.map(team => {
+      return <Team key={team.id} id={team.id} members={team.members} />
+    })
+
     return(
       <div className="recipient-controls-wrapper">
         <div className="recipients-form-wrapper">
@@ -147,8 +170,10 @@ export class RecipientForm extends Component {
           <div className="groups-wrapper"
                 onDrop={e => this.onDrop(e)}
                 onDragOver={(e => this.onDragOver(e))}>
-            <div className="groups-title">Drag Names Here to Form Groups
-            </div>
+            
+              {teams}
+           
+            <button onClick={this.addTeam}>Add a team</button>
             <div className="groups">
               {groupToDisplay}
             </div>
