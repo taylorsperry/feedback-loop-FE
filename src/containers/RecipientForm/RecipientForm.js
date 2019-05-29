@@ -15,7 +15,7 @@ export class RecipientForm extends Component {
       program: 'both',
       draggedStudent: {},
       group: [],
-      displayTeams: "none",
+      // displayTeams: "none",
       teams: [{id: shortid(), name: '', members: []}]
     }
   }
@@ -41,100 +41,11 @@ export class RecipientForm extends Component {
     const response = await fetch(url)
     const cohort = await response.json()
     await this.props.setCurrentCohort(cohort)
-    this.setState({
-      displayTeams: "flex"
-    })
+    // this.setState({
+    //   displayTeams: "flex"
+    // })
   }
-
-  handleTeamName = (teamId, teamName) => {
-    const updatedTeams = this.state.teams.map(team => {
-      if(team.id === teamId) {
-        team.name = teamName
-        return team
-      } else {
-        return team
-      }
-    })
-    this.setState({
-      teams: updatedTeams
-    })
-  }
-
-  checkTeamNames = () => {
-    let namesOk = false
-    this.state.teams.forEach(team => {
-      if(team.name != '') {
-        namesOk = true
-      }
-    })
-    if(namesOk) {
-      this.checkGroups()
-    } else {
-      this.sendToast('Each team must have a name')
-    }
-  }
-
-  checkGroups = () => {
-
-    const formattedGroups = this.state.teams.map(team => {
-      const formattedMembers = team.members.map(member => {
-        return member.id
-      })
-      if (formattedMembers.length < 2) {
-        this.sendToast('There must be at least two students in a group')
-      } else {
-        const formattedGroup = {
-          name: team.name,
-          member_ids: formattedMembers
-        }
-        return formattedGroup
-      }
-    })
-    this.postSurvey(formattedGroups)
-  }
-
-  checkSurvey = () => {
-    this.checkTeamNames()
-  }
-
-  postSurvey = (formattedGroups) => {
-   
-      // const membersIds = []
-      // this.state.group.forEach(student => {
-      //   membersIds.push(student.id)
-      // })
-      // const { cohort_id } = this.state
-      const { survey } = this.props
-      const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
-      const options = {
-          method: 'POST',
-          body: JSON.stringify({
-            api_key: this.props.user,
-            survey:
-              {
-                surveyName: survey.surveyName,
-                surveyExpiration: survey.surveyExpiration,
-                questions: survey.questions,
-                groups: formattedGroups
-              }
-          }),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-      }
-      this.props.handlePost(url, options)
-      this.handleSuccess()
-  }
-
-  handleSuccess = () => {
-    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
-    this.props.history.push('/dashboard')
-  }
-
-  sendToast = (message) => {
-    cogoToast.warn(message, {position: 'bottom-left'})
-  }
-
+  
   onDrag = (e, student) => {
     e.preventDefault()
     this.setState({
@@ -174,6 +85,87 @@ export class RecipientForm extends Component {
     })
   }
 
+  handleTeamName = (teamId, teamName) => {
+    const updatedTeams = this.state.teams.map(team => {
+      if(team.id === teamId) {
+        team.name = teamName
+        return team
+      } else {
+        return team
+      }
+    })
+    this.setState({
+      teams: updatedTeams
+    })
+  }
+
+  checkSurvey = () => {
+    this.checkTeamNames()
+  }
+
+  checkTeamNames = () => {
+    const names = this.state.teams.filter(team => {
+      if (team.name !== '') {
+        return team.name
+      }
+    })
+    if(names.length < this.state.teams.length) {
+      this.sendToast('Each team must have a name')
+    } else {
+      this.checkGroups()
+    }
+  }
+
+  checkGroups = () => {
+    const formattedGroups = this.state.teams.map(team => {
+      const formattedMembers = team.members.map(member => {
+        return member.id
+      })
+      if (formattedMembers.length < 2) {
+        this.sendToast('There must be at least two students in a group')
+      } else {
+        const formattedGroup = {
+          name: team.name,
+          members_ids: formattedMembers
+        }
+        return formattedGroup
+      }
+    })
+    this.postSurvey(formattedGroups)
+  }
+
+  postSurvey = (formattedGroups) => {
+    const { survey } = this.props
+    const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
+    const options = {
+        method: 'POST',
+        body: JSON.stringify({
+          api_key: this.props.user,
+          survey:
+            {
+              surveyName: survey.surveyName,
+              surveyExpiration: survey.surveyExpiration,
+              questions: survey.questions,
+              groups: formattedGroups
+            }
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    }
+    this.props.handlePost(url, options)
+    this.handleSuccess()
+  }
+
+  handleSuccess = () => {
+    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
+    this.props.history.push('/dashboard')
+  }
+
+  sendToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
+  }
+
   render() {
     const studentsToDisplay = this.props.currentCohort.map(student => {
       return <div
@@ -186,9 +178,6 @@ export class RecipientForm extends Component {
     })
     const cohortList = this.props.cohorts.map(cohort => {
       return <option key={cohort.id} value={cohort.name} name="cohort_id" >{cohort.name}</option>
-    })
-    const groupToDisplay = this.state.group.map(student => {
-      return <div key={student.id} id={student.id} className="student-nametag">{student.name}</div>
     })
 
     const teams = this.state.teams.map(team => {
@@ -214,24 +203,21 @@ export class RecipientForm extends Component {
           </div>
         </div>
         <div className="student-groups-wrapper"
-             style={{display: this.state.displayTeams}}>
+            //  style={{display: this.state.displayTeams}}>
+            >
           <div className="groups-wrapper"
                 onDrop={e => this.onDrop(e)}
                 onDragOver={(e => this.onDragOver(e))}>
-            
-              {teams}
-           
+            {teams}
             <button onClick={this.addTeam}>Add a New Team</button>
-            <div className="groups">
-              {groupToDisplay}
-            </div>
           </div>
-          <div className="students-display">{studentsToDisplay}
+          <div className="students-display">
+            {studentsToDisplay}
           </div>
         </div>
         <button className="recipients-button"
-                onClick={this.checkSurvey}
-                style={{display: this.state.displayTeams}}>Send Survey
+                onClick={this.checkSurvey}>
+                Send Survey
         </button>
       </div>
     )
@@ -256,3 +242,6 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipientForm)
+            
+           
+            
