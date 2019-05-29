@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   currentCohort: setCurrentCohortReducer,
   role: setRoleReducer,
   studentSurveys: setStudentSurveysReducer,
-  closedSurveys: setClosedSurveysReducer
+  closedSurveys: setClosedSurveysReducer,
   instructorSurveys: setInstructorSurveysReducer
 })
 
