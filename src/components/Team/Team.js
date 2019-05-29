@@ -20,14 +20,16 @@ export class Team extends Component {
 
   render() {
     const names = this.props.members.map(member => {
-      return <div className="student-nametage" key={member.id}>{member.name}</div>
+      return <div className="assigned-student" key={member.id}>{member.name}</div>
     })
+
     return(
       <div className='team' id={this.props.id}>
         <input 
           placeholder='Name this team'
           name='name'
           onChange={this.handleChange}
+          className='team-input'
         />
         {names}
       </div>

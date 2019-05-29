@@ -182,8 +182,9 @@ export class RecipientForm extends Component {
     })
 
     return(
-      <div className="recipient-controls-wrapper">
-        <div className="recipients-form-wrapper">
+      <div className="recipient-wrapper">
+        {/* top section */}
+        <div className="recipients-form">
           <h2 className="recipients-form-title">Select Recipients</h2>
           <div className="student-selector-wrapper">
             <select className="drop-down" onChange={this.handleCohort} >
@@ -199,23 +200,29 @@ export class RecipientForm extends Component {
             <button className="recipients-button" onClick={this.handleAssignGroups}>Populate Students</button>
           </div>
         </div>
-        <div className="student-groups-wrapper"
-            //  style={{display: this.state.displayTeams}}>
-            >
-          <div className="groups-wrapper"
+
+        {/* middle section */}
+        <div className="student-groups-wrapper">
+          <div className="assigned-students"
                 onDrop={e => this.onDrop(e)}
                 onDragOver={(e => this.onDragOver(e))}>
-            {teams}
-            <button onClick={this.addTeam}>Add a New Team</button>
+            <div className='teams-container'>
+              {teams}
+            </div>
+            <div className='team-button-container'>
+              <button onClick={this.addTeam} className='team-button'>Add a New Team</button>
+            </div>
           </div>
-          <div className="students-display">
+          <div className="available-students">
             {studentsToDisplay}
           </div>
         </div>
-        <button className="recipients-button"
-                onClick={this.checkSurvey}>
-                Send Survey
-        </button>
+
+        {/* bottom button */}
+        <div className='send-button-container'>
+          <button className="send-button"
+                  onClick={this.checkSurvey}>Send Survey</button>
+        </div>
       </div>
     )
   }

@@ -1,83 +1,17 @@
-.recipients-form-wrapper {
-  display: flex;
-  flex-direction: column;
+//main container
+.recipient-wrapper {
+  width: 80%;
+  margin: auto;
 }
 
-.students-display {
-  display: flex;
-  flex-direction: column;
-  border-top: .65rem solid $main-blue;
-  box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
-  background-color: #FFF;
-  width: 30%;
-  align-items: center;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  overflow: auto;
-  border-radius: 5px;
-}
-
-
-.student-nametag {
-  background-color: $light-grey;
-  border-radius: 4px;
-  &:hover {
-    color: $main-grey;
-    cursor: grab;
-    font-weight: bolder;
-    background-color: $light-grey-hover;
-    box-shadow: 1px 1px 2px $main-grey;
-  }
-  margin: 1%;
-  padding: 2%;
-  width: 10em;
-  height: fit-content;
-}
-
-.groups-wrapper {
-  background-color: #FFF;
-  width: 68%;
-  display: flex;
-  flex-direction: column;
-  border-top: .65rem solid $main-blue;
-  box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-}
-
-.groups-title {
-  margin: 2%;
-  font-family: $main-font;
-  font-weight: bold;
-}
-
-.groups {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding-left: 3%;
-  padding-right: 3%;
-  padding-bottom: 3%;
-  justify-content: space-evenly;
-}
-
-.student-name {
-  padding: 4px;
-}
-
-.recipients-form-title,
-.student-selector,
-.student-name,
-.drop-down {
-  font-family: $main-font
-}
-
+//top section container
 .recipients-form-title {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 43px;
   color: #FFF;
   font-weight: bolder;
-  text-shadow: black 0px 0px 10px;
+  text-shadow: black 0px 0px 5px;
 }
 
 .drop-down {
@@ -92,7 +26,7 @@
 
 .recipients-button {
   background-color: $main-blue;
-  border-radius: 50px;
+  border-radius: 5px;
   border: none;
   color: $accent-teal;
   font-family: $main-font;
@@ -109,16 +43,141 @@
   justify-content: center;
 }
 
+//middle section container
 .student-groups-wrapper {
   display: flex;
   justify-content: space-between;
-  margin-right: 2%;
-  margin-left: 2%;
   height: 23em;
 }
 
-.team {
-  height: 150px;
-  width: 150px;
-  border: solid pink 2px;
+
+//assigned students
+.assigned-students {
+  background-color: #FFF;
+  width: 68%;
+  border-top: .65rem solid $main-blue;
+  box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  overflow: scroll;
 }
+
+.teams-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.team {
+  height: 225px;
+  width: 175px;
+  text-align: left;
+  padding: 10px;
+  background: $white;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.20);
+  margin-bottom: 0px 5px;
+  margin: 5px;
+  border-top: .65rem solid $accent-gold;
+  border-radius: 5px;
+}
+
+.team-input {
+  width: 100%;
+  border: none;
+  border-bottom: solid $main-grey 1px;
+  font-size: 15px;
+  color: $accent-charcoal;
+  margin-bottom: 10px;
+}
+
+.team-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.team-button {
+  background-color: $accent-gold;
+  border-radius: 5px;
+  border: none;
+  color: $white;
+  font-family: $main-font;
+  font-weight: bold;
+  font-size: 16px;
+  height: 40px;
+  width: 100%;
+  &:hover {
+    cursor: pointer;
+    background-color: $accent-gold-hover;
+  }
+}
+
+//available students
+.available-students {
+  display: flex;
+  flex-direction: column;
+  border-top: .65rem solid $main-blue;
+  box-shadow: -4px 5px 5px 4px rgba(0, 0, 0, 0.2);
+  background-color: #FFF;
+  width: 28%;
+  align-items: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  overflow: auto;
+  border-radius: 5px;
+}
+
+//styling for student names
+.student-nametag {
+  background-color: $light-grey;
+  border-radius: 5px;
+  &:hover {
+    color: $main-grey;
+    cursor: grab;
+    background-color: $light-grey-hover;
+    box-shadow: 1px 1px 1px $main-grey;
+  }
+  margin: 1%;
+  padding: 2%;
+  width: 10em;
+  height: fit-content;
+}
+
+.assigned-student {
+  margin: 5px;
+  text-align: center;
+  background-color: $light-grey;
+  border-radius: 5px;
+  width: 10em;
+}
+
+.recipients-form-title,
+.student-selector,
+.student-name,
+.drop-down {
+  font-family: $main-font
+}
+
+//bottom section
+
+.send-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.send-button {
+  width: 28%;
+  background-color: $main-blue;
+  border-radius: 5px;
+  border: none;
+  color: $accent-teal;
+  font-family: $main-font;
+  font-weight: bold;
+  font-size: 16px;
+  height: 40px;
+  margin-top: 10px;
+}
+
