@@ -6,6 +6,7 @@ import { setCohortsReducer } from './setCohortsReducer'
 import { setUserReducer } from './setUserReducer'
 import { setRoleReducer } from './setRoleReducer'
 import { setStudentSurveysReducer } from './setStudentSurveysReducer'
+import { setInstructorSurveysReducer } from './setInstructorSurveysReducer'
 import { setCurrentCohortReducer } from './setCurrentCohortReducer'
 
 
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   user: setUserReducer,
   currentCohort: setCurrentCohortReducer,
   role: setRoleReducer,
-  studentSurveys: setStudentSurveysReducer
+  studentSurveys: setStudentSurveysReducer,
+  instructorSurveys: setInstructorSurveysReducer
 })
 
 export default rootReducer;
