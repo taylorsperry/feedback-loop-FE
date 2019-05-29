@@ -9,7 +9,7 @@ export class StudentDashboard extends Component {
   constructor() {
     super();
     this.state = {
-     
+
     }
   }
 
@@ -23,7 +23,11 @@ export class StudentDashboard extends Component {
     this.props.history.push(`/student-survey/${survey.id}`)
     return <StudentSurvey key={survey.id} />
   }
- 
+
+  renderResult = (result) => {
+    return <StudentResult key={survey.id} />
+  }
+
   render() {
     let surveyButtons
 
@@ -32,11 +36,16 @@ export class StudentDashboard extends Component {
         return <button className='response-button' key={survey.id} onClick={() => {this.renderSurvey(survey)}}>{survey.surveyName}</button>
       })
     }
-    
+
     return(
-      <div className='dashboard-container'>
-        {surveyButtons}
-      </div>
+      <>
+        <div className='dashboard-container'>
+          {surveyButtons}
+        </div>
+        <div className='dashboard-container'>
+          {studentResults}
+        </div>
+      </>
     )
   }
 }
