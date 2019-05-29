@@ -17,15 +17,7 @@ exports[`App should match the snapshot 1`] = `
         path="/"
       />
       <Route
-        component={
-          Object {
-            "$$typeof": Symbol(react.memo),
-            "WrappedComponent": [Function],
-            "compare": null,
-            "displayName": "Connect(InstructorDashboard)",
-            "type": [Function],
-          }
-        }
+        component={[Function]}
         exact={true}
         path="/dashboard"
       />
@@ -35,40 +27,16 @@ exports[`App should match the snapshot 1`] = `
         path="/new-survey"
       />
       <Route
-        component={
-          Object {
-            "$$typeof": Symbol(react.memo),
-            "WrappedComponent": [Function],
-            "compare": null,
-            "displayName": "Connect(StudentDashboard)",
-            "type": [Function],
-          }
-        }
+        component={[Function]}
         exact={true}
         path="/student-dashboard"
       />
       <Route
-        component={
-          Object {
-            "$$typeof": Symbol(react.memo),
-            "WrappedComponent": [Function],
-            "compare": null,
-            "displayName": "Connect(StudentSurvey)",
-            "type": [Function],
-          }
-        }
+        component={[Function]}
         path="/student-survey"
       />
       <Route
-        component={
-          Object {
-            "$$typeof": Symbol(react.memo),
-            "WrappedComponent": [Function],
-            "compare": null,
-            "displayName": "Connect(RecipientForm)",
-            "type": [Function],
-          }
-        }
+        component={[Function]}
         exact={true}
         path="/recipients"
       />

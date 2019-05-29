@@ -26,10 +26,10 @@ export default class Header extends Component {
         { localStorage.getItem('currentUser') &&
           <ul className='nav-right'>
             <li>
-              <a href='' className='nav-link'>Dashboard</a>
+              <a href='/' className='nav-link'>Dashboard</a>
             </li>
             <li>
-              <a href='' className='nav-link'
+              <a href='/' className='nav-link'
                          onClick={this.handleClick}>Log Out</a>
             </li>
           </ul>
