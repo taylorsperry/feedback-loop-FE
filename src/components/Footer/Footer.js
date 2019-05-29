@@ -11,7 +11,7 @@ export default class Footer extends Component {
     return(
       <div className='footer'>
         Turing School of Software and Design, a Colorado Non-Profit Organization.
-        © Copyright 2017 All Rights Reserved.
+        © Copyright 2019 All Rights Reserved.
       </div>
     )
   }
