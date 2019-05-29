@@ -134,7 +134,63 @@ describe('RecipientForm', () => {
     expect(wrapper.state('teams')).toEqual(expected)
   })
   
-  
+  it('should call checkTeamNames when checkSurvey is called', () => {
+    const checkTeamNamesSpy = jest.spyOn(wrapper.instance(), 'checkTeamNames')
+    wrapper.instance().checkSurvey()
+    expect(checkTeamNamesSpy).toHaveBeenCalled()
+  })
+
+  it('should call checkGroups when checkTeamNames is called', () => {
+    const checkGroupsSpy = jest.spyOn(wrapper.instance(), 'checkGroups')
+    const mockState = {
+      teams: [{ id: 17, name: 'team one', members: [ {id: 99, name: 'April' }]}]
+    }
+    wrapper.setState({
+      teams: mockState.teams
+    })
+    wrapper.instance().checkTeamNames()
+    expect(checkGroupsSpy).toHaveBeenCalled()
+  })
+
+  it('should not call checkGroups if a team is missing a name', () => {
+    const checkGroupsSpy = jest.spyOn(wrapper.instance(), 'checkGroups')
+    const mockState = {
+      teams: [{ id: 17, name: '', members: [ {id: 99, name: 'April' }]}]
+    }
+    wrapper.setState({
+      teams: mockState.teams
+    })
+    wrapper.instance().checkTeamNames()
+    expect(checkGroupsSpy).not.toHaveBeenCalled()
+  })
+
+  it('should call postSurvey with formattedGroups', () => {
+    const postSurveySpy = jest.spyOn(wrapper.instance(), 'postSurvey')
+    const mockState = {
+      teams: [{ id: 17, name: 'team name', members: [ {id: 99, name: 'April' }, {id: 4, name: 'Taylor'}]}]
+    }
+    const formattedGroups = [{ name: 'team name', members_ids: [99, 4]}]
+    wrapper.setState({
+      teams: mockState.teams
+    })
+    wrapper.instance().checkGroups()
+    expect(postSurveySpy).toHaveBeenCalledWith(formattedGroups)
+  })
+
+  it('should not call postSurvey if a team does not have at least two members', () => {
+    const postSurveySpy = jest.spyOn(wrapper.instance(), 'postSurvey')
+    const mockState = {
+      teams: [{ id: 17, name: 'team name', members: [ {id: 99, name: 'April' }]}]
+    }
+    wrapper.setState({
+      teams: mockState.teams
+    })
+    wrapper.instance().checkGroups()
+    expect(postSurveySpy).not.toHaveBeenCalledWith()
+  })
+
+
+
   describe('mapStateToProps', () => {
     it('should return the expected state as props', () => {
       mockState = {
@@ -179,6 +235,19 @@ describe('RecipientForm', () => {
         const mappedProps = mapDispatchToProps(mockDispatch)
   
         mappedProps.handlePost(mockUrl, mockOptions)
+  
+        expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+
+    it('should return handleGet to dispatch', () => {
+      const mockUrl = 'www.post.com'
+      
+      const mockDispatch = jest.fn()
+      const handleGet = jest.fn()
+      const actionToDispatch = handleGet(mockUrl)
+      const mappedProps = mapDispatchToProps(mockDispatch)
+
+      mappedProps.handleGet(mockUrl)
   
         expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })

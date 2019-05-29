@@ -44,7 +44,6 @@ export class RecipientForm extends Component {
 
   handleSuccess = () => {
     cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
-
     this.props.history.push('/dashboard')
   }
 
@@ -163,10 +162,10 @@ export class RecipientForm extends Component {
     this.handleSuccess()
   }
 
-  handleSuccess = () => {
-    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
-    this.props.history.push('/dashboard')
-  }
+  // handleSuccess = () => {
+  //   cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
+  //   this.props.history.push('/dashboard')
+  // }
 
   sendToast = (message) => {
     cogoToast.warn(message, {position: 'bottom-left'})
