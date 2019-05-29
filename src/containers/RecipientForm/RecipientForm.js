@@ -41,9 +41,6 @@ export class RecipientForm extends Component {
     const response = await fetch(url)
     const cohort = await response.json()
     await this.props.setCurrentCohort(cohort)
-    // this.setState({
-    //   displayTeams: "flex"
-    // })
   }
   
   onDrag = (e, student) => {
@@ -242,6 +239,4 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipientForm)
-            
-           
-            
+
