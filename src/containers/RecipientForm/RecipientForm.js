@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
+import { handleGet } from '../../thunks/handleGet'
 import { setCurrentCohort } from '../../actions'
 import cogoToast from 'cogo-toast';
 import shortid from 'shortid'
@@ -15,7 +16,6 @@ export class RecipientForm extends Component {
       program: 'both',
       draggedStudent: {},
       group: [],
-      // displayTeams: "none",
       teams: [{id: shortid(), name: '', members: []}]
     }
   }
@@ -38,8 +38,7 @@ export class RecipientForm extends Component {
     this.state.program === "both"
     ? url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}`
     : url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}&&program=${program}`
-    const response = await fetch(url)
-    const cohort = await response.json()
+    const cohort = await this.props.handleGet(url)
     await this.props.setCurrentCohort(cohort)
   }
 
@@ -251,6 +250,7 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
+  handleGet: (url) => dispatch(handleGet(url)),
   handlePost: (url, options) => dispatch(handlePost(url, options)),
   setCurrentCohort: (cohort) => dispatch(setCurrentCohort(cohort))
 })

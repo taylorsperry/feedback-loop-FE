@@ -2,10 +2,10 @@
 
 exports[`RecipientForm should match the snapshot 1`] = `
 <div
-  className="recipient-controls-wrapper"
+  className="recipient-wrapper"
 >
   <div
-    className="recipients-form-wrapper"
+    className="recipients-form"
   >
     <h2
       className="recipients-form-title"
@@ -74,24 +74,33 @@ exports[`RecipientForm should match the snapshot 1`] = `
     className="student-groups-wrapper"
   >
     <div
-      className="groups-wrapper"
+      className="assigned-students"
       onDragOver={[Function]}
       onDrop={[Function]}
     >
-      <Team
-        handleTeamName={[Function]}
-        id="yV9qeBCqC"
-        key="yV9qeBCqC"
-        members={Array []}
-      />
-      <button
-        onClick={[Function]}
+      <div
+        className="teams-container"
       >
-        Add a New Team
-      </button>
+        <Team
+          handleTeamName={[Function]}
+          id="e49Zwouec"
+          key="e49Zwouec"
+          members={Array []}
+        />
+      </div>
+      <div
+        className="team-button-container"
+      >
+        <button
+          className="team-button"
+          onClick={[Function]}
+        >
+          Add a New Team
+        </button>
+      </div>
     </div>
     <div
-      className="students-display"
+      className="available-students"
     >
       <div
         className="student-nametag"
@@ -131,11 +140,15 @@ exports[`RecipientForm should match the snapshot 1`] = `
       </div>
     </div>
   </div>
-  <button
-    className="recipients-button"
-    onClick={[Function]}
+  <div
+    className="send-button-container"
   >
-    Send Survey
-  </button>
+    <button
+      className="send-button"
+      onClick={[Function]}
+    >
+      Send Survey
+    </button>
+  </div>
 </div>
 `;
