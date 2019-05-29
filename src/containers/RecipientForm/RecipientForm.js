@@ -16,7 +16,7 @@ export class RecipientForm extends Component {
       draggedStudent: {},
       group: [],
       displayTeams: "none",
-      teams: [{id: shortid(), members: []}]
+      teams: [{id: shortid(), name: '', members: []}]
     }
   }
 
@@ -46,15 +46,64 @@ export class RecipientForm extends Component {
     })
   }
 
-  postSurvey = () => {
-    if(this.state.group.length < 2) {
-      this.sendToast('There must be at least two students in a group')
+  handleTeamName = (teamId, teamName) => {
+    const updatedTeams = this.state.teams.map(team => {
+      if(team.id === teamId) {
+        team.name = teamName
+        return team
+      } else {
+        return team
+      }
+    })
+    this.setState({
+      teams: updatedTeams
+    })
+  }
+
+  checkTeamNames = () => {
+    let namesOk = false
+    this.state.teams.forEach(team => {
+      if(team.name != '') {
+        namesOk = true
+      }
+    })
+    if(namesOk) {
+      this.checkGroups()
     } else {
-      const membersIds = []
-      this.state.group.forEach(student => {
-        membersIds.push(student.id)
+      this.sendToast('Each team must have a name')
+    }
+  }
+
+  checkGroups = () => {
+
+    const formattedGroups = this.state.teams.map(team => {
+      const formattedMembers = team.members.map(member => {
+        return member.id
       })
-      const { cohort_id } = this.state
+      if (formattedMembers.length < 2) {
+        this.sendToast('There must be at least two students in a group')
+      } else {
+        const formattedGroup = {
+          name: team.name,
+          member_ids: formattedMembers
+        }
+        return formattedGroup
+      }
+    })
+    this.postSurvey(formattedGroups)
+  }
+
+  checkSurvey = () => {
+    this.checkTeamNames()
+  }
+
+  postSurvey = (formattedGroups) => {
+   
+      // const membersIds = []
+      // this.state.group.forEach(student => {
+      //   membersIds.push(student.id)
+      // })
+      // const { cohort_id } = this.state
       const { survey } = this.props
       const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
       const options = {
@@ -66,7 +115,7 @@ export class RecipientForm extends Component {
                 surveyName: survey.surveyName,
                 surveyExpiration: survey.surveyExpiration,
                 questions: survey.questions,
-                groups: [{name: cohort_id, members_ids: membersIds}]
+                groups: formattedGroups
               }
           }),
           headers: {
@@ -75,7 +124,6 @@ export class RecipientForm extends Component {
       }
       this.props.handlePost(url, options)
       this.handleSuccess()
-    }
   }
 
   handleSuccess = () => {
@@ -144,7 +192,7 @@ export class RecipientForm extends Component {
     })
 
     const teams = this.state.teams.map(team => {
-      return <Team key={team.id} id={team.id} members={team.members} />
+      return <Team key={team.id} id={team.id} members={team.members} handleTeamName={this.handleTeamName}/>
     })
 
     return(
@@ -173,7 +221,7 @@ export class RecipientForm extends Component {
             
               {teams}
            
-            <button onClick={this.addTeam}>Add a team</button>
+            <button onClick={this.addTeam}>Add a New Team</button>
             <div className="groups">
               {groupToDisplay}
             </div>
@@ -182,7 +230,7 @@ export class RecipientForm extends Component {
           </div>
         </div>
         <button className="recipients-button"
-                onClick={this.postSurvey}
+                onClick={this.checkSurvey}
                 style={{display: this.state.displayTeams}}>Send Survey
         </button>
       </div>
