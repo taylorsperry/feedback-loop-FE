@@ -20,16 +20,16 @@ export default class Header extends Component {
         <section className='nav-left'>
           <a href='https://turing.io/'><img className='turing-logo' src={Logo} alt="logo"/></a>
           <Link to='/' className='feedback-loop-title'>
-            <h2 className='feedback-loop-title-text'>Feedback Loop</h2>
+            <h2 className='feedback-loop-title-text'>Turing Feedback</h2>
           </Link>
         </section>
         { localStorage.getItem('currentUser') &&
           <ul className='nav-right'>
             <li>
-              <a href='' className='nav-link'>Dashboard</a>
+              <a href='/' className='nav-link'>Dashboard</a>
             </li>
             <li>
-              <a href='' className='nav-link'
+              <a href='/' className='nav-link'
                          onClick={this.handleClick}>Log Out</a>
             </li>
           </ul>

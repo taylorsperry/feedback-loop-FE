@@ -27,6 +27,23 @@ export class App extends Component {
           return Login
       }
     }
+
+    const validateStudent = () => {
+      if (localStorage.getItem('userRole') === 'Student') {
+        return true
+      } else {
+        return false
+      }
+    }
+
+    const validateInstructor = () => {
+      if (localStorage.getItem('userRole') === 'Instructor') {
+        return true
+      } else {
+        return false
+      }
+    }
+
     return (
       <div className="App">
         <div>
@@ -36,15 +53,15 @@ export class App extends Component {
           <Switch>
             <Route exact path='/' component={loginRoute()}
             />
-            <Route exact path='/dashboard' component={InstructorDashboard}
+            <Route exact path='/dashboard' component={validateInstructor() ? InstructorDashboard : PageNotFound}
             />
-            <Route exact path='/new-survey' component={NewSurvey}
+            <Route exact path='/new-survey' component={validateInstructor() ? NewSurvey : PageNotFound}
             />
-            <Route exact path='/student-dashboard' component={StudentDashboard}
+            <Route exact path='/student-dashboard' component={validateStudent() ? StudentDashboard : PageNotFound}
             />
-            <Route path='/student-survey' component={StudentSurvey}
+            <Route path='/student-survey' component={validateStudent() ? StudentSurvey : PageNotFound}
             />
-            <Route exact path='/recipients' component={RecipientForm}
+            <Route exact path='/recipients' component={validateInstructor() ? RecipientForm : PageNotFound}
             />
             <Route component={PageNotFound} />
           </Switch>

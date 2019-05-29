@@ -21,15 +21,6 @@ export class InstructorDashboard extends Component {
     })
   }
 
-  async componentDidUpdate() {
-    const myKey = await this.props.user
-    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/?api_key=${myKey}`
-    const surveys = await this.props.handleGet(url)
-    this.setState({
-      surveys: surveys
-    })
-  }
-
   render() {
     return(
       <div className='surveys-accordion'>

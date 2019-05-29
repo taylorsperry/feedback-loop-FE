@@ -23,7 +23,7 @@ exports[`Header should match the snapshot 1`] = `
       <h2
         className="feedback-loop-title-text"
       >
-        Feedback Loop
+        Turing Feedback
       </h2>
     </Link>
   </section>
