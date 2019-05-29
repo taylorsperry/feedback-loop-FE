@@ -20,7 +20,7 @@ export default class Header extends Component {
         <section className='nav-left'>
           <a href='https://turing.io/'><img className='turing-logo' src={Logo} alt="logo"/></a>
           <Link to='/' className='feedback-loop-title'>
-            <h2 className='feedback-loop-title-text'>Feedback Loop</h2>
+            <h2 className='feedback-loop-title-text'>Turing Feedback</h2>
           </Link>
         </section>
         { localStorage.getItem('currentUser') &&

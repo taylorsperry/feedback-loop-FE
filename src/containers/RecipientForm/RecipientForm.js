@@ -42,7 +42,17 @@ export class RecipientForm extends Component {
     const cohort = await response.json()
     await this.props.setCurrentCohort(cohort)
   }
-  
+
+  handleSuccess = () => {
+    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
+
+    this.props.history.push('/dashboard')
+  }
+
+  sendToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
+  }
+
   onDrag = (e, student) => {
     e.preventDefault()
     this.setState({
@@ -246,4 +256,3 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipientForm)
-
