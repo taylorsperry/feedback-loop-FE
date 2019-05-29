@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InstructorDashboard should match the snapshot 1`] = `
+<div
+  className="surveys-accordion"
+>
+  <Link
+    to="/new-survey"
+  >
+    <button
+      className="create-new-survey-button"
+    >
+      Create New Survey
+    </button>
+  </Link>
+  <div
+    className="inst-surveys"
+  />
+</div>
+`;

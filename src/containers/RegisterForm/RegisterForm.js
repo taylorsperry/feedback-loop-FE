@@ -96,11 +96,11 @@ export class RegisterForm extends Component {
         <div className="role-input">
           <p className="role-input-p">I am:</p>
           <div className="role-choice">
-            <input name="radio" type="radio" onClick={() => {this.setRole('Instructor')}} />
+            <input className="instructor-select" name="radio" type="radio" onClick={() => {this.setRole('Instructor')}} />
             <p className="role-input-p">An Instructor</p>
           </div>
           <div className="role-choice">
-            <input name="radio" type="radio" onClick={() => {this.setRole('Student')}}/>
+            <input className="student-select" name="radio" type="radio" onClick={() => {this.setRole('Student')}}/>
             <p className="role-input-p">A Student</p>
           </div>
         </div>

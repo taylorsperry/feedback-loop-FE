@@ -27,6 +27,12 @@ describe('RegisterForm', () => {
     expect(wrapper.state()).toEqual(expected)
   })
 
+  it('should set state with a role', () => {
+    const mockRole = 'Instructor'
+    wrapper.instance().setRole(mockRole)
+    expect(wrapper.state('role')).toBe('Instructor')
+  })
+
   it('should update state on change', () => {
     const mockEvent = { target: { name: 'full_name', value: 'First Last'}}
     wrapper.find('.full_name').simulate('change', mockEvent)
@@ -47,17 +53,43 @@ describe('RegisterForm', () => {
     expect(mockFn).toHaveBeenCalled()
   })
 
-  it.skip('should not call handleLogin if passwords do not match', () => {
+  it('should call sendToast when checkPassword is called with non-matching passwords', () => {
     const preventDefault = { preventDefault: jest.fn() }
     const mockState = {
       full_name: 'First Last',
       role: 'Student',
       email: 'user@gmail.com',
       password_1: 'abc',
-      password_2: ''
+      password_2: 'def'
     }
+    const spy = jest.spyOn(wrapper.instance(), 'sendToast')
     wrapper.setState(mockState)
     wrapper.instance().checkPassword(preventDefault)
-    expect(mockFn).not.toHaveBeenCalled()
+    expect(spy).toHaveBeenCalled()
   })
+
+  it('should call sendToast on checkFields when newUser is missing required field', () => {
+    const newUser = {
+      full_name: 'First Last',
+      role: 'Student',
+      email: '',
+      password_1: 'abc',
+    }
+    const spy = jest.spyOn(wrapper.instance(), 'sendToast')
+    wrapper.instance().checkFields(newUser)
+    expect(spy).toHaveBeenCalled()    
+  })
+
+  it('should call setRole onClick for student', () => {
+    const spy = jest.spyOn(wrapper.instance(), 'setRole')
+    wrapper.find('.student-select').simulate('click')
+    expect(spy).toHaveBeenCalled()        
+  })
+
+  it('should call setRole onClick for instructor', () => {
+    const spy = jest.spyOn(wrapper.instance(), 'setRole')
+    wrapper.find('.instructor-select').simulate('click')
+    expect(spy).toHaveBeenCalled()        
+  })
+
 })
