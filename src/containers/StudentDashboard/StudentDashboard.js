@@ -6,12 +6,6 @@ import { setStudentSurveys } from '../../actions/'
 import PropTypes from 'prop-types'
 
 export class StudentDashboard extends Component {
-  constructor() {
-    super();
-    this.state = {
-     
-    }
-  }
 
   async componentDidMount() {
     const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/pending?api_key=${localStorage.getItem('currentUser')}`

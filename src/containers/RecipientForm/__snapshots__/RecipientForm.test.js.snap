@@ -83,8 +83,8 @@ exports[`RecipientForm should match the snapshot 1`] = `
       >
         <Team
           handleTeamName={[Function]}
-          id="e49Zwouec"
-          key="e49Zwouec"
+          id="D4w069u3w"
+          key="D4w069u3w"
           members={Array []}
         />
       </div>

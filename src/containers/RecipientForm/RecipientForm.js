@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
 import { handleGet } from '../../thunks/handleGet'
-import { setCurrentCohort } from '../../actions'
+import { setCurrentCohort, setInstructorSurveys } from '../../actions'
 import cogoToast from 'cogo-toast';
 import shortid from 'shortid'
 import Team from '../../components/Team/Team'
@@ -40,11 +40,6 @@ export class RecipientForm extends Component {
     : url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}&&program=${program}`
     const cohort = await this.props.handleGet(url)
     await this.props.setCurrentCohort(cohort)
-  }
-
-  handleSuccess = () => {
-    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
-    this.props.history.push('/dashboard')
   }
 
   sendToast = (message) => {
@@ -162,10 +157,15 @@ export class RecipientForm extends Component {
     this.handleSuccess()
   }
 
-  // handleSuccess = () => {
-  //   cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
-  //   this.props.history.push('/dashboard')
-  // }
+
+  handleSuccess = async () => {
+    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
+    const myKey = await localStorage.getItem('currentUser')
+    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys?api_key=${myKey}`
+    const surveys = await this.props.handleGet(url)
+    this.props.setInstructorSurveys(surveys)
+    this.props.history.push('/dashboard')
+  }
 
   sendToast = (message) => {
     cogoToast.warn(message, {position: 'bottom-left'})
@@ -238,20 +238,29 @@ export class RecipientForm extends Component {
 
 RecipientForm.propTypes = {
   cohorts: PropTypes.array,
-  survey: PropTypes.object
+  survey: PropTypes.object,
+  currentCohort: PropTypes.array,
+  user: PropTypes.string,
+  instructorSurveys: PropTypes.array,
+  handlePost: PropTypes.func,
+  setCurrentCohort: PropTypes.func,
+  setCurrentCohort: PropTypes.func,
 }
 
 export const mapStateToProps = (state) => ({
   survey: state.survey,
   cohorts: state.cohorts,
   currentCohort: state.currentCohort,
-  user: state.user
+  user: state.user,
+  instructorSurveys: state.instructorSurveys
 })
 
 export const mapDispatchToProps = (dispatch) => ({
   handleGet: (url) => dispatch(handleGet(url)),
   handlePost: (url, options) => dispatch(handlePost(url, options)),
-  setCurrentCohort: (cohort) => dispatch(setCurrentCohort(cohort))
+  handleGet: (url) => dispatch(handleGet(url)),
+  setCurrentCohort: (cohort) => dispatch(setCurrentCohort(cohort)),
+  setInstructorSurveys: (surveys) => dispatch(setInstructorSurveys(surveys))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipientForm)
