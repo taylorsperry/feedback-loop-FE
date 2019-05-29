@@ -27,25 +27,26 @@ export class SurveyCardData extends Component {
   }
 
   displayGroup = (group) => {
+    var group = group
     return(
       <section key={group.name} className="s-group">
         <section className="s-group-name group-box">
           Group {group.name}
         </section>
         {this.state.survey.questions.map(question => {
-          return this.displayQuestionData(question)
+          return this.displayQuestionData(question, group)
         })}
       </section>
     )
   }
 
-  displayQuestionData = (question) => {
+  displayQuestionData = (question, group) => {
     return(
       <section key={question.id} className="s-question-data">
         <article className="s-question group-box"> {question.questionTitle}</article>
         <article className='q-avg-rating group-box'>Survey Average: {this.state.averages.averages.length ? this.averageRating(question.id) : "Pending"}</article>
         <article className='u-ratings-container group-box'>
-          {this.displayStudentData(question.id)}
+          {this.displayStudentData(question.id, group)}
         </article>
       </section>
     )
@@ -64,19 +65,30 @@ export class SurveyCardData extends Component {
     )
   }
 
-  displayStudentData = (question_id) => {
+  displayStudentData = (question_id, group) => {
     return(
       <section className='u-ratings'>
-        {this.state.userAverages &&
-          this.state.userAverages.averages.map(average => {
-          if (average.question_id == question_id) {
-            return <article key={average.fullName} className='user-rating'>
-              {average.fullName}: {average.average_rating ? Number.parseFloat(average.average_rating).toFixed(2) : "Pending"}
-            </article>
-          }
+        {group.members.map(member => {
+          var userAve = this.findUserAve(member.id, question_id)
+          console.log("USERAVE: ", userAve)
+          return <article className='user-rating'>
+            {member.name}: {userAve ? userAve : "Pending"}
+          </article>
         })}
       </section>
     )
+  }
+
+  findUserAve = (userId, question_id) => {
+    var question_id = question_id
+    var userId = userId
+    let result
+    this.state.userAverages.averages.map(average => {
+      if (average.question_id == question_id && average.user_id == userId) {
+        result = Number.parseFloat(average.average_rating).toFixed(2)
+      }
+    })
+    return result
   }
 
   render() {
