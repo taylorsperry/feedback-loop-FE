@@ -6,6 +6,7 @@ import StudentResult from '../StudentResult/StudentResult'
 import { setStudentSurveys } from '../../actions/'
 import { setClosedSurveys } from '../../actions/'
 import PropTypes from 'prop-types'
+import Surveys from '../../utils/sampleSurveys'
 
 export class StudentDashboard extends Component {
   constructor() {
@@ -19,7 +20,7 @@ export class StudentDashboard extends Component {
     const surveys = await this.props.handleGet(url)
     // const closedSurveys = await this.props.handleGet(closedUrl)
     this.props.setStudentSurveys(surveys)
-    // this.props.setClosedSurveys(closedSurveys)
+    this.props.setClosedSurveys(Surveys)
   }
 
   renderSurvey = (survey) => {
@@ -27,13 +28,8 @@ export class StudentDashboard extends Component {
     return <StudentSurvey key={survey.id} />
   }
 
-  renderResult = (result) => {
-    return <StudentResult key={result.id} />
-  }
-
   render() {
     let surveyButtons
-
     if (this.props.studentSurveys) {
       surveyButtons = this.props.studentSurveys.map(survey => {
         return <button className='response-button' key={survey.id} onClick={() => {this.renderSurvey(survey)}}>{survey.surveyName}</button>
@@ -46,7 +42,10 @@ export class StudentDashboard extends Component {
           {surveyButtons}
         </article>
         <article className='pending-student-surveys'>
-          {this.state.studentResults}
+          {this.props.closedSurveys && this.props.closedSurveys.map(survey => {
+            return <StudentResult key={survey.id}
+                           survey={survey}/>
+          })}
         </article>
       </div>
      )
@@ -62,7 +61,8 @@ StudentDashboard.propTypes = {
 
 export const mapStateToProps = (state) => ({
   user: state.user,
-  studentSurveys: state.studentSurveys
+  studentSurveys: state.studentSurveys,
+  closedSurveys: state.closedSurveys
 })
 
 export const mapDispatchToProps = (dispatch) => ({
