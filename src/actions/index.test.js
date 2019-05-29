@@ -61,4 +61,18 @@ describe('actions', () => {
     const result = actions.setUser(user)
     expect(result).toEqual(expectedAction)
   })
+
+  it('should have a type of SET_INSTRUCTOR_SURVEYS', () => {
+    const surveys = [
+      { id: 1, name: "Survey1"},
+      { id: 2, name: "Survey2"}
+    ]
+    const expectedAction = {
+      type: 'SET_INSTRUCTOR_SURVEYS',
+      surveys
+    }
+
+    const result = actions.setInstructorSurveys(surveys)
+    expect(result).toEqual(expectedAction)
+  })
 })
