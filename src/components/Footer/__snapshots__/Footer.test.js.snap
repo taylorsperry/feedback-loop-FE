@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should match the snapshot 1`] = `
+<div
+  className="footer"
+>
+  Turing School of Software and Design, a Colorado Non-Profit Organization. © Copyright 2019 All Rights Reserved.
+</div>
+`;

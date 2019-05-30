@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StudentResult should match the snapshot 1`] = `
+<div
+  className="student-result"
+>
+  <p
+    className="result-card"
+    onClick={[Function]}
+  >
+    Inst Test
+  </p>
+  <div
+    className="result-data"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  />
+</div>
+`;

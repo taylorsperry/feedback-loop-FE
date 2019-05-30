@@ -1,21 +1,24 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { SurveyCard, mapStateToProps, mapDispatchToProps } from './SurveyCard'
+import { StudentResult, mapStateToProps, mapDispatchToProps } from './StudentResult'
 import MockSurvey from '../../utils/MockSurvey'
-jest.mock('../../thunks/handlePost')
+jest.mock('../../thunks/handleGet')
 
-describe('SurveyCard', () => {
+describe('StudentResult', () => {
   let mockState
   let wrapper
   let mockEvent
+  let mockFn = jest.fn()
 
   beforeEach(() => {
     mockState = {
+      studentResult: null,
+      classResult: null,
       dataDisplay: "none"
     }
     wrapper = shallow(
-      <SurveyCard
-        surveyData={MockSurvey}
+      <StudentResult
+        survey={MockSurvey}
       />
     )
   })
@@ -26,15 +29,20 @@ describe('SurveyCard', () => {
 
   it('should have proper default state', () => {
     expect(wrapper.state()).toEqual({
+      studentResult: null,
+      classResult: null,
       dataDisplay: "none"
     })
   })
 
-  it('should toggle the data display', () => {
+  it('should set toggle the data display', () => {
     wrapper.instance().toggleData()
 
     expect(wrapper.state()).toEqual({
+      studentResult: null,
+      classResult: null,
       dataDisplay: "flex"
     })
   })
+
 })

@@ -3,6 +3,7 @@ import { shallow } from 'enzyme'
 import { StudentDashboard, mapStateToProps, mapDispatchToProps } from './StudentDashboard'
 jest.mock('../../thunks/handleGet')
 import { setStudentSurveys } from '../../actions'
+import { setClosedSurveys } from '../../actions'
 
 describe('StudentDashboard', () => {
   let wrapper
@@ -74,6 +75,16 @@ describe('StudentDashboard', () => {
       const mappedProps = mapDispatchToProps(mockDispatch)
 
       mappedProps.setStudentSurveys(mockStudentSurveys)
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+
+    it('should return setClosedSurveys to dispatch', () => {
+      const mockDispatch = jest.fn()
+      const actionToDispatch = setClosedSurveys(mockStudentSurveys)
+      const mappedProps = mapDispatchToProps(mockDispatch)
+
+      mappedProps.setClosedSurveys(mockStudentSurveys)
 
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
