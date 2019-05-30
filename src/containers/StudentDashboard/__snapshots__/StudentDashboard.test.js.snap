@@ -4,15 +4,22 @@ exports[`StudentDashboard should match the snapshot 1`] = `
 <div
   className="dashboard-container"
 >
-  <button
-    className="response-button"
-    key="1"
-    onClick={[Function]}
-  />
-  <button
-    className="response-button"
-    key="2"
-    onClick={[Function]}
+  <article
+    className="pending-student-surveys"
+  >
+    <button
+      className="response-button"
+      key="1"
+      onClick={[Function]}
+    />
+    <button
+      className="response-button"
+      key="2"
+      onClick={[Function]}
+    />
+  </article>
+  <article
+    className="pending-student-surveys"
   />
 </div>
 `;
