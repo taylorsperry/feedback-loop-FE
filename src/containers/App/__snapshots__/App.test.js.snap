@@ -45,5 +45,8 @@ exports[`App should match the snapshot 1`] = `
       />
     </Switch>
   </div>
+  <div>
+    <Footer />
+  </div>
 </div>
 `;
