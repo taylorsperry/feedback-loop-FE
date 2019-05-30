@@ -29,10 +29,12 @@ Backend instructions available at [Turing Feedback_Api](https://github.com/april
 - Sass
 
 ## Screenshots
+<img width="1429" alt="Screen Shot 2019-05-30 at 8 35 22 AM" src="https://user-images.githubusercontent.com/43019784/58640685-d7f00180-82b6-11e9-9c42-51d6283bab3b.png">
 
-<img width="80" alt="screen_shot_2019-05-30_at_8 35 22_am_160" src="https://user-images.githubusercontent.com/43555476/58640415-42ed0880-82b6-11e9-8eb8-706ffb2131a2.png">
-<img width="80" alt="screen_shot_2019-05-30_at_8 16 33_am_160" src="https://user-images.githubusercontent.com/43555476/58640449-526c5180-82b6-11e9-9586-4a0e6f890c2b.png">
-<img width="80" alt="screen_shot_2019-05-30_at_8 18 00_am_160" src="https://user-images.githubusercontent.com/43555476/58640460-5ac48c80-82b6-11e9-9629-3766cb49de41.png">
+<img width="1435" alt="Screen Shot 2019-05-30 at 8 11 16 AM" src="https://user-images.githubusercontent.com/43019784/58640711-e6d6b400-82b6-11e9-9e38-eef7914c75fd.png">
+
+
+<img width="1439" alt="Screen Shot 2019-05-30 at 8 18 00 AM" src="https://user-images.githubusercontent.com/43019784/58640692-db838880-82b6-11e9-995c-414c1a7ee9a6.png">
 
 ## Future Iterations
 
