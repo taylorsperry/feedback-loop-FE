@@ -243,8 +243,9 @@ RecipientForm.propTypes = {
   user: PropTypes.string,
   instructorSurveys: PropTypes.array,
   handlePost: PropTypes.func,
+  handleGet: PropTypes.func,
   setCurrentCohort: PropTypes.func,
-  setCurrentCohort: PropTypes.func,
+  setInstructorSurveys: PropTypes.func,
 }
 
 export const mapStateToProps = (state) => ({
@@ -258,7 +259,6 @@ export const mapStateToProps = (state) => ({
 export const mapDispatchToProps = (dispatch) => ({
   handleGet: (url) => dispatch(handleGet(url)),
   handlePost: (url, options) => dispatch(handlePost(url, options)),
-  handleGet: (url) => dispatch(handleGet(url)),
   setCurrentCohort: (cohort) => dispatch(setCurrentCohort(cohort)),
   setInstructorSurveys: (surveys) => dispatch(setInstructorSurveys(surveys))
 })
