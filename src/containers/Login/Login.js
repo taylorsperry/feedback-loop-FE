@@ -43,11 +43,7 @@ export class Login extends Component {
     }
     this.props.handlePost(url, options)
     const data = await this.props.handlePost(url, options)
-    if(this.props.error.length) {
-      this.warnToast('Incorrect login. Please try again')
-    } else {
-      this.handleUser(data)
-    }
+    data ? this.handleUser(data) : this.warnToast('Incorrect login. Please try again')
   }
 
   registerUser = async (user) => {
@@ -65,7 +61,7 @@ export class Login extends Component {
       }
     }
     const data = await this.props.handlePost(url, options)
-      this.handleUser(data)
+    this.handleUser(data)
   }
 
   warnToast = (message) => {
