@@ -4,22 +4,49 @@ exports[`StudentDashboard should match the snapshot 1`] = `
 <div
   className="dashboard-container"
 >
-  <article
-    className="pending-student-surveys"
+  <h1
+    className="student-dashboard-header"
   >
-    <button
-      className="response-button"
-      key="1"
-      onClick={[Function]}
-    />
-    <button
-      className="response-button"
-      key="2"
-      onClick={[Function]}
-    />
-  </article>
-  <article
-    className="pending-student-surveys"
-  />
+    My Dashboard
+  </h1>
+  <section
+    className="student-survey-container"
+  >
+    <article
+      className="student-surveys"
+    >
+      <h2
+        className="article-header"
+      >
+        Surveys
+      </h2>
+      <div
+        className="article-container"
+      >
+        <button
+          className="student-pending-survey"
+          key="1"
+          onClick={[Function]}
+        />
+        <button
+          className="student-pending-survey"
+          key="2"
+          onClick={[Function]}
+        />
+      </div>
+    </article>
+    <article
+      className="student-feedback"
+    >
+      <h2
+        className="article-header"
+      >
+        Feedback
+      </h2>
+      <div
+        className="article-container"
+      />
+    </article>
+  </section>
 </div>
 `;

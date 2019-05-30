@@ -87,8 +87,10 @@ export class StudentSurvey extends Component {
   render() {
     return(
       <div className='student-survey'>
-        <p className='response-survey-name'>{this.state.surveyName}</p>
-        {this.state.members && this.renderResponse()}
+        <h1 className='response-survey-name'>{this.state.surveyName}</h1>
+        <div className='all-responses'>
+          {this.state.members && this.renderResponse()}
+        </div>
         <button className='response-button' onClick={this.postResponse}>Submit Response</button>
       </div>
     )

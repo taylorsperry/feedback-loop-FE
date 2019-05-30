@@ -4,19 +4,27 @@ exports[`StudentResult should match the snapshot 1`] = `
 <div
   className="student-result"
 >
-  <p
+  <div
     className="result-card"
     onClick={[Function]}
   >
-    Inst Test
-  </p>
-  <div
-    className="result-data"
-    style={
-      Object {
-        "display": "none",
+    <div
+      className="result-title"
+    >
+      Inst Test
+    </div>
+    <div
+      className="result-data"
+      style={
+        Object {
+          "display": "none",
+        }
       }
-    }
-  />
+    >
+      <div
+        className="data-container"
+      />
+    </div>
+  </div>
 </div>
 `;

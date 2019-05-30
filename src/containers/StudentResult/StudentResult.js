@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleGet } from '../../thunks/handleGet'
-import cogoToast from 'cogo-toast'
 
 export class StudentResult extends Component {
   constructor(props) {
@@ -49,12 +48,11 @@ export class StudentResult extends Component {
   }
 
   displayQuestionResult = (question) => {
-    var question = question
     return(
       <div className='result-question'>
-        <p>{question.questionTitle}</p>
-        <p>Class Average: {(this.state.classResult && this.state.classResult.averages.length) ? Number.parseFloat(this.classAverage(question.id)).toFixed(2) : "Unavailable"}</p>
-        <p>Your Average: {(this.state.studentResult && this.state.studentResult.averages.length) ? Number.parseFloat(this.studentAverage(question.id)).toFixed(2) : "Unavailable"}</p>
+        <p className='question'>{question.questionTitle}</p>
+        <p className='answer'>Class Average: {(this.state.classResult && this.state.classResult.averages.length) ? Number.parseFloat(this.classAverage(question.id)).toFixed(2) : "Unavailable"}</p>
+        <p className='answer'>Your Average: {(this.state.studentResult && this.state.studentResult.averages.length) ? Number.parseFloat(this.studentAverage(question.id)).toFixed(2) : "Unavailable"}</p>
       </div>
     )
   }
@@ -84,16 +82,21 @@ export class StudentResult extends Component {
   render() {
     return(
       <div className='student-result'>
-        <p className='result-card'
-           onClick={this.toggleData}>{this.props.survey.surveyName}
-        </p>
-        <div className='result-data'
-             style={{display: this.state.dataDisplay}}>
-        {this.state.studentResult &&
-          this.state.studentResult.survey.questions.map(question => {
-            return this.displayQuestionResult(question)
-          })
-        }
+        <div className='result-card'
+           onClick={this.toggleData}>
+          <div className='result-title'>
+           {this.props.survey.surveyName}
+          </div>
+          <div className='result-data'
+              style={{display: this.state.dataDisplay}}>
+                <div className='data-container'>
+                  {this.state.studentResult &&
+                    this.state.studentResult.survey.questions.map(question => {
+                      return this.displayQuestionResult(question)
+                    })
+                  }
+                </div>
+          </div>
         </div>
       </div>
     )
