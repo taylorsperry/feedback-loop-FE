@@ -1,68 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Turing Feedback
 
-## Available Scripts
+Turing Feedback was created as a capstone project at [The Turing School of Software and Design](https://turing.io/), where learning to give and receive feedback is a critical part of the curriculum. 
 
-In the project directory, you can run:
+This application allows instructors to create surveys for students in any active cohort, drag and drop students into teams, post surveys for students to give their teammates feedback, and see results from those surveys on their dashboard. Students will receive an email telling them they've been asked to complete a survey and can log in to their account to see their teammates, complete feedback, and see the feedback they've received. 
 
-### `npm start`
+## Deployment
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Turing Feekback is deployed to Heroku. Try it out [here](https://turing-feedback-loop.herokuapp.com/). 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Installation Steps
 
-### `npm test`
+Frontend: 
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```git clone https://github.com/taylorsperry/feedback-loop-FE.git```
 
-### `npm run build`
+```npm install```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```npm start```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Backend instructions available at [Turing Feedback_Api](https://github.com/aprildagonese/feedback_api#getting-started) 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tech Stack 
 
-### `npm run eject`
+- React
+- Redux
+- React Router
+- Jest/Enzyme
+- Sass
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Screenshots
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img width="80" alt="screen_shot_2019-05-30_at_8 35 22_am_160" src="https://user-images.githubusercontent.com/43555476/58640415-42ed0880-82b6-11e9-8eb8-706ffb2131a2.png">
+<img width="80" alt="screen_shot_2019-05-30_at_8 16 33_am_160" src="https://user-images.githubusercontent.com/43555476/58640449-526c5180-82b6-11e9-9586-4a0e6f890c2b.png">
+<img width="80" alt="screen_shot_2019-05-30_at_8 18 00_am_160" src="https://user-images.githubusercontent.com/43555476/58640460-5ac48c80-82b6-11e9-9629-3766cb49de41.png">
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Future Iterations
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Incorporate Oauth to allow users to log in with GitHub
+- Allow surveys to include an option to submit commits
+- Provide more robust feedback data and data visualization, so both instructors and students can better track results over time.
+- Add a step allowing instructors to review students' feedback before sharing with the recipient.
 
-## Learn More
+## Contributors
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[April Dagonese](https://github.com/aprildagonese)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Peter Lapicola](https://github.com/plapicola)
 
-### Code Splitting
+[Kim Myers](https://github.com/kimmichurri)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[Taylor Sperry](https://github.com/taylorsperry)
