@@ -81,7 +81,7 @@ export class Response extends Component {
     return (
       <div className='member-survey'>
         <button onClick={this.completeSurvey} className=
-        'response-button' disabled={this.state.saveResponses}>
+        'member-button' disabled={this.state.saveResponses}>
           Give {this.props.member.name} Feedback
         </button>
         {this.state.displayQuestions && this.renderQuestions()}
