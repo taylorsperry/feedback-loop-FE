@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { handleGet } from '../../thunks/handleGet'
+import PropTypes from 'prop-types'
 
 export class SurveyCardData extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      averages: null,
-      userAverages: null,
-      survey: null
+      averages: {},
+      userAverages: {},
+      survey: {}
     }
   }
 
@@ -27,7 +28,6 @@ export class SurveyCardData extends Component {
   }
 
   displayGroup = (group) => {
-    var group = group
     return(
       <section key={group.name} className="s-group">
         <section className="s-group-name group-box">
@@ -71,10 +71,10 @@ export class SurveyCardData extends Component {
 
   displayStudentData = (question_id, group) => {
     return(
-      <section className='u-ratings'>
+      <section className="u-ratings">
         {group.members.map(member => {
           var userAve = this.findUserAve(member.id, question_id)
-          return <article className='user-rating'>
+          return <article key={member.id} className="user-rating">
             {member.name}: {userAve ? userAve : "Pending"}
           </article>
         })}
@@ -83,11 +83,9 @@ export class SurveyCardData extends Component {
   }
 
   findUserAve = (userId, question_id) => {
-    var question_id = question_id
-    var userId = userId
     let result
     this.state.userAverages.averages.map(average => {
-      if (average.question_id == question_id && average.user_id == userId) {
+      if (average.question_id === question_id && average.user_id === userId) {
         result = Number.parseFloat(average.average_rating).toFixed(2)
       }
     })
@@ -97,7 +95,7 @@ export class SurveyCardData extends Component {
   render() {
     return(
       <>
-        {this.state.survey ?
+        {this.state.survey.hasOwnProperty("groups") &&
           <>
             <section className="s-status">
               Survey Status:  {this.state.survey.status}
@@ -108,18 +106,23 @@ export class SurveyCardData extends Component {
               })}
             </section>
           </>
-          :
-          <p>NOT READY YET</p>
         }
       </>
     )
   }
 }
 
-export const mapDispatchToProps = (dispatch) => ({
-  handleGet: (url) => dispatch(handleGet(url))
-})
+SurveyCardData.propTypes = {
+  error: PropTypes.string,
+  handleGet: PropTypes.func,
+}
+
 export const mapStateToProps = (state) => ({
   error: state.error
 })
+
+export const mapDispatchToProps = (dispatch) => ({
+  handleGet: (url) => dispatch(handleGet(url))
+})
+
 export default connect(mapStateToProps, mapDispatchToProps)(SurveyCardData)
