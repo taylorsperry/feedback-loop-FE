@@ -7,6 +7,7 @@ import shortid from 'shortid'
 import { setSurvey } from '../../actions'
 import { withRouter } from 'react-router-dom'
 import cogoToast from 'cogo-toast';
+import PropTypes from 'prop-types'
 
 export class NewSurvey extends Component {
   constructor(props) {
@@ -114,6 +115,10 @@ export class NewSurvey extends Component {
       </div>
     )
   }
+}
+
+NewSurvey.propTypes = {
+  setSurvey: PropTypes.func
 }
 
 export const mapDispatchToProps = (dispatch) => ({
