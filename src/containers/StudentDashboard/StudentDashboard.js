@@ -28,21 +28,32 @@ export class StudentDashboard extends Component {
     let surveyButtons
     if (this.props.studentSurveys) {
       surveyButtons = this.props.studentSurveys.map(survey => {
-        return <button className='response-button' key={survey.id} onClick={() => {this.renderSurvey(survey)}}>{survey.surveyName}</button>
+        return <button className='student-pending-survey' key={survey.id} onClick={() => {this.renderSurvey(survey)}}>{survey.surveyName}</button>
       })
     }
 
     return(
       <div className='dashboard-container'>
-        <article className='pending-student-surveys'>
-          {surveyButtons}
-        </article>
-        <article className='pending-student-surveys'>
-          {this.props.closedSurveys && this.props.closedSurveys.map(survey => {
-            return <StudentResult key={survey.id}
-                           survey={survey}/>
-          })}
-        </article>
+        <h1 className='student-dashboard-header'>My Dashboard</h1>
+        <section className='student-survey-container'>
+          <article className='student-surveys'>
+            <h2 className='article-header'>Surveys</h2>
+            <div className='article-container'>
+              {surveyButtons}
+            </div>
+          </article>
+          <article className='student-feedback'>
+            <h2 className='article-header'>Feedback</h2>
+            <div className='article-container'>
+              {this.props.closedSurveys && this.props.closedSurveys.map(survey => {
+                return <StudentResult 
+                        key={survey.id}
+                        survey={survey}
+                        />
+              })}
+            </div>
+          </article>
+        </section>
       </div>
      )
   }
