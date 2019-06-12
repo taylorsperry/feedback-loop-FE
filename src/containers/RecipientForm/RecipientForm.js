@@ -33,13 +33,17 @@ export class RecipientForm extends Component {
   }
 
   rejectSelectedStudents = (cohort) => {
-    let selectedStudents = []
-    for(let i = 0; i < this.state.teams.length; i++) {
-      for(let k = 0; k < this.state.teams[i].members.length; k++) {
-        selectedStudents.push(this.state.teams[i].members[k].id)
+    if (cohort) {
+      let selectedStudents = []
+      for(let i = 0; i < this.state.teams.length; i++) {
+        for(let k = 0; k < this.state.teams[i].members.length; k++) {
+          selectedStudents.push(this.state.teams[i].members[k].id)
+        }
       }
+      return cohort.filter((student => !selectedStudents.includes(student.id)))
+    } else {
+      return cohort
     }
-    return cohort.filter((student => !selectedStudents.includes(student.id)))
   }
 
   handleAssignGroups = async () => {
