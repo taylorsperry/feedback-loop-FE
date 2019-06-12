@@ -60,11 +60,15 @@ export class RecipientForm extends Component {
   onDrop = (e) => {
     e.preventDefault()
     const { draggedStudent } = this.state
+    let leftoverStudents = this.props.currentCohort
     const teams = this.state.teams.map(team => {
       if(team.id === e.target.id) {
         const arr = team.members
         arr.push(draggedStudent)
         team.members = arr
+        leftoverStudents = this.props.currentCohort.filter(student => {
+          return student.id !== draggedStudent.id
+        })
         return team
       } else {
         return team
@@ -72,9 +76,6 @@ export class RecipientForm extends Component {
     })
     this.setState({
       teams: teams
-    })
-    const leftoverStudents = this.props.currentCohort.filter(student => {
-      return student.id !== draggedStudent.id
     })
     this.props.setCurrentCohort(leftoverStudents)
   }
@@ -211,10 +212,10 @@ export class RecipientForm extends Component {
 
         {/* middle section */}
         <div className="student-groups-wrapper">
-          <div className="assigned-students"
-                onDrop={e => this.onDrop(e)}
-                onDragOver={(e => this.onDragOver(e))}>
-            <div className='teams-container'>
+          <div className="assigned-students">
+            <div className='teams-container'
+                  onDrop={e => this.onDrop(e)}
+                  onDragOver={(e => this.onDragOver(e))}>
               {teams}
             </div>
             <div className='team-button-container'>
