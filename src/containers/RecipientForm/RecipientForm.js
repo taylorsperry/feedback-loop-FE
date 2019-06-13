@@ -32,13 +32,28 @@ export class RecipientForm extends Component {
     })
   }
 
+  rejectSelectedStudents = (cohort) => {
+    if (cohort) {
+      let selectedStudents = []
+      for(let i = 0; i < this.state.teams.length; i++) {
+        for(let k = 0; k < this.state.teams[i].members.length; k++) {
+          selectedStudents.push(this.state.teams[i].members[k].id)
+        }
+      }
+      return cohort.filter((student => !selectedStudents.includes(student.id)))
+    } else {
+      return cohort
+    }
+  }
+
   handleAssignGroups = async () => {
     const { cohort_id, program } = this.state
     let url
     this.state.program === "both"
     ? url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}`
     : url = `https://turing-feedback-api.herokuapp.com/api/v1/students?cohort=${cohort_id}&&program=${program}`
-    const cohort = await this.props.handleGet(url)
+    let cohort = await this.props.handleGet(url)
+    cohort = this.rejectSelectedStudents(cohort)
     await this.props.setCurrentCohort(cohort)
   }
 
