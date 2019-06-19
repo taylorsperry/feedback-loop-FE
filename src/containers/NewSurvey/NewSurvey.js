@@ -90,6 +90,7 @@ export class NewSurvey extends Component {
             placeholder="Add Survey Name"
             value={this.state.surveyName}
             onChange={this.handleChange}
+            autoComplete="off"
           />
           <label className="begin-create-survey-label">
             <p className="exp">Expiration Date:</p>
