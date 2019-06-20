@@ -51,6 +51,7 @@ export class Question extends Component {
             placeholder="Add Your Question Text"
             value={this.state.questionTitle}
             onChange={this.handleTitleChange}
+            autoComplete="off"
           />
         </div>
         <div className='option-container'>
@@ -65,7 +66,9 @@ export class Question extends Component {
               id='op1'
               className='option'
               value={this.state.option_1.description}
-              onChange={this.handleChange} />
+              onChange={this.handleChange} 
+              autoComplete="off"
+            />
           </div>
           <div className='option'>
             <input
@@ -77,7 +80,9 @@ export class Question extends Component {
               name="option_2"
               className='option'
               value={this.state.option_2.description}
-              onChange={this.handleChange} />
+              onChange={this.handleChange} 
+              autoComplete="off"
+            />
           </div>
           <div className='option'>
             <input
@@ -89,7 +94,9 @@ export class Question extends Component {
               name="option_3"
               className='option'
               value={this.state.option_3.description}
-              onChange={this.handleChange} />
+              onChange={this.handleChange} 
+              autoComplete="off"  
+            />
           </div>
           <div className='option'>
             <input
@@ -101,7 +108,9 @@ export class Question extends Component {
               name="option_4"
               className='option'
               value={this.state.option_4.description}
-              onChange={this.handleChange} />
+              onChange={this.handleChange} 
+              autoComplete="off"  
+            />
           </div>
         </div>
       </form>

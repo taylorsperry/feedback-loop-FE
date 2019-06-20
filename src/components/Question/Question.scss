@@ -16,6 +16,9 @@
   border-bottom: solid $main-grey 1px;
   font-size: 20px;
   color: $accent-charcoal;
+  &:focus {
+    outline: none;
+  }
 }
 
 .option-container {
