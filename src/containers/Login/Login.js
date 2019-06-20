@@ -4,7 +4,7 @@ import { setUser, setRole } from '../../actions'
 import RegisterForm from '../RegisterForm/RegisterForm'
 import LoginForm from '../LoginForm/LoginForm'
 import { handlePost } from '../../thunks/handlePost'
-import { withRouter } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import cogoToast from 'cogo-toast';
 
 export class Login extends Component {
@@ -16,6 +16,7 @@ export class Login extends Component {
   }
 
   createAccount = () => {
+    this.props.history.push('/register')
     this.setState({
       newUser: true
     })
@@ -89,15 +90,19 @@ export class Login extends Component {
   render() {
     return(
       <div className='login-landing'>
-        {!this.state.newUser &&
-          <LoginForm
-            createAccount={this.createAccount}
-            handleLogin={this.handleLogin}
-          />}
-        {this.state.newUser &&
-          <RegisterForm
-            handleLogin={this.handleLogin}
-          />}
+        <Switch>
+          <Route exact path='/'
+            render={() => <LoginForm  
+              createAccount={this.createAccount} 
+              handleLogin={this.handleLogin}
+              />}
+          />
+          <Route exact path='/register'
+            render={() => <RegisterForm 
+              handleLogin={this.handleLogin}
+            />}
+          />
+        </Switch>
       </div>
     )
   }

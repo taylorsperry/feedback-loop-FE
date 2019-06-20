@@ -105,7 +105,7 @@ export class RegisterForm extends Component {
           </div>
         </div>
         <button className='login-button' onClick={this.checkPassword}>
-          Login
+          Register
         </button> 
       </form>
     )
