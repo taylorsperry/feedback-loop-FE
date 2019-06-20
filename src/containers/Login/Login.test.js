@@ -45,6 +45,11 @@ describe('Login', () => {
     expect(wrapper.state('newUser')).toBe(true)
   })
 
+  it('should push to /register when createAccount is called', () => {
+    wrapper.instance().createAccount()
+    expect(wrapper.instance().props.history.push).toHaveBeenCalled()
+  })
+
   it('should call loginUser when handleLogin is called', () => {
     const loginUserSpy = jest.spyOn(wrapper.instance(), 'loginUser')
     wrapper.setState({newUser: false})

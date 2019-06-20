@@ -18,6 +18,10 @@ exports[`App should match the snapshot 1`] = `
       />
       <Route
         component={[Function]}
+        path="/register"
+      />
+      <Route
+        component={[Function]}
         exact={true}
         path="/dashboard"
       />
