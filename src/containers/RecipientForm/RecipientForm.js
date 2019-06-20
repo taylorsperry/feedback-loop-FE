@@ -150,7 +150,7 @@ export class RecipientForm extends Component {
     this.postSurvey(formattedGroups)
   }
 
-  postSurvey = (formattedGroups) => {
+  postSurvey = async (formattedGroups) => {
     const { survey } = this.props
     const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
     const options = {
@@ -169,7 +169,7 @@ export class RecipientForm extends Component {
           'Content-Type': 'application/json'
         }
     }
-    this.props.handlePost(url, options)
+    await this.props.handlePost(url, options)
     this.handleSuccess()
   }
 
@@ -179,7 +179,7 @@ export class RecipientForm extends Component {
     const myKey = await localStorage.getItem('currentUser')
     const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys?api_key=${myKey}`
     const surveys = await this.props.handleGet(url)
-    this.props.setInstructorSurveys(surveys)
+    await this.props.setInstructorSurveys(surveys)
     this.props.history.push('/dashboard')
   }
 
