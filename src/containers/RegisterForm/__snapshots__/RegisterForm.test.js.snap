@@ -99,7 +99,7 @@ exports[`RegisterForm should match the snapshot 1`] = `
     className="login-button"
     onClick={[Function]}
   >
-    Login
+    Register
   </button>
 </form>
 `;

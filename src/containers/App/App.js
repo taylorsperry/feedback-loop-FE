@@ -54,6 +54,7 @@ export class App extends Component {
           <Switch>
             <Route exact path='/' component={loginRoute()}
             />
+            <Route path='/register' component={Login} />
             <Route exact path='/dashboard' component={validateInstructor() ? InstructorDashboard : PageNotFound}
             />
             <Route exact path='/new-survey' component={validateInstructor() ? NewSurvey : PageNotFound}
