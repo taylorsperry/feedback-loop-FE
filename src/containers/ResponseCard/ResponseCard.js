@@ -28,19 +28,10 @@ export class ResponseCard extends Component {
               type="radio" 
               name="option"
               id="op1" 
-              value={this.props.question.options[3].id}
+              value={this.props.question.options[0].id}
               onChange={this.handleChange}
             />
-            <p className='response-description'>1. {this.props.question.options[3].description}</p>
-          </div>
-          <div className='response-option'>
-            <input 
-              type="radio" 
-              name="option"
-              value={this.props.question.options[2].id}
-              onChange={this.handleChange}
-            />
-            <p className='response-description'>2. {this.props.question.options[2].description}</p>
+            <p className='response-description'>4. {this.props.question.options[0].description}</p>
           </div>
           <div className='response-option'>
             <input 
@@ -55,10 +46,19 @@ export class ResponseCard extends Component {
             <input 
               type="radio" 
               name="option"
-              value={this.props.question.options[0].id}
+              value={this.props.question.options[2].id}
               onChange={this.handleChange}
             />
-            <p className='response-description'>4. {this.props.question.options[0].description}</p>
+            <p className='response-description'>2. {this.props.question.options[2].description}</p>
+          </div>
+          <div className='response-option'>
+            <input 
+              type="radio" 
+              name="option"
+              value={this.props.question.options[3].id}
+              onChange={this.handleChange}
+            />
+            <p className='response-description'>1. {this.props.question.options[3].description}</p>
           </div>
         </div>
       </form>

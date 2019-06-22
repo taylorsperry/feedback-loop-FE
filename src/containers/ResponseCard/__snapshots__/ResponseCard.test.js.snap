@@ -20,29 +20,13 @@ exports[`ResponseCard should match the snapshot 1`] = `
         name="option"
         onChange={[Function]}
         type="radio"
-        value={4}
+        value={1}
       />
       <p
         className="response-description"
       >
-        1. 
-        Option Four
-      </p>
-    </div>
-    <div
-      className="response-option"
-    >
-      <input
-        name="option"
-        onChange={[Function]}
-        type="radio"
-        value={3}
-      />
-      <p
-        className="response-description"
-      >
-        2. 
-        Option Three
+        4. 
+        Option One
       </p>
     </div>
     <div
@@ -68,13 +52,29 @@ exports[`ResponseCard should match the snapshot 1`] = `
         name="option"
         onChange={[Function]}
         type="radio"
-        value={1}
+        value={3}
       />
       <p
         className="response-description"
       >
-        4. 
-        Option One
+        2. 
+        Option Three
+      </p>
+    </div>
+    <div
+      className="response-option"
+    >
+      <input
+        name="option"
+        onChange={[Function]}
+        type="radio"
+        value={4}
+      />
+      <p
+        className="response-description"
+      >
+        1. 
+        Option Four
       </p>
     </div>
   </div>
