@@ -24,6 +24,9 @@ export class InstructorDashboard extends Component {
             return <SurveyCard key={survey.id}
                                surveyData={survey}/>
           })}
+          {this.props.instructorSurveys.length === 0 &&
+            <p className='no-surveys'>You haven't sent out any surveys.<br />Create one below!</p>
+          }
         </div>
         <Link to='/new-survey'>
           <button className='create-new-survey-button'>Create New Survey</button>
