@@ -18,6 +18,7 @@ export class InstructorDashboard extends Component {
   render() {
     return(
       <div className='surveys-accordion'>
+        <h2 className='inst-dashboard-header'>My Dashboard</h2>
         <div className='inst-surveys'>
           {this.props.instructorSurveys && this.props.instructorSurveys.map(survey => {
             return <SurveyCard key={survey.id}

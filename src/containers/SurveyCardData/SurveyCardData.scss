@@ -5,15 +5,17 @@
 }
 
 .s-groups {
-  margin-left: 10%;
-  margin-right: -15px;
+  // margin-left: 10%;
+  // margin-right: -15px;
+  margin: auto;
+  width: 90%;
 }
 
 .s-group {
   padding-top: 2%;
   padding-bottom: 2%;
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
+  border-radius: 12px;
+  // border-bottom-left-radius: 12px;
   background-color: white;
   color: black;
   box-shadow: 0 0 2px 1px rgba(0,0,0,.2);
