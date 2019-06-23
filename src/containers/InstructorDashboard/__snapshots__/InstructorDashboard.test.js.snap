@@ -4,6 +4,11 @@ exports[`InstructorDashboard should match the snapshot 1`] = `
 <div
   className="surveys-accordion"
 >
+  <h2
+    className="inst-dashboard-header"
+  >
+    My Dashboard
+  </h2>
   <div
     className="inst-surveys"
   >
