@@ -1,23 +1,24 @@
 .s-status {
   align-self: flex-start;
-  padding-bottom: 1%;
-  color: $accent-charcoal;
+  padding-bottom: 2%;
+  color: $main-grey;
+}
+
+.s-status-title {
+  font-weight: bold;
 }
 
 .s-groups {
-  // margin-left: 10%;
-  // margin-right: -15px;
   margin: auto;
   width: 90%;
 }
 
 .s-group {
-  padding-top: 2%;
-  padding-bottom: 2%;
+  padding: 2% 0px 2% 0px;
+  margin-bottom: 2%;
   border-radius: 12px;
-  // border-bottom-left-radius: 12px;
   background-color: white;
-  color: black;
+  color: $main-grey;
   box-shadow: 0 0 2px 1px rgba(0,0,0,.2);
 }
 
@@ -32,12 +33,16 @@
   padding-right: 2%;
 }
 
+.s-question-data {
+  padding: 10px 0px;
+}
+
 .s-question-data, .s-question {
   margin-bottom: 1%;
 }
 
 .s-question {
-  color: $accent-charcoal;
+  color: $main-grey;
   font-weight: bold;
 }
 
@@ -50,6 +55,6 @@
 }
 
 .s-team-title {
-  color: #2A2A2A;
+  color: $main-grey;
   font-weight: bold;
 }
