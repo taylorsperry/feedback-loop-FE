@@ -6,10 +6,10 @@ export class Question extends Component {
     this.state = {
       id: this.props.id,
       questionTitle: '',
-      option_1: {pointValue: 1, description: ''},
-      option_2: {pointValue: 2, description: ''},
-      option_3: {pointValue: 3, description: ''},
-      option_4: {pointValue: 4, description: ''}
+      option_1: {pointValue: 4, description: ''},
+      option_2: {pointValue: 3, description: ''},
+      option_3: {pointValue: 2, description: ''},
+      option_4: {pointValue: 1, description: ''}
     }
   }
 
@@ -59,9 +59,10 @@ export class Question extends Component {
             <input
               type="radio"
               name="radio" />
+            <p>4.</p>
             <input
               type="text"
-              placeholder="Add Response Description 1"
+              placeholder="Add Response Description"
               name="option_1"
               id='op1'
               className='option'
@@ -74,9 +75,10 @@ export class Question extends Component {
             <input
               type="radio"
               name="radio" />
+            <p>3.</p>
             <input
               type="text"
-              placeholder="Add Response Description 2"
+              placeholder="Add Response Description"
               name="option_2"
               className='option'
               value={this.state.option_2.description}
@@ -88,9 +90,10 @@ export class Question extends Component {
             <input
               type="radio"
               name="radio" />
+            <p>2.</p>
             <input
               type="text"
-              placeholder="Add Response Description 3"
+              placeholder="Add Response Description"
               name="option_3"
               className='option'
               value={this.state.option_3.description}
@@ -102,9 +105,10 @@ export class Question extends Component {
             <input
               type="radio"
               name="radio" />
+            <p>1.</p>
             <input
               type="text"
-              placeholder="Add Response Description 4"
+              placeholder="Add Response Description"
               name="option_4"
               className='option'
               value={this.state.option_4.description}

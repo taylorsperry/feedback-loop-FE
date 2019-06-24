@@ -21,10 +21,10 @@ describe('Question', () => {
     const defaultState = {
       id: 'abc',
       questionTitle: '',
-      option_1: {pointValue: 1, description: ''},
-      option_2: {pointValue: 2, description: ''},
-      option_3: {pointValue: 3, description: ''},
-      option_4: {pointValue: 4, description: ''}
+      option_1: {pointValue: 4, description: ''},
+      option_2: {pointValue: 3, description: ''},
+      option_3: {pointValue: 2, description: ''},
+      option_4: {pointValue: 1, description: ''}
     }
 
     expect(wrapper.state()).toEqual(defaultState)
@@ -33,7 +33,7 @@ describe('Question', () => {
   it('should update description in state on change', () => {
     const mockEvent = { target: { name: 'option_1', value: 'First Option'}}
     wrapper.find('#op1').simulate('change', mockEvent)
-    expect(wrapper.state('option_1')).toEqual({ "pointValue": 1, "description": 'First Option'})
+    expect(wrapper.state('option_1')).toEqual({ "pointValue": 4, "description": 'First Option'})
   })
 
   it('should update questionTitle in state on change', () => {
@@ -47,17 +47,17 @@ describe('Question', () => {
     const mockState = {
       id: 'abd',
       questionTitle: 'New Question',
-      option_1: {pointValue: 1, description: 'a'},
-      option_2: {pointValue: 2, description: 'b'},
-      option_3: {pointValue: 3, description: 'c'},
-      option_4: {pointValue: 4, description: 'd'}
+      option_1: {pointValue: 4, description: 'a'},
+      option_2: {pointValue: 3, description: 'b'},
+      option_3: {pointValue: 2, description: 'c'},
+      option_4: {pointValue: 1, description: 'd'}
     }
 
     const optionsArr = [
-      { option_1: {pointValue: 1, description: 'a'} },
-      { option_2: {pointValue: 2, description: 'b'} },
-      { option_3: {pointValue: 3, description: 'c'} },
-      { option_4: {pointValue: 4, description: 'd'} }
+      { option_1: {pointValue: 4, description: 'a'} },
+      { option_2: {pointValue: 3, description: 'b'} },
+      { option_3: {pointValue: 2, description: 'c'} },
+      { option_4: {pointValue: 1, description: 'd'} }
     ]
 
     wrapper.setState(mockState)

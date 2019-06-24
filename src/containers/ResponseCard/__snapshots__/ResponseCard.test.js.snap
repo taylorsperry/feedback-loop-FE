@@ -25,6 +25,7 @@ exports[`ResponseCard should match the snapshot 1`] = `
       <p
         className="response-description"
       >
+        4. 
         Option One
       </p>
     </div>
@@ -40,6 +41,7 @@ exports[`ResponseCard should match the snapshot 1`] = `
       <p
         className="response-description"
       >
+        3. 
         Option Two
       </p>
     </div>
@@ -55,6 +57,7 @@ exports[`ResponseCard should match the snapshot 1`] = `
       <p
         className="response-description"
       >
+        2. 
         Option Three
       </p>
     </div>
@@ -70,6 +73,7 @@ exports[`ResponseCard should match the snapshot 1`] = `
       <p
         className="response-description"
       >
+        1. 
         Option Four
       </p>
     </div>
