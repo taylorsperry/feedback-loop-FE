@@ -18,11 +18,15 @@ export class InstructorDashboard extends Component {
   render() {
     return(
       <div className='surveys-accordion'>
+        <h2 className='inst-dashboard-header'>My Dashboard</h2>
         <div className='inst-surveys'>
           {this.props.instructorSurveys && this.props.instructorSurveys.map(survey => {
             return <SurveyCard key={survey.id}
                                surveyData={survey}/>
           })}
+          {this.props.instructorSurveys.length === 0 &&
+            <p className='no-surveys'>You haven't sent out any surveys.<br />Create one below!</p>
+          }
         </div>
         <Link to='/new-survey'>
           <button className='create-new-survey-button'>Create New Survey</button>

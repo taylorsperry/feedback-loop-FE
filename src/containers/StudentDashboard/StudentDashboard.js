@@ -32,6 +32,10 @@ export class StudentDashboard extends Component {
       })
     }
 
+    if (this.props.studentSurveys.length === 0) {
+      surveyButtons = <p className='no-student-surveys'>You're all caught up!</p>
+    }
+
     return(
       <div className='dashboard-container'>
         <h1 className='student-dashboard-header'>My Dashboard</h1>

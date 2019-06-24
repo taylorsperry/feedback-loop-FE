@@ -49,7 +49,7 @@ export class StudentResult extends Component {
 
   displayQuestionResult = (question) => {
     return(
-      <div className='result-question'>
+      <div className='result-question' key={question.id}>
         <p className='question'>{question.questionTitle}</p>
         <p className='answer'>Class Average: {(this.state.classResult && this.state.classResult.averages.length) ? Number.parseFloat(this.classAverage(question.id)).toFixed(2) : "Unavailable"}</p>
         <p className='answer'>Your Average: {(this.state.studentResult && this.state.studentResult.averages.length) ? Number.parseFloat(this.studentAverage(question.id)).toFixed(2) : "Unavailable"}</p>

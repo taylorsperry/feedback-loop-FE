@@ -98,7 +98,7 @@ export class SurveyCardData extends Component {
         {this.state.survey.hasOwnProperty("groups") &&
           <>
             <section className="s-status">
-              Survey Status:  {this.state.survey.status}
+              <span className='s-status-title'>Survey Status:</span>  {this.state.survey.status}
             </section>
             <section className="s-groups">
               {this.state.survey.groups.map(group => {
