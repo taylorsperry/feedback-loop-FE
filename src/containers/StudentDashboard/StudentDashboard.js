@@ -15,8 +15,12 @@ export class StudentDashboard extends Component {
     const closedUrl = `https://turing-feedback-api.herokuapp.com/api/v1/surveys/closed?api_key=${localStorage.getItem('currentUser')}`
     const surveys = await this.props.handleGet(url)
     const closedSurveys = await this.props.handleGet(closedUrl)
-    this.props.setStudentSurveys(surveys)
-    this.props.setClosedSurveys(closedSurveys)
+    if(surveys) {
+      this.props.setStudentSurveys(surveys)
+    }
+    if(closedSurveys) {
+      this.props.setClosedSurveys(closedSurveys)
+    }
   }
 
   renderSurvey = (survey) => {

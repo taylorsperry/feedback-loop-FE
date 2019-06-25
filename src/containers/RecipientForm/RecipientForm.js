@@ -179,7 +179,9 @@ export class RecipientForm extends Component {
     const myKey = await localStorage.getItem('currentUser')
     const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys?api_key=${myKey}`
     const surveys = await this.props.handleGet(url)
-    await this.props.setInstructorSurveys(surveys)
+    if(surveys) {
+      await this.props.setInstructorSurveys(surveys)
+    }
     this.props.history.push('/dashboard')
   }
 
