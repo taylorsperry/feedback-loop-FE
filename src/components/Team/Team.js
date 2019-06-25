@@ -30,6 +30,7 @@ export class Team extends Component {
           name='name'
           onChange={this.handleChange}
           className='team-input'
+          autoComplete="off"
         />
         {names}
       </div>
