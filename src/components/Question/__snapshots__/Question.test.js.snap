@@ -22,10 +22,6 @@ exports[`Question should match the snapshot 1`] = `
     <div
       className="option"
     >
-      <input
-        name="radio"
-        type="radio"
-      />
       <p>
         4.
       </p>
@@ -43,10 +39,6 @@ exports[`Question should match the snapshot 1`] = `
     <div
       className="option"
     >
-      <input
-        name="radio"
-        type="radio"
-      />
       <p>
         3.
       </p>
@@ -63,10 +55,6 @@ exports[`Question should match the snapshot 1`] = `
     <div
       className="option"
     >
-      <input
-        name="radio"
-        type="radio"
-      />
       <p>
         2.
       </p>
@@ -83,10 +71,6 @@ exports[`Question should match the snapshot 1`] = `
     <div
       className="option"
     >
-      <input
-        name="radio"
-        type="radio"
-      />
       <p>
         1.
       </p>
