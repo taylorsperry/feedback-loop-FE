@@ -56,9 +56,6 @@ export class Question extends Component {
         </div>
         <div className='option-container'>
           <div className='option'>
-            <input
-              type="radio"
-              name="radio" />
             <p>4.</p>
             <input
               type="text"
@@ -72,9 +69,6 @@ export class Question extends Component {
             />
           </div>
           <div className='option'>
-            <input
-              type="radio"
-              name="radio" />
             <p>3.</p>
             <input
               type="text"
@@ -87,9 +81,6 @@ export class Question extends Component {
             />
           </div>
           <div className='option'>
-            <input
-              type="radio"
-              name="radio" />
             <p>2.</p>
             <input
               type="text"
@@ -102,9 +93,6 @@ export class Question extends Component {
             />
           </div>
           <div className='option'>
-            <input
-              type="radio"
-              name="radio" />
             <p>1.</p>
             <input
               type="text"
