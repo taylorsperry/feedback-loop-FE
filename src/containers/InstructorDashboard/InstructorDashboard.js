@@ -12,9 +12,7 @@ export class InstructorDashboard extends Component {
     const myKey = await localStorage.getItem('currentUser')
     const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys?api_key=${myKey}`
     const surveys = await this.props.handleGet(url)
-    if(surveys) {
-      this.props.setInstructorSurveys(surveys)
-    }
+    this.props.setInstructorSurveys(surveys)
   }
 
   render() {
