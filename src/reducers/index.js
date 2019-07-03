@@ -9,7 +9,7 @@ import { setStudentSurveysReducer } from './setStudentSurveysReducer'
 import { setClosedSurveysReducer } from './setClosedSurveysReducer'
 import { setInstructorSurveysReducer } from './setInstructorSurveysReducer'
 import { setCurrentCohortReducer } from './setCurrentCohortReducer'
-
+import { setSurveyTeamsReducer } from './setSurveyTeamsReducer'
 
 const rootReducer = combineReducers({
   error: hasErrorReducer,
@@ -21,7 +21,8 @@ const rootReducer = combineReducers({
   role: setRoleReducer,
   studentSurveys: setStudentSurveysReducer,
   closedSurveys: setClosedSurveysReducer,
-  instructorSurveys: setInstructorSurveysReducer
+  instructorSurveys: setInstructorSurveysReducer,
+  surveyTeams: setSurveyTeamsReducer
 })
 
 export default rootReducer;

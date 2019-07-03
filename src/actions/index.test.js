@@ -107,4 +107,18 @@ describe('actions', () => {
     const result = actions.setInstructorSurveys(surveys)
     expect(result).toEqual(expectedAction)
   })
+
+  xit('should have a type of SET_SURVEY_TEAMS', () => {
+    const teams = [
+      { id: 1, name: "Survey1"},
+      { id: 2, name: "Survey2"}
+    ]
+    const expectedAction = {
+      type: 'SET_SURVEY_TEAMS',
+      teams
+    }
+
+    const result = actions.setInstructorSurveys(surveys)
+    expect(result).toEqual(expectedAction)
+  })
 })

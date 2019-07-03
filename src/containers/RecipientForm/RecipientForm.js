@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
 import { handleGet } from '../../thunks/handleGet'
-import { setCurrentCohort, setInstructorSurveys } from '../../actions'
+import { setCurrentCohort, setInstructorSurveys, setSurveyTeams } from '../../actions'
 import cogoToast from 'cogo-toast';
 import shortid from 'shortid'
 import Team from '../../components/Team/Team'
@@ -132,8 +132,8 @@ export class RecipientForm extends Component {
     }
   }
 
-  checkGroups = () => {
-    const formattedGroups = this.state.teams.map(team => {
+  checkGroups = async () => {
+    const formattedGroups = await this.state.teams.map(team => {
       const formattedMembers = team.members.map(member => {
         return member.id
       })
@@ -147,7 +147,9 @@ export class RecipientForm extends Component {
         return formattedGroup
       }
     })
-    this.postSurvey(formattedGroups)
+    await this.props.setSurveyTeams(formattedGroups)
+    await this.props.history.push('/owners')
+    // this.postSurvey(formattedGroups)
   }
 
   postSurvey = async (formattedGroups) => {
@@ -245,7 +247,7 @@ export class RecipientForm extends Component {
         {/* bottom button */}
         <div className='send-button-container'>
           <button className="send-button"
-                  onClick={this.checkSurvey}>Send Survey</button>
+                  onClick={this.checkSurvey}>Continue</button>
         </div>
       </div>
     )
@@ -262,6 +264,7 @@ RecipientForm.propTypes = {
   handleGet: PropTypes.func,
   setCurrentCohort: PropTypes.func,
   setInstructorSurveys: PropTypes.func,
+  teams: PropTypes.object
 }
 
 export const mapStateToProps = (state) => ({
@@ -269,14 +272,16 @@ export const mapStateToProps = (state) => ({
   cohorts: state.cohorts,
   currentCohort: state.currentCohort,
   user: state.user,
-  instructorSurveys: state.instructorSurveys
+  instructorSurveys: state.instructorSurveys,
+  teams: state.teams
 })
 
 export const mapDispatchToProps = (dispatch) => ({
   handleGet: (url) => dispatch(handleGet(url)),
   handlePost: (url, options) => dispatch(handlePost(url, options)),
   setCurrentCohort: (cohort) => dispatch(setCurrentCohort(cohort)),
-  setInstructorSurveys: (surveys) => dispatch(setInstructorSurveys(surveys))
+  setInstructorSurveys: (surveys) => dispatch(setInstructorSurveys(surveys)),
+  setSurveyTeams: (teams) => dispatch(setSurveyTeams(teams))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipientForm)

@@ -9,6 +9,7 @@ import Login from '../Login/Login'
 import PageNotFound from '../../components/PageNotFound/PageNotFound'
 import NewSurvey from '../NewSurvey/NewSurvey';
 import RecipientForm from '../RecipientForm/RecipientForm'
+import OwnersForm from '../OwnersForm/OwnersForm'
 import StudentDashboard from '../StudentDashboard/StudentDashboard'
 import StudentSurvey from '../StudentSurvey/StudentSurvey'
 import { fetchCohorts } from '../../thunks/fetchCohorts'
@@ -64,6 +65,8 @@ export class App extends Component {
             <Route path='/student-survey' component={validateStudent() ? StudentSurvey : PageNotFound}
             />
             <Route exact path='/recipients' component={validateInstructor() ? RecipientForm : PageNotFound}
+            />
+            <Route exact path='/owners' component={validateInstructor() ? OwnersForm : PageNotFound}
             />
             <Route component={PageNotFound} />
           </Switch>
