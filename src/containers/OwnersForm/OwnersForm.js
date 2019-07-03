@@ -36,7 +36,49 @@ export class OwnersForm extends Component {
   }
 
   checkOwners = () => {
+    if (this.state.owners.length === 0) {
+      this.sendToast('You must assign at least one owner for this survey')
+    } else {
+      this.postSurvey()
+    }
+  }
 
+  postSurvey = async () => {
+    const { survey } = this.props
+    const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
+    const options = {
+        method: 'POST',
+        body: JSON.stringify({
+          api_key: this.props.user,
+          survey:
+            {
+              surveyName: survey.surveyName,
+              surveyExpiration: survey.surveyExpiration,
+              questions: survey.questions,
+              groups: this.props.surveyTeams,
+              owners: this.state.owners
+            }
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    }
+    await this.props.handlePost(url, options)
+    this.handleSuccess()
+  }
+
+
+  handleSuccess = async () => {
+    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
+    const myKey = await localStorage.getItem('currentUser')
+    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys?api_key=${myKey}`
+    const surveys = await this.props.handleGet(url)
+    await this.props.setInstructorSurveys(surveys)
+    this.props.history.push('/dashboard')
+  }
+
+  sendToast = (message) => {
+    cogoToast.warn(message, {position: 'bottom-left'})
   }
 
   render() {
@@ -52,12 +94,15 @@ export class OwnersForm extends Component {
 
     return(
       <div className="owners-wrapper">
+        <div className='owners-title'>
+          Select Survey Owners
+        </div>
         <div className='owners-list'>
           {instructorsToDisplay}
         </div>
         <div className='submit-button-container'>
           <button className="submit-button"
-                  onClick={this.checkOwners}>Continue</button>
+                  onClick={this.checkOwners}>Send Survey</button>
         </div>
       </div>
     )

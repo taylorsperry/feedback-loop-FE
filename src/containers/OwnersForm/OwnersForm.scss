@@ -4,6 +4,9 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  max-height: 75vh;
+  overflow: auto;
+  margin: 2% 0;
 }
 
 .instructor-nametag {
@@ -12,4 +15,13 @@
   margin: .5%;
   padding: .5%;
   border-radius: 5px;
+}
+
+.owners-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 43px;
+  color: #FFF;
+  font-weight: bolder;
+  text-shadow: black 0px 0px 5px;
 }
