@@ -12,15 +12,54 @@ export class OwnersForm extends Component {
   constructor() {
     super()
     this.state = {
-      draggedStudent: {},
-      group: [],
-      teams: [{id: shortid(), name: '', members: []}]
+      owners: [],
+      instructors: []
     }
   }
 
+  componentDidMount = async function () {
+    let url = `https://turing-feedback-api.herokuapp.com/api/v1/students`
+    let instructors = await this.props.handleGet(url)
+    await this.setState({
+      instructors: instructors
+    })
+  }
+
+  handleSelect = (e, instructor) => {
+    e.preventDefault()
+    const selectedInstructor = { id: instructor.id, name: instructor.name }
+    const newOwners = this.state.owners
+    newOwners.push(selectedInstructor)
+    this.setState({
+      owners: newOwners
+    })
+  }
+
+  checkOwners = () => {
+
+  }
+
   render() {
+    const instructorsToDisplay = this.state.instructors.map(instructor => {
+      return <div
+              key={instructor.id}
+              id={instructor.id}
+              className="instructor-nametag"
+              clickable onClick={(e) => this.handleSelect(e, instructor)}>
+              {instructor.name}
+             </div>
+    })
+
     return(
-      <div>Add Owners</div>
+      <div className="owners-wrapper">
+        <div className='owners-list'>
+          {instructorsToDisplay}
+        </div>
+        <div className='submit-button-container'>
+          <button className="submit-button"
+                  onClick={this.checkOwners}>Continue</button>
+        </div>
+      </div>
     )
   }
 }

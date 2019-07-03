@@ -1,0 +1,15 @@
+.owners-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.instructor-nametag {
+  width: 20%;
+  background-color: white;
+  margin: .5%;
+  padding: .5%;
+  border-radius: 5px;
+}
