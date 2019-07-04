@@ -152,39 +152,6 @@ export class RecipientForm extends Component {
     // this.postSurvey(formattedGroups)
   }
 
-  postSurvey = async (formattedGroups) => {
-    const { survey } = this.props
-    const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
-    const options = {
-        method: 'POST',
-        body: JSON.stringify({
-          api_key: this.props.user,
-          survey:
-            {
-              surveyName: survey.surveyName,
-              surveyExpiration: survey.surveyExpiration,
-              questions: survey.questions,
-              groups: formattedGroups
-            }
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-    }
-    await this.props.handlePost(url, options)
-    this.handleSuccess()
-  }
-
-
-  handleSuccess = async () => {
-    cogoToast.success('Your survey has been sent', {position: 'bottom-left'})
-    const myKey = await localStorage.getItem('currentUser')
-    const url = `https://turing-feedback-api.herokuapp.com/api/v1/surveys?api_key=${myKey}`
-    const surveys = await this.props.handleGet(url)
-    await this.props.setInstructorSurveys(surveys)
-    this.props.history.push('/dashboard')
-  }
-
   sendToast = (message) => {
     cogoToast.warn(message, {position: 'bottom-left'})
   }

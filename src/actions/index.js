@@ -52,3 +52,8 @@ export const setSurveyTeams = (teams) => ({
   type: 'SET_SURVEY_TEAMS',
   teams
 })
+
+export const setOwners = (owners) => ({
+  type: 'SET_OWNERS',
+  owners
+})

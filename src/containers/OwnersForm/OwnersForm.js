@@ -27,9 +27,8 @@ export class OwnersForm extends Component {
 
   handleSelect = (e, instructor) => {
     e.preventDefault()
-    const selectedInstructor = { id: instructor.id, name: instructor.name }
     const newOwners = this.state.owners
-    newOwners.push(selectedInstructor)
+    newOwners.push(instructor.id)
     this.setState({
       owners: newOwners
     })
@@ -82,6 +81,9 @@ export class OwnersForm extends Component {
   }
 
   render() {
+    const backgroundColor = (instructorId) => {
+
+    }
     const instructorsToDisplay = this.state.instructors.map(instructor => {
       return <div
               key={instructor.id}
