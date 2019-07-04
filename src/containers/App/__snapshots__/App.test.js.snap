@@ -46,6 +46,11 @@ exports[`App should match the snapshot 1`] = `
       />
       <Route
         component={[Function]}
+        exact={true}
+        path="/owners"
+      />
+      <Route
+        component={[Function]}
       />
     </Switch>
   </div>

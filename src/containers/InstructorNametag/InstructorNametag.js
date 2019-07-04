@@ -27,7 +27,7 @@ export class InstructorNametag extends Component {
 
   render() {
     const backgroundColor = () => {
-      return this.props.owners.includes(this.props.instructor.id) ? "#13F1FC" : "white"
+      return this.props.owners.includes(this.props.instructor.id) ? "#5F5F5F" : "white"
     }
 
     return(

@@ -26,14 +26,6 @@ export class OwnersForm extends Component {
     })
   }
 
-  checkOwners = () => {
-    if (this.props.owners.length === 0) {
-      this.sendToast('You must assign at least one owner for this survey')
-    } else {
-      this.postSurvey()
-    }
-  }
-
   postSurvey = async () => {
     const { survey } = this.props
     const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
@@ -83,14 +75,14 @@ export class OwnersForm extends Component {
     return(
       <div className="owners-wrapper">
         <div className='owners-title'>
-          Select Survey Owners
+          Select Additional Owners
         </div>
         <div className='owners-list'>
           {instructorsToDisplay}
         </div>
         <div className='submit-button-container'>
           <button className="submit-button"
-                  onClick={this.checkOwners}>Send Survey</button>
+                  onClick={this.postSurvey}>Send Survey</button>
         </div>
       </div>
     )

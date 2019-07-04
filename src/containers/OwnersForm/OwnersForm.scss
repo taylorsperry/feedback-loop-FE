@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  max-height: 75vh;
+  max-height: 72vh;
   overflow: auto;
   margin: 2% 0;
 }
@@ -16,4 +16,20 @@
   color: #FFF;
   font-weight: bolder;
   text-shadow: black 0px 0px 5px;
+}
+
+.submit-button {
+  width: 28%;
+  background-color: $main-blue;
+  border-radius: 5px;
+  border: none;
+  color: $accent-teal;
+  font-family: $main-font;
+  font-weight: bold;
+  font-size: 16px;
+  height: 40px;
+  &:hover {
+    cursor: pointer;
+    background-color: $main-blue-hover;
+  }
 }
