@@ -1,7 +1,7 @@
 export const setOwnersReducer = (state = [], action) => {
   switch(action.type) {
     case 'SET_OWNERS':
-      return action.teams
+      return action.owners
     default:
       return state
   }

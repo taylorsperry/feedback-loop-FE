@@ -7,6 +7,7 @@ import { setCurrentCohort, setInstructorSurveys, setSurveyTeams } from '../../ac
 import cogoToast from 'cogo-toast';
 import shortid from 'shortid'
 import Team from '../../components/Team/Team'
+import InstructorNametag from '../../containers/InstructorNametag/InstructorNametag'
 
 export class OwnersForm extends Component {
   constructor() {
@@ -25,17 +26,8 @@ export class OwnersForm extends Component {
     })
   }
 
-  handleSelect = (e, instructor) => {
-    e.preventDefault()
-    const newOwners = this.state.owners
-    newOwners.push(instructor.id)
-    this.setState({
-      owners: newOwners
-    })
-  }
-
   checkOwners = () => {
-    if (this.state.owners.length === 0) {
+    if (this.props.owners.length === 0) {
       this.sendToast('You must assign at least one owner for this survey')
     } else {
       this.postSurvey()
@@ -54,8 +46,8 @@ export class OwnersForm extends Component {
               surveyName: survey.surveyName,
               surveyExpiration: survey.surveyExpiration,
               questions: survey.questions,
-              groups: this.props.surveyTeams,
-              owners: this.state.owners
+              groups: survey.surveyTeams,
+              owners: survey.owners
             }
         }),
         headers: {
@@ -81,17 +73,11 @@ export class OwnersForm extends Component {
   }
 
   render() {
-    const backgroundColor = (instructorId) => {
-
-    }
     const instructorsToDisplay = this.state.instructors.map(instructor => {
-      return <div
-              key={instructor.id}
-              id={instructor.id}
-              className="instructor-nametag"
-              clickable onClick={(e) => this.handleSelect(e, instructor)}>
-              {instructor.name}
-             </div>
+      return <InstructorNametag
+                key={instructor.id}
+                id={instructor.id}
+                instructor={instructor}/>
     })
 
     return(
@@ -109,20 +95,6 @@ export class OwnersForm extends Component {
       </div>
     )
   }
-}
-
-
-OwnersForm.propTypes = {
-  cohorts: PropTypes.array,
-  survey: PropTypes.object,
-  currentCohort: PropTypes.array,
-  user: PropTypes.string,
-  instructorSurveys: PropTypes.array,
-  handlePost: PropTypes.func,
-  handleGet: PropTypes.func,
-  setCurrentCohort: PropTypes.func,
-  setInstructorSurveys: PropTypes.func,
-  owners: PropTypes.array
 }
 
 export const mapStateToProps = (state) => ({

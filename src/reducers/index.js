@@ -10,6 +10,7 @@ import { setClosedSurveysReducer } from './setClosedSurveysReducer'
 import { setInstructorSurveysReducer } from './setInstructorSurveysReducer'
 import { setCurrentCohortReducer } from './setCurrentCohortReducer'
 import { setSurveyTeamsReducer } from './setSurveyTeamsReducer'
+import { setOwnersReducer } from './setOwnersReducer'
 
 const rootReducer = combineReducers({
   error: hasErrorReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   studentSurveys: setStudentSurveysReducer,
   closedSurveys: setClosedSurveysReducer,
   instructorSurveys: setInstructorSurveysReducer,
-  surveyTeams: setSurveyTeamsReducer
+  surveyTeams: setSurveyTeamsReducer,
+  owners: setOwnersReducer
 })
 
 export default rootReducer;

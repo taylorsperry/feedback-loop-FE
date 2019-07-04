@@ -4,11 +4,10 @@ import { connect } from 'react-redux'
 import { setOwners } from '../../actions'
 
 export class InstructorNametag extends Component {
-  componentDidMount = async function () {
-    if this.props.instructor.id === this.props.user.id {
-      const newOwners = this.props.owners
-      newOwners.push(this.props.instructor.id)
-      this.setOwners(newOwners)
+  constructor() {
+    super()
+    this.state = {
+      selected: false
     }
   }
 
@@ -17,21 +16,24 @@ export class InstructorNametag extends Component {
     let newOwners = this.props.owners
 
     this.props.owners.includes(this.props.instructor.id) ?
-    newOwners = this.props.owners.filter(owner => owner.id !=== this.props.instructor.id) :
+    newOwners = this.props.owners.filter(owner => owner !== this.props.instructor.id) :
     newOwners.push(this.props.instructor.id)
 
-    this.setOwners(newOwners)
+    this.props.setOwners(newOwners)
+    this.setState({
+      selected: !this.state.selected
+    })
   }
 
   render() {
     const backgroundColor = () => {
-      this.props.owners.includes(this.props.instructor.id) ? "$main-blue-hover" : "white"
+      return this.props.owners.includes(this.props.instructor.id) ? "#13F1FC" : "white"
     }
 
     return(
       <div className='instructor-nametag'
            clickable onClick={(e) => this.handleSelect(e)}
-           style=`background-color:${backgroundColor()}`>
+           style={{background: backgroundColor()}}>
         {this.props.instructor.name}
       </div>
     )
@@ -63,10 +65,6 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  handleGet: (url) => dispatch(handleGet(url)),
-  handlePost: (url, options) => dispatch(handlePost(url, options)),
-  setCurrentCohort: (cohort) => dispatch(setCurrentCohort(cohort)),
-  setInstructorSurveys: (surveys) => dispatch(setInstructorSurveys(surveys)),
   setOwners: (owners) => dispatch(setOwners(owners))
 })
 
