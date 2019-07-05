@@ -21,7 +21,7 @@ export class StudentSurvey extends Component {
     const id = splitPath[splitPath.length -1]
     const storedSurveys = this.props.studentSurveys
     const foundSurvey = storedSurveys.find(survey => {
-      return survey.id == id
+      return survey.id === id
     })
     this.setState({
       surveyName: foundSurvey.surveyName,

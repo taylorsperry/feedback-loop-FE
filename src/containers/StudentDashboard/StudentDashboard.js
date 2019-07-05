@@ -6,7 +6,6 @@ import StudentResult from '../StudentResult/StudentResult'
 import { setStudentSurveys } from '../../actions/'
 import { setClosedSurveys } from '../../actions/'
 import PropTypes from 'prop-types'
-import Surveys from '../../utils/sampleSurveys'
 
 export class StudentDashboard extends Component {
 
@@ -50,7 +49,7 @@ export class StudentDashboard extends Component {
             <h2 className='article-header'>Feedback</h2>
             <div className='article-container'>
               {this.props.closedSurveys && this.props.closedSurveys.map(survey => {
-                return <StudentResult 
+                return <StudentResult
                         key={survey.id}
                         survey={survey}
                         />

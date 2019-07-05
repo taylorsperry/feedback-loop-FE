@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
 import { handleGet } from '../../thunks/handleGet'
-import { setCurrentCohort, setInstructorSurveys, setSurveyTeams } from '../../actions'
 import cogoToast from 'cogo-toast';
-import shortid from 'shortid'
-import Team from '../../components/Team/Team'
 import InstructorNametag from '../../containers/InstructorNametag/InstructorNametag'
 
 export class OwnersForm extends Component {
@@ -100,9 +96,7 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   handleGet: (url) => dispatch(handleGet(url)),
-  handlePost: (url, options) => dispatch(handlePost(url, options)),
-  setCurrentCohort: (cohort) => dispatch(setCurrentCohort(cohort)),
-  setInstructorSurveys: (surveys) => dispatch(setInstructorSurveys(surveys))
+  handlePost: (url, options) => dispatch(handlePost(url, options))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(OwnersForm)
