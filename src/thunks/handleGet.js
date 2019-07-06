@@ -11,7 +11,7 @@ export const handleGet = (url) => {
       const data = await response.json()
       dispatch(isLoading(false))
       return data
-    } catch(error) {
+    } catch (error) {
       dispatch(hasError(error.message))
       dispatch(isLoading(false))
     }

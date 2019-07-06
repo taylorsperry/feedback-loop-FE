@@ -15,7 +15,8 @@ export class OwnersForm extends Component {
   }
 
   componentDidMount = async function () {
-    let url = `https://turing-feedback-api.herokuapp.com/api/v1/students`
+    const myKey = await localStorage.getItem('currentUser')
+    let url = `https://turing-feedback-api.herokuapp.com/api/v2/staff/instructors?api_key=${myKey}`
     let instructors = await this.props.handleGet(url)
     await this.setState({
       instructors: instructors
@@ -25,10 +26,11 @@ export class OwnersForm extends Component {
   postSurvey = async () => {
     const { survey } = this.props
     const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
+    const myKey = await localStorage.getItem('currentUser')
     const options = {
         method: 'POST',
         body: JSON.stringify({
-          api_key: this.props.user,
+          api_key: myKey,
           survey:
             {
               surveyName: survey.surveyName,
