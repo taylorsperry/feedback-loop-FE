@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { handleGet } from '../../thunks/handleGet'
 import StudentSurvey from '../StudentSurvey/StudentSurvey'
 import StudentResult from '../StudentResult/StudentResult'
-import { setStudentSurveys } from '../../actions/'
-import { setClosedSurveys } from '../../actions/'
+import { setStudentSurveys, setClosedSurveys, setMySurvey } from '../../actions/'
 import PropTypes from 'prop-types'
 
 export class StudentDashboard extends Component {
@@ -18,9 +17,10 @@ export class StudentDashboard extends Component {
     this.props.setClosedSurveys(closedSurveys)
   }
 
-  renderSurvey = (survey) => {
-    this.props.history.push(`/student-survey/${survey.id}`)
-    return <StudentSurvey key={survey.id} />
+  renderSurvey = async (survey) => {
+    await this.props.setMySurvey(survey)
+    await this.props.history.push(`/student-survey/${survey.id}`)
+    return await <StudentSurvey key={survey.id}/>
   }
 
   render() {
@@ -66,19 +66,23 @@ StudentDashboard.propTypes = {
   user: PropTypes.string,
   studentSurveys: PropTypes.array,
   handleGet: PropTypes.func,
-  setStudentSurveys: PropTypes.func
+  setStudentSurveys: PropTypes.func,
+  setMySurvey: PropTypes.func,
+  mySurvey: PropTypes.object
 }
 
 export const mapStateToProps = (state) => ({
   user: state.user,
   studentSurveys: state.studentSurveys,
-  closedSurveys: state.closedSurveys
+  closedSurveys: state.closedSurveys,
+  mySurvey: state.mySurvey
 })
 
 export const mapDispatchToProps = (dispatch) => ({
   handleGet: (url) => dispatch(handleGet(url)),
   setStudentSurveys: (surveys) => dispatch(setStudentSurveys(surveys)),
-  setClosedSurveys: (closedSurveys) => dispatch(setClosedSurveys(closedSurveys))
+  setClosedSurveys: (closedSurveys) => dispatch(setClosedSurveys(closedSurveys)),
+  setMySurvey: (survey) => dispatch(setMySurvey(survey))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard)

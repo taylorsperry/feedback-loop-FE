@@ -48,6 +48,11 @@ export const setClosedSurveys = (surveys) => ({
   surveys
 })
 
+export const setMySurvey = (survey) => ({
+  type: 'SET_MY_SURVEY',
+  survey
+})
+
 export const setSurveyTeams = (teams) => ({
   type: 'SET_SURVEY_TEAMS',
   teams

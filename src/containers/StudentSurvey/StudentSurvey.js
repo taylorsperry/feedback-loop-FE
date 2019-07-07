@@ -16,18 +16,13 @@ export class StudentSurvey extends Component {
   }
 
   componentDidMount() {
-    const path = this.props.location.pathname
-    const splitPath = path.split('/')
-    const id = splitPath[splitPath.length -1]
     const storedSurveys = this.props.studentSurveys
-    const foundSurvey = storedSurveys.find(survey => {
-      return survey.id === id
-    })
+    const mySurvey = this.props.mySurvey
     this.setState({
-      surveyName: foundSurvey.surveyName,
-      id: foundSurvey.id,
-      questions: foundSurvey.questions,
-      members: foundSurvey.groups[0].members,
+      surveyName: mySurvey.surveyName,
+      id: mySurvey.id,
+      questions: mySurvey.questions,
+      members: mySurvey.groups[0].members,
     })
   }
 
@@ -99,7 +94,8 @@ export class StudentSurvey extends Component {
 
 export const mapStateToProps = (state) => ({
   studentSurveys: state.studentSurveys,
-  user: state.user
+  user: state.user,
+  mySurvey: state.mySurvey
 })
 
 export const mapDispatchToProps = (dispatch) => ({

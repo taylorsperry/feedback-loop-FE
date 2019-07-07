@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handlePost } from '../../thunks/handlePost'
 import { handleGet } from '../../thunks/handleGet'
+import { setInstructorSurveys } from '../../actions'
 import cogoToast from 'cogo-toast';
 import InstructorNametag from '../../containers/InstructorNametag/InstructorNametag'
 
@@ -25,7 +26,7 @@ export class OwnersForm extends Component {
 
   postSurvey = async () => {
     const { survey } = this.props
-    const url = "https://turing-feedback-api.herokuapp.com/api/v1/surveys"
+    const url = "https://turing-feedback-api.herokuapp.com/api/v2/staff/surveys"
     const myKey = await localStorage.getItem('currentUser')
     const options = {
         method: 'POST',
@@ -36,8 +37,8 @@ export class OwnersForm extends Component {
               surveyName: survey.surveyName,
               surveyExpiration: survey.surveyExpiration,
               questions: survey.questions,
-              groups: survey.surveyTeams,
-              owners: survey.owners
+              groups: this.props.surveyTeams,
+              owners: this.props.owners
             }
         }),
         headers: {
@@ -93,12 +94,14 @@ export const mapStateToProps = (state) => ({
   currentCohort: state.currentCohort,
   user: state.user,
   instructorSurveys: state.instructorSurveys,
-  owners: state.owners
+  owners: state.owners,
+  surveyTeams: state.surveyTeams
 })
 
 export const mapDispatchToProps = (dispatch) => ({
   handleGet: (url) => dispatch(handleGet(url)),
-  handlePost: (url, options) => dispatch(handlePost(url, options))
+  handlePost: (url, options) => dispatch(handlePost(url, options)),
+  setInstructorSurveys: (surveys) => dispatch(setInstructorSurveys(surveys)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(OwnersForm)

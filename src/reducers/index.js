@@ -7,6 +7,7 @@ import { setUserReducer } from './setUserReducer'
 import { setRoleReducer } from './setRoleReducer'
 import { setStudentSurveysReducer } from './setStudentSurveysReducer'
 import { setClosedSurveysReducer } from './setClosedSurveysReducer'
+import { setMySurveyReducer } from './setMySurveyReducer'
 import { setInstructorSurveysReducer } from './setInstructorSurveysReducer'
 import { setCurrentCohortReducer } from './setCurrentCohortReducer'
 import { setSurveyTeamsReducer } from './setSurveyTeamsReducer'
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   role: setRoleReducer,
   studentSurveys: setStudentSurveysReducer,
   closedSurveys: setClosedSurveysReducer,
+  mySurvey: setMySurveyReducer,
   instructorSurveys: setInstructorSurveysReducer,
   surveyTeams: setSurveyTeamsReducer,
   owners: setOwnersReducer
