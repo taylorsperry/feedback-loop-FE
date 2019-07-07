@@ -16,7 +16,8 @@ export class RecipientForm extends Component {
       program: 'both',
       draggedStudent: {},
       group: [],
-      teams: [{id: shortid(), name: '', members: []}]
+      teams: [{id: shortid(), name: '', members: []}],
+      validGroups: true
     }
   }
 
@@ -128,17 +129,20 @@ export class RecipientForm extends Component {
     if(names.length < this.state.teams.length) {
       this.sendToast('Each team must have a name')
     } else {
-      this.checkGroups()
+      this.formatGroups()
     }
   }
 
-  checkGroups = async () => {
+  formatGroups = async () => {
     const formattedGroups = await this.state.teams.map(team => {
       const formattedMembers = team.members.map(member => {
         return member.id
       })
       if (formattedMembers.length < 2) {
         this.sendToast('There must be at least two students in a group')
+        this.setState({
+          validGroups: false
+        })
       } else {
         const formattedGroup = {
           name: team.name,
@@ -147,9 +151,18 @@ export class RecipientForm extends Component {
         return formattedGroup
       }
     })
-    await this.props.setSurveyTeams(formattedGroups)
-    await this.props.history.push('/owners')
-    // this.postSurvey(formattedGroups)
+    await this.validateGroups(formattedGroups)
+  }
+
+  validateGroups = async (formattedGroups) => {
+    if (this.state.validGroups) {
+      await this.props.setSurveyTeams(formattedGroups)
+      await this.props.history.push('/owners')
+    } else {
+      await this.setState({
+        validGroups: true
+      })
+    }
   }
 
   sendToast = (message) => {

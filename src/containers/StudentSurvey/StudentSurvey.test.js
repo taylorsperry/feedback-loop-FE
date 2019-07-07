@@ -3,37 +3,39 @@ import { shallow } from 'enzyme'
 import { StudentSurvey, mapStateToProps, mapDispatchToProps } from './StudentSurvey'
 jest.mock('../../thunks/handlePost')
 
-describe('StudentSurvey', () => {
+describe('StudentSurvey', async () => {
   let wrapper
   let mockUser
   let mockHandlePost
   let mockStudentSurveys
-  let mocklocation
+  let mockLocation
 
   beforeEach(() => {
     mockUser = '12345'
     mockStudentSurveys = [
-      { 
-        id: 1, 
+      {
+        id: 1,
         surveyName: "Survey 1",
-        questions: [ { id: 7 }, { id: 8 } ], 
-        groups: [{members: [{id: 1, name: "name1"}, {id: 2, name: "name2"}]}]},
+        questions: [ { id: 7 }, { id: 8 } ],
+        groups: [{members: [{id: 1, name: "name1"}, {id: 2, name: "name2"}]}]
+      }
     ]
     mockHandlePost = jest.fn()
-    mocklocation = { pathname : 'mockUrl/1' }
-  
+    mockLocation = { pathname : 'mockUrl/1' }
+
     wrapper = shallow(
       <StudentSurvey
         studentSurveys={mockStudentSurveys}
         user={mockUser}
         handlePost={mockHandlePost}
-        location={mocklocation}
+        location={mockLocation}
       />
     )
   })
 
   it('should match the snapshot', () => {
-    expect(wrapper).toMatchSnapshot()
+    console.log("I AM WRAPPER: ", wrapper)
+    expect(wrapper.state()).toMatchSnapshot()
   })
 
   it('should have default state', () => {
@@ -41,19 +43,19 @@ describe('StudentSurvey', () => {
     expect(wrapper.state('membersReviewed')).toBe(0)
   })
 
-  it('should set state on componentDidMount', () => {
-    const expected = {
+  it('should set state on componentDidMount', async () => {
+    const expected = await {
       allResponses: [],
       membersReviewed: 0,
       surveyName: 'Survey 1',
       id: 1,
       questions: [ { id: 7 }, { id: 8} ],
-      members: [{id: 1, name: "name1"}, {id: 2, name: "name2"}], 
+      members: [{id: 1, name: "name1"}, {id: 2, name: "name2"}],
     }
-    wrapper.instance().componentDidMount()
-    expect(wrapper.state()).toEqual(expected)
+    await wrapper.instance().componentDidMount()
+    await expect(wrapper.state()).toEqual(expected)
   })
-  
+
   it('should return a Response component for each member', () => {
     wrapper.instance().componentDidMount()
     const result = wrapper.instance().renderResponse()

@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { RecipientForm, mapStateToProps, mapDispatchToProps } from './RecipientForm'
-import { setCurrentCohort, setInstructorSurveys } from '../../actions'
+import { setCurrentCohort, setInstructorSurveys, setSurveyTeams } from '../../actions'
 jest.mock('../../thunks/handlePost')
 jest.mock('../../thunks/handleGet')
 
@@ -26,7 +26,8 @@ describe('RecipientForm', () => {
       handlePost: jest.fn(),
       handleGet: jest.fn(),
       setCurrentCohort: jest.fn(),
-      setInstructorSurveys: jest.fn()
+      setInstructorSurveys: jest.fn(),
+      setSurveyTeams: jest.fn()
     }
 
     wrapper = shallow(
@@ -39,6 +40,7 @@ describe('RecipientForm', () => {
         setCurrentCohort={mockState.setCurrentCohort}
         history={mockHistory}
         setInstructorSurveys={mockState.setInstructorSurveys}
+        setSurveyTeams={mockState.setSurveyTeams}
       />
     )
   })
@@ -76,6 +78,22 @@ describe('RecipientForm', () => {
     wrapper.instance().handleAssignGroups()
     const expected = await wrapper.instance().props.handleGet()
     expect(wrapper.instance().props.setCurrentCohort).toHaveBeenCalledWith(expected)
+  })
+
+  it('should dispatch setSurveyTeams when validateGroups is called', async () => {
+    const formattedGroups = [{ name: 'team name', members_ids: [99, 4]}];
+    wrapper.instance().validateGroups(formattedGroups)
+    expect(wrapper.instance().props.setSurveyTeams).toHaveBeenCalled()
+  })
+
+  it('should NOT dispatch setSurveyTeams when formatGroups is called with only one team member', async () => {
+    const formattedGroups = [{ name: 'team name', members_ids: [99]}];
+    const mockState = {
+      teams: [{ id: 17, name: 'team one', members: [ {id: 99, name: 'April' }]}]
+    }
+    wrapper.setState(mockState)
+    wrapper.instance().formatGroups()
+    expect(wrapper.instance().props.setSurveyTeams).not.toHaveBeenCalled()
   })
 
   it.skip('should push to dashboard when handleSuccess is called', async () => {
@@ -127,7 +145,7 @@ describe('RecipientForm', () => {
     wrapper.instance().addTeam()
     expect(wrapper.state('teams')).toHaveLength(2)
   })
-  
+
   it('should update a team in state when handleTeamName is called', () => {
     const mockState = {
       teams: [{ id: 17, name: 'team one', members: [ {id: 99, name: 'April' }]}]
@@ -138,15 +156,15 @@ describe('RecipientForm', () => {
     wrapper.instance().handleTeamName(mockTeam.id, mockTeam.name)
     expect(wrapper.state('teams')).toEqual(expected)
   })
-  
+
   it('should call checkTeamNames when checkSurvey is called', () => {
     const checkTeamNamesSpy = jest.spyOn(wrapper.instance(), 'checkTeamNames')
     wrapper.instance().checkSurvey()
     expect(checkTeamNamesSpy).toHaveBeenCalled()
   })
 
-  it('should call checkGroups when checkTeamNames is called', () => {
-    const checkGroupsSpy = jest.spyOn(wrapper.instance(), 'checkGroups')
+  it('should call formatGroups when checkTeamNames is called', () => {
+    const formatGroupsSpy = jest.spyOn(wrapper.instance(), 'formatGroups')
     const mockState = {
       teams: [{ id: 17, name: 'team one', members: [ {id: 99, name: 'April' }]}]
     }
@@ -154,44 +172,45 @@ describe('RecipientForm', () => {
       teams: mockState.teams
     })
     wrapper.instance().checkTeamNames()
-    expect(checkGroupsSpy).toHaveBeenCalled()
+    expect(formatGroupsSpy).toHaveBeenCalled()
   })
 
-  it('should not call checkGroups if a team is missing a name', () => {
-    const checkGroupsSpy = jest.spyOn(wrapper.instance(), 'checkGroups')
+  it('should not call validateGroups if a team is missing a name', async () => {
+    const validateGroupsSpy = jest.spyOn(wrapper.instance(), 'validateGroups')
     const mockState = {
       teams: [{ id: 17, name: '', members: [ {id: 99, name: 'April' }]}]
     }
     wrapper.setState({
       teams: mockState.teams
     })
-    wrapper.instance().checkTeamNames()
-    expect(checkGroupsSpy).not.toHaveBeenCalled()
+    await wrapper.instance().checkTeamNames()
+    await expect(validateGroupsSpy).not.toHaveBeenCalled()
   })
 
-  it('should call postSurvey with formattedGroups', () => {
-    const postSurveySpy = jest.spyOn(wrapper.instance(), 'postSurvey')
+  it('formatGroups should call validateGroups with formattedGroups', async () => {
+    const validateGroupsSpy = jest.spyOn(wrapper.instance(), 'validateGroups')
     const mockState = {
       teams: [{ id: 17, name: 'team name', members: [ {id: 99, name: 'April' }, {id: 4, name: 'Taylor'}]}]
     }
     const formattedGroups = [{ name: 'team name', members_ids: [99, 4]}]
-    wrapper.setState({
+    await wrapper.setState({
       teams: mockState.teams
     })
-    wrapper.instance().checkGroups()
-    expect(postSurveySpy).toHaveBeenCalledWith(formattedGroups)
+    await wrapper.instance().formatGroups()
+    await expect(validateGroupsSpy).toHaveBeenCalledWith(formattedGroups)
   })
 
-  it('should not call postSurvey if a team does not have at least two members', () => {
-    const postSurveySpy = jest.spyOn(wrapper.instance(), 'postSurvey')
+  it('should not call setSurveyTeams if a team does not have at least two members', () => {
+    const setSurveyTeamsSpy = jest.spyOn(wrapper.instance().props, 'setSurveyTeams')
     const mockState = {
       teams: [{ id: 17, name: 'team name', members: [ {id: 99, name: 'April' }]}]
     }
+    const formattedGroups = [{ name: 'team name', members_ids: [99]}]
     wrapper.setState({
       teams: mockState.teams
     })
-    wrapper.instance().checkGroups()
-    expect(postSurveySpy).not.toHaveBeenCalledWith()
+    wrapper.instance().formatGroups()
+    expect(setSurveyTeamsSpy).not.toHaveBeenCalledWith(formattedGroups)
   })
 
 
@@ -238,22 +257,22 @@ describe('RecipientForm', () => {
         const handlePost = jest.fn()
         const actionToDispatch = handlePost(mockUrl, mockOptions)
         const mappedProps = mapDispatchToProps(mockDispatch)
-  
+
         mappedProps.handlePost(mockUrl, mockOptions)
-  
+
         expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
 
     it('should return handleGet to dispatch', () => {
       const mockUrl = 'www.post.com'
-      
+
       const mockDispatch = jest.fn()
       const handleGet = jest.fn()
       const actionToDispatch = handleGet(mockUrl)
       const mappedProps = mapDispatchToProps(mockDispatch)
 
       mappedProps.handleGet(mockUrl)
-  
+
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
 
@@ -271,5 +290,5 @@ describe('RecipientForm', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
   })
-  
+
 })
