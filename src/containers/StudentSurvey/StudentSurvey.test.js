@@ -34,7 +34,6 @@ describe('StudentSurvey', async () => {
   })
 
   it('should match the snapshot', () => {
-    console.log("I AM WRAPPER: ", wrapper)
     expect(wrapper.state()).toMatchSnapshot()
   })
 
